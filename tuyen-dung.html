@@ -1,0 +1,916 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tuyển dụng | Brian Luu</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons+Round"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0,1"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <style>
+      .career-container {
+        max-width: 1000px;
+        margin: 60px auto;
+        padding: 0 24px 80px;
+      }
+      .job-list {
+        display: grid;
+        gap: 24px;
+        margin-top: 50px;
+      }
+      .job-item {
+        background: white;
+        border-radius: 20px;
+        padding: 32px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: var(--transition);
+      }
+      .dark-mode .job-item {
+        background: var(--surface-dark);
+      }
+      .job-item:hover {
+        transform: translateX(10px);
+        box-shadow: 0 10px 30px rgba(6, 78, 59, 0.1);
+      }
+      .job-tag {
+        background: rgba(6, 78, 59, 0.1);
+        color: var(--primary-light);
+        padding: 6px 16px;
+        border-radius: 30px;
+        font-size: 12px;
+        font-weight: 600;
+      }
+      .apply-btn {
+        background: var(--primary-light);
+        color: white;
+        border: none;
+        padding: 12px 32px;
+        border-radius: 40px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+      .apply-btn:hover {
+        background: #0a6e4f;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(6, 78, 59, 0.2);
+      }
+
+      /* Modal overlay */
+      .apply-modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(5px);
+        z-index: 10000;
+        display: none;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .apply-modal-overlay.active {
+        display: block;
+        opacity: 1;
+      }
+
+      /* Modal content */
+      .apply-modal {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0.9);
+        background: white;
+        border-radius: 30px;
+        padding: 40px;
+        max-width: 600px;
+        width: 90%;
+        max-height: 85vh;
+        overflow-y: auto;
+        z-index: 10001;
+        display: none;
+        opacity: 0;
+        transition: all 0.3s ease;
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+      }
+
+      .dark-mode .apply-modal {
+        background: var(--surface-dark);
+        color: var(--text-dark);
+      }
+
+      .apply-modal.active {
+        display: block;
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+      }
+
+      .apply-modal h2 {
+        font-family: var(--font-serif);
+        font-size: 2rem;
+        font-style: italic;
+        color: var(--primary-light);
+        margin-bottom: 10px;
+        padding-right: 40px;
+      }
+
+      .apply-modal .job-position {
+        font-size: 14px;
+        color: var(--primary-light);
+        background: rgba(6, 78, 59, 0.1);
+        display: inline-block;
+        padding: 5px 15px;
+        border-radius: 30px;
+        margin-bottom: 25px;
+      }
+
+      .apply-modal .close-btn {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background: none;
+        border: none;
+        font-size: 24px;
+        cursor: pointer;
+        color: var(--text-light);
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s;
+      }
+
+      .dark-mode .apply-modal .close-btn {
+        color: var(--text-dark);
+      }
+
+      .apply-modal .close-btn:hover {
+        background: rgba(0, 0, 0, 0.05);
+        transform: rotate(90deg);
+      }
+
+      .apply-form-group {
+        margin-bottom: 20px;
+      }
+
+      .apply-form-group label {
+        display: block;
+        font-size: 13px;
+        font-weight: 600;
+        margin-bottom: 8px;
+        color: var(--text-light);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .dark-mode .apply-form-group label {
+        color: var(--text-dark);
+      }
+
+      .apply-form-group input,
+      .apply-form-group select,
+      .apply-form-group textarea {
+        width: 100%;
+        padding: 14px 16px;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        border-radius: 12px;
+        background: transparent;
+        font-family: inherit;
+        font-size: 15px;
+        transition: all 0.3s;
+      }
+
+      .dark-mode .apply-form-group input,
+      .dark-mode .apply-form-group select,
+      .dark-mode .apply-form-group textarea {
+        border-color: rgba(255, 255, 255, 0.1);
+        color: var(--text-dark);
+      }
+
+      .apply-form-group input:focus,
+      .apply-form-group select:focus,
+      .apply-form-group textarea:focus {
+        outline: none;
+        border-color: var(--primary-light);
+        box-shadow: 0 0 0 3px rgba(6, 78, 59, 0.1);
+      }
+
+      .apply-form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+
+      @media (max-width: 480px) {
+        .apply-form-row {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .submit-apply-btn {
+        width: 100%;
+        background: var(--primary-light);
+        color: white;
+        border: none;
+        padding: 16px;
+        border-radius: 40px;
+        font-size: 16px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        cursor: pointer;
+        transition: all 0.3s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 20px;
+      }
+
+      .submit-apply-btn:hover {
+        background: #0a6e4f;
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px rgba(6, 78, 59, 0.2);
+      }
+
+      .submit-apply-btn:active {
+        transform: translateY(0);
+      }
+
+      .submit-apply-btn.loading {
+        opacity: 0.7;
+        cursor: not-allowed;
+      }
+
+      /* Toast message */
+      .career-toast {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: var(--primary-light);
+        color: white;
+        padding: 20px 40px;
+        border-radius: 60px;
+        font-size: 18px;
+        font-weight: 600;
+        box-shadow: 0 20px 40px rgba(6, 78, 59, 0.3);
+        z-index: 10002;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        animation:
+          slideInDown 0.3s ease,
+          fadeOut 0.3s ease 2.7s;
+        pointer-events: none;
+      }
+
+      @keyframes slideInDown {
+        from {
+          transform: translate(-50%, -70%);
+          opacity: 0;
+        }
+        to {
+          transform: translate(-50%, -50%);
+          opacity: 1;
+        }
+      }
+
+      @keyframes fadeOut {
+        from {
+          opacity: 1;
+          transform: translate(-50%, -50%);
+        }
+        to {
+          opacity: 0;
+          transform: translate(-50%, -30%);
+        }
+      }
+
+      .career-toast .material-icons-round {
+        font-size: 28px;
+        color: #86efac;
+      }
+
+      /* File upload styling */
+      .file-upload {
+        border: 2px dashed rgba(6, 78, 59, 0.2);
+        border-radius: 12px;
+        padding: 30px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+
+      .file-upload:hover {
+        border-color: var(--primary-light);
+        background: rgba(6, 78, 59, 0.02);
+      }
+
+      .file-upload .material-icons-round {
+        font-size: 40px;
+        color: var(--primary-light);
+        margin-bottom: 10px;
+      }
+
+      .file-upload span {
+        display: block;
+        color: var(--text-light);
+        font-size: 14px;
+      }
+
+      .dark-mode .file-upload span {
+        color: var(--text-dark);
+      }
+
+      #file-name {
+        margin-top: 10px;
+        font-size: 13px;
+        color: var(--primary-light);
+        font-weight: 600;
+      }
+    </style>
+  </head>
+  <body class="light-mode">
+    <!-- SIDEBAR (giống các trang khác) -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <div class="sidebar-menu" id="sidebarMenu">
+      <div class="sidebar-header">
+        <h2 class="sidebar-brand">BRIAN LUU</h2>
+        <button class="sidebar-close" id="sidebarClose">
+          <span class="material-icons-round">close</span>
+        </button>
+      </div>
+      <div class="sidebar-content">
+        <div class="sidebar-section">
+          <h3 class="sidebar-section-title">KHÁM PHÁ</h3>
+          <ul class="sidebar-list">
+            <li>
+              <a href="gioi-thieu.html"
+                ><span class="material-icons-round">info</span> Giới thiệu về
+                Brian Luu</a
+              >
+            </li>
+            <li>
+              <a href="san-pham-moi.html"
+                ><span class="material-icons-round">new_releases</span> Sản phẩm
+                mới</a
+              >
+            </li>
+            <li>
+              <a href="khuyen-mai.html"
+                ><span class="material-icons-round">local_offer</span> Khuyến
+                mãi</a
+              >
+            </li>
+          </ul>
+        </div>
+        <div class="sidebar-section">
+          <h3 class="sidebar-section-title">HỖ TRỢ</h3>
+          <ul class="sidebar-list">
+            <li>
+              <a href="tro-giup.html"
+                ><span class="material-icons-round">help</span> Trung tâm trợ
+                giúp</a
+              >
+            </li>
+            <li>
+              <a href="van-chuyen.html"
+                ><span class="material-icons-round">local_shipping</span> Vận
+                chuyển & Lắp đặt</a
+              >
+            </li>
+            <li>
+              <a href="bao-hanh.html"
+                ><span class="material-icons-round">verified</span> Bảo hành &
+                Bảo trì</a
+              >
+            </li>
+            <li>
+              <a href="lien-he.html"
+                ><span class="material-icons-round">contact_support</span> Liên
+                hệ</a
+              >
+            </li>
+          </ul>
+        </div>
+        <div class="sidebar-section">
+          <h3 class="sidebar-section-title">CỘNG ĐỒNG</h3>
+          <ul class="sidebar-list">
+            <li>
+              <a href="tuyen-dung.html"
+                ><span class="material-icons-round">badge</span> Tuyển dụng</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="sidebar-footer">
+        <p>Est. 2024 · The Milan Residence</p>
+      </div>
+    </div>
+
+    <!-- HEADER -->
+    <header class="main-header glass-header">
+      <div class="header-left">
+        <button class="menu-btn" aria-label="Menu">
+          <span class="material-icons-round">menu</span>
+        </button>
+      </div>
+      <div class="header-center">
+        <h1 class="brand-name">BRIAN LUU</h1>
+        <p class="brand-slogan">
+          CHẠM VÀO PHONG CÁCH, SỐNG TRỌN TỪNG KHOẢNH KHẮC
+        </p>
+      </div>
+      <div class="header-right">
+        <button
+          id="darkModeToggle"
+          class="mode-toggle"
+          aria-label="Chuyển đổi chế độ sáng/tối"
+        >
+          <span class="material-symbols-outlined light-icon">light_mode</span>
+          <span class="material-symbols-outlined dark-icon">dark_mode</span>
+        </button>
+        <button class="search-btn" aria-label="Tìm kiếm">
+          <span class="material-icons-round">search</span>
+        </button>
+        <button class="cart-btn" aria-label="Giỏ hàng">
+          <span class="material-icons-round">shopping_bag</span>
+          <span class="cart-dot"></span>
+        </button>
+        <a
+          href="theo-doi-don-hang.html"
+          style="text-decoration: none; color: inherit"
+        >
+          <button
+            class="track-order-btn"
+            style="
+              background: none;
+              border: none;
+              cursor: pointer;
+              display: flex;
+              align-items: center;
+            "
+          >
+            <span class="material-icons-round" style="font-size: 24px"
+              >assignment</span
+            >
+          </button>
+        </a>
+      </div>
+    </header>
+
+    <!-- CATEGORY NAV -->
+    <nav class="category-nav glass-header">
+      <div class="nav-container hide-scrollbar">
+        <a href="index.html" class="nav-item">TẤT CẢ</a>
+        <a href="phong-khach.html" class="nav-item">PHÒNG KHÁCH</a>
+        <a href="phong-ngu.html" class="nav-item">PHÒNG NGỦ</a>
+        <a href="phong-an.html" class="nav-item">PHÒNG ĂN</a>
+        <a href="den.html" class="nav-item">ĐÈN</a>
+        <a href="van-phong.html" class="nav-item">VĂN PHÒNG</a>
+      </div>
+    </nav>
+
+    <div class="career-container">
+      <h1
+        style="
+          font-family: var(--font-serif);
+          font-size: 3.5rem;
+          font-style: italic;
+          margin-bottom: 20px;
+          color: var(--primary-light);
+        "
+      >
+        Tuyển dụng
+      </h1>
+      <p style="font-size: 18px; opacity: 0.7; margin-bottom: 60px">
+        Cùng chúng tôi kiến tạo không gian sống đẳng cấp
+      </p>
+
+      <div class="job-list">
+        <div class="job-item">
+          <div>
+            <span class="job-tag">Full-time</span>
+            <h3 style="font-size: 24px; margin: 16px 0 8px">
+              Nhà thiết kế nội thất
+            </h3>
+            <p style="opacity: 0.6">Showroom Hồ Chí Minh</p>
+          </div>
+          <button
+            class="apply-btn"
+            onclick="openApplyModal('Nhà thiết kế nội thất', 'Full-time')"
+          >
+            Ứng tuyển
+          </button>
+        </div>
+
+        <div class="job-item">
+          <div>
+            <span class="job-tag">Full-time</span>
+            <h3 style="font-size: 24px; margin: 16px 0 8px">
+              Chuyên viên tư vấn
+            </h3>
+            <p style="opacity: 0.6">Showroom Hồ Chí Minh</p>
+          </div>
+          <button
+            class="apply-btn"
+            onclick="openApplyModal('Chuyên viên tư vấn', 'Full-time')"
+          >
+            Ứng tuyển
+          </button>
+        </div>
+
+        <div class="job-item">
+          <div>
+            <span class="job-tag">Part-time</span>
+            <h3 style="font-size: 24px; margin: 16px 0 8px">
+              Kỹ thuật viên lắp đặt
+            </h3>
+            <p style="opacity: 0.6">Hà Nội & TP.HCM</p>
+          </div>
+          <button
+            class="apply-btn"
+            onclick="openApplyModal('Kỹ thuật viên lắp đặt', 'Part-time')"
+          >
+            Ứng tuyển
+          </button>
+        </div>
+
+        <div class="job-item">
+          <div>
+            <span class="job-tag">Remote</span>
+            <h3 style="font-size: 24px; margin: 16px 0 8px">Content Creator</h3>
+            <p style="opacity: 0.6">Làm việc từ xa</p>
+          </div>
+          <button
+            class="apply-btn"
+            onclick="openApplyModal('Content Creator', 'Remote')"
+          >
+            Ứng tuyển
+          </button>
+        </div>
+
+        <div class="job-item">
+          <div>
+            <span class="job-tag">Internship</span>
+            <h3 style="font-size: 24px; margin: 16px 0 8px">
+              Thực tập sinh Marketing
+            </h3>
+            <p style="opacity: 0.6">Showroom Hồ Chí Minh</p>
+          </div>
+          <button
+            class="apply-btn"
+            onclick="openApplyModal('Thực tập sinh Marketing', 'Internship')"
+          >
+            Ứng tuyển
+          </button>
+        </div>
+      </div>
+
+      <div
+        style="
+          margin-top: 80px;
+          padding: 40px;
+          background: rgba(6, 78, 59, 0.05);
+          border-radius: 24px;
+          text-align: center;
+        "
+      >
+        <h4 style="font-size: 24px; margin-bottom: 16px">
+          Không tìm thấy vị trí phù hợp?
+        </h4>
+        <p style="opacity: 0.7; margin-bottom: 24px">
+          Hãy gửi hồ sơ tự do, chúng tôi luôn chào đón tài năng mới.
+        </p>
+        <button
+          onclick="openApplyModal('Ứng viên tự do', 'Tự do')"
+          style="
+            background: transparent;
+            border: 2px solid var(--primary-light);
+            color: var(--primary-light);
+            padding: 16px 40px;
+            border-radius: 40px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+          "
+        >
+          GỬI HỒ SƠ
+        </button>
+      </div>
+    </div>
+
+    <!-- Modal overlay -->
+    <div class="apply-modal-overlay" id="applyModalOverlay"></div>
+
+    <!-- Apply Modal -->
+    <div class="apply-modal" id="applyModal">
+      <button class="close-btn" onclick="closeApplyModal()">
+        <span class="material-icons-round">close</span>
+      </button>
+      <h2 id="modalPositionTitle">Ứng tuyển vị trí</h2>
+      <span class="job-position" id="modalJobType">Full-time</span>
+
+      <form
+        id="applicationForm"
+        onsubmit="
+          event.preventDefault();
+          submitApplication();
+        "
+      >
+        <div class="apply-form-row">
+          <div class="apply-form-group">
+            <label>Họ và tên *</label>
+            <input type="text" id="fullName" required />
+          </div>
+          <div class="apply-form-group">
+            <label>Ngày sinh</label>
+            <input type="date" id="birthDate" />
+          </div>
+        </div>
+
+        <div class="apply-form-row">
+          <div class="apply-form-group">
+            <label>Email *</label>
+            <input type="email" id="email" required />
+          </div>
+          <div class="apply-form-group">
+            <label>Số điện thoại *</label>
+            <input type="tel" id="phone" required />
+          </div>
+        </div>
+
+        <div class="apply-form-group">
+          <label>Trường đã học *</label>
+          <input
+            type="text"
+            id="university"
+            placeholder="Tên trường đại học/cao đẳng"
+            required
+          />
+        </div>
+
+        <div class="apply-form-group">
+          <label>Chuyên ngành *</label>
+          <input
+            type="text"
+            id="major"
+            placeholder="Ví dụ: Thiết kế nội thất, Marketing..."
+            required
+          />
+        </div>
+
+        <div class="apply-form-group">
+          <label>Kinh nghiệm làm việc *</label>
+          <textarea
+            id="experience"
+            rows="3"
+            placeholder="Mô tả kinh nghiệm làm việc (nếu có)"
+            required
+          ></textarea>
+        </div>
+
+        <div class="apply-form-group">
+          <label>Kỹ năng *</label>
+          <textarea
+            id="skills"
+            rows="2"
+            placeholder="Ví dụ: AutoCAD, Photoshop, Tiếng Anh..."
+            required
+          ></textarea>
+        </div>
+
+        <div class="apply-form-group">
+          <label>Upload CV (PDF, DOC)</label>
+          <div
+            class="file-upload"
+            onclick="document.getElementById('cvFile').click()"
+          >
+            <span class="material-icons-round">cloud_upload</span>
+            <span>Click để chọn file CV</span>
+          </div>
+          <input
+            type="file"
+            id="cvFile"
+            accept=".pdf,.doc,.docx"
+            style="display: none"
+          />
+          <div id="file-name"></div>
+        </div>
+
+        <button type="submit" class="submit-apply-btn" id="submitApplyBtn">
+          <span class="material-icons-round">send</span>
+          GỬI ĐƠN ỨNG TUYỂN
+        </button>
+      </form>
+    </div>
+
+    <footer class="main-footer">
+      <div class="footer-container">
+        <div class="footer-grid">
+          <div class="footer-col">
+            <h4 class="footer-title">VỀ BRIAN LUU</h4>
+            <ul class="footer-menu">
+              <li><a href="gioi-thieu.html">Câu chuyện thương hiệu</a></li>
+              <li><a href="tuyen-dung.html">Tuyển dụng</a></li>
+              <li><a href="lien-he.html">Liên hệ</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4 class="footer-title">CHÍNH SÁCH</h4>
+            <ul class="footer-menu">
+              <li><a href="van-chuyen.html">Chính sách vận chuyển</a></li>
+              <li><a href="bao-hanh.html">Chính sách bảo hành</a></li>
+              <li><a href="gioi-thieu.html">Phát triển bền vững</a></li>
+              <li><a href="khuyen-mai.html">Chương trình thương mại</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4 class="footer-title">HỖ TRỢ</h4>
+            <ul class="footer-menu">
+              <li><a href="tro-giup.html">Trung tâm trợ giúp</a></li>
+              <li><a href="lien-he.html">Vị trí Atelier</a></li>
+              <li><a href="khuyen-mai.html">Khuyến mãi</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>© 2025 BRIAN LUU — THE MILAN RESIDENCE. THỦ CÔNG TẠI MILAN.</p>
+        </div>
+      </div>
+    </footer>
+
+    <nav class="bottom-nav">
+      <button class="nav-icon" onclick="window.location.href = 'index.html'">
+        <span class="material-symbols-outlined">home</span>
+      </button>
+      <button
+        class="nav-icon"
+        onclick="window.location.href = 'phong-khach.html'"
+      >
+        <span class="material-symbols-outlined">grid_view</span>
+      </button>
+      <button
+        class="nav-icon"
+        onclick="window.location.href = 'yeu-thich.html'"
+      >
+        <span class="material-symbols-outlined">favorite</span>
+      </button>
+      <button
+        class="nav-icon active"
+        onclick="window.location.href = 'lien-he.html'"
+      >
+        <span class="material-symbols-outlined">person</span
+        ><span class="nav-dot"></span>
+      </button>
+    </nav>
+
+    <script src="js/main.js"></script>
+    <script>
+      // Biến lưu vị trí đang ứng tuyển
+      let currentPosition = "";
+      let currentJobType = "";
+
+      // Mở modal ứng tuyển
+      function openApplyModal(position, jobType) {
+        currentPosition = position;
+        currentJobType = jobType;
+
+        document.getElementById("modalPositionTitle").textContent =
+          "Ứng tuyển vị trí: " + position;
+        document.getElementById("modalJobType").textContent = jobType;
+
+        document.getElementById("applyModalOverlay").classList.add("active");
+        document.getElementById("applyModal").classList.add("active");
+        document.body.style.overflow = "hidden";
+      }
+
+      // Đóng modal
+      function closeApplyModal() {
+        document.getElementById("applyModalOverlay").classList.remove("active");
+        document.getElementById("applyModal").classList.remove("active");
+        document.body.style.overflow = "";
+
+        // Reset form
+        document.getElementById("applicationForm").reset();
+        document.getElementById("file-name").innerHTML = "";
+      }
+
+      // Xử lý chọn file
+      document
+        .getElementById("cvFile")
+        .addEventListener("change", function (e) {
+          const fileName = e.target.files[0] ? e.target.files[0].name : "";
+          document.getElementById("file-name").innerHTML = fileName
+            ? "📎 " + fileName
+            : "";
+        });
+
+      // Hiển thị toast message
+      function showCareerToast() {
+        const toast = document.createElement("div");
+        toast.className = "career-toast";
+        toast.innerHTML = `
+                <span class="material-icons-round">check_circle</span>
+                <span>Đã gửi đơn ứng tuyển cho Brian Luu</span>
+            `;
+        document.body.appendChild(toast);
+
+        setTimeout(() => {
+          toast.remove();
+        }, 3000);
+      }
+
+      // Gửi đơn ứng tuyển
+      function submitApplication() {
+        const fullName = document.getElementById("fullName").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const phone = document.getElementById("phone").value.trim();
+        const university = document.getElementById("university").value.trim();
+        const major = document.getElementById("major").value.trim();
+        const experience = document.getElementById("experience").value.trim();
+        const skills = document.getElementById("skills").value.trim();
+
+        // Kiểm tra các trường bắt buộc
+        if (
+          !fullName ||
+          !email ||
+          !phone ||
+          !university ||
+          !major ||
+          !experience ||
+          !skills
+        ) {
+          alert("Vui lòng điền đầy đủ thông tin bắt buộc");
+          return false;
+        }
+
+        if (!email.includes("@") || !email.includes(".")) {
+          alert("Email không hợp lệ");
+          return false;
+        }
+
+        // Hiệu ứng loading
+        const submitBtn = document.getElementById("submitApplyBtn");
+        submitBtn.classList.add("loading");
+        submitBtn.innerHTML =
+          '<span class="material-icons-round">hourglass_empty</span> ĐANG GỬI...';
+
+        // Giả lập gửi đơn
+        setTimeout(() => {
+          // Lưu đơn ứng tuyển vào localStorage (giả lập)
+          const applications =
+            JSON.parse(localStorage.getItem("brianLuuApplications")) || [];
+          applications.push({
+            position: currentPosition,
+            jobType: currentJobType,
+            fullName: fullName,
+            email: email,
+            phone: phone,
+            university: university,
+            major: major,
+            experience: experience,
+            skills: skills,
+            date: new Date().toLocaleString("vi-VN"),
+          });
+          localStorage.setItem(
+            "brianLuuApplications",
+            JSON.stringify(applications),
+          );
+
+          submitBtn.classList.remove("loading");
+          submitBtn.innerHTML =
+            '<span class="material-icons-round">send</span> GỬI ĐƠN ỨNG TUYỂN';
+
+          // Đóng modal và hiển thị thông báo
+          closeApplyModal();
+          showCareerToast();
+        }, 1000);
+
+        return true;
+      }
+
+      // Click overlay để đóng modal
+      document
+        .getElementById("applyModalOverlay")
+        .addEventListener("click", closeApplyModal);
+    </script>
+  </body>
+</html>

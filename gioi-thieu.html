@@ -1,0 +1,643 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Giới thiệu | Brian Luu</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons+Round"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0,1"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <style>
+      /* About Page Styles */
+      .about-section {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 60px 24px 100px;
+      }
+
+      .about-title {
+        font-family: var(--font-serif);
+        font-size: 3.5rem;
+        font-style: italic;
+        margin-bottom: 40px;
+        color: var(--primary-light);
+        text-align: center;
+      }
+
+      .dark-mode .about-title {
+        color: #86efac !important; /* Sáng hơn trong dark mode */
+        text-shadow: 0 0 10px rgba(134, 239, 172, 0.3);
+      }
+
+      /* Hero Slider for About Page */
+      .about-hero-slider {
+        position: relative;
+        width: 100%;
+        height: 500px;
+        border-radius: 30px;
+        overflow: hidden;
+        margin-bottom: 60px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+      }
+
+      .about-slider-container {
+        position: relative;
+        width: 100%;
+        height: 100%;
+      }
+
+      .about-slide {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        transition: opacity 1.5s ease-in-out;
+      }
+
+      .about-slide.active {
+        opacity: 1;
+      }
+
+      .about-slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        animation: aboutZoom 20s ease-in-out infinite;
+      }
+
+      @keyframes aboutZoom {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.1);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      .about-slide-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          rgba(0, 40, 30, 0.7) 0%,
+          rgba(0, 20, 10, 0.3) 100%
+        );
+        z-index: 2;
+      }
+
+      .about-slider-dots {
+        position: absolute;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 12px;
+        z-index: 10;
+      }
+
+      .about-dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.4);
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .about-dot.active {
+        background: white;
+        width: 30px;
+        border-radius: 10px;
+      }
+
+      /* Content Grid */
+      .about-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        align-items: start;
+        margin-top: 40px;
+      }
+
+      @media (max-width: 768px) {
+        .about-content {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+
+        .about-hero-slider {
+          height: 350px;
+        }
+
+        .about-title {
+          font-size: 2.5rem;
+        }
+      }
+
+      .about-text {
+        font-size: 16px;
+        line-height: 1.8;
+      }
+
+      .about-text p {
+        margin-bottom: 24px;
+      }
+
+      /* Light mode text */
+      .light-mode .about-text {
+        color: #1a2b3c;
+      }
+
+      /* Dark mode text - SÁNG HƠN */
+      .dark-mode .about-text {
+        color: #e4e6ea !important;
+      }
+
+      .dark-mode .about-text p {
+        color: #f0f2f5 !important; /* Sáng hơn nữa cho paragraph */
+        opacity: 0.95;
+      }
+
+      /* Values section */
+      .values-section {
+        margin-top: 80px;
+        padding-top: 40px;
+        border-top: 1px solid rgba(0, 0, 0, 0.05);
+      }
+
+      .dark-mode .values-section {
+        border-top-color: rgba(255, 255, 255, 0.1);
+      }
+
+      .values-title {
+        font-family: var(--font-serif);
+        font-size: 2rem;
+        font-style: italic;
+        margin-bottom: 40px;
+        color: var(--primary-light);
+        text-align: center;
+      }
+
+      .dark-mode .values-title {
+        color: #86efac !important;
+      }
+
+      .values-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 40px;
+      }
+
+      @media (max-width: 768px) {
+        .values-grid {
+          grid-template-columns: 1fr;
+          gap: 30px;
+        }
+      }
+
+      .value-card {
+        text-align: center;
+        padding: 30px;
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+        transition: all 0.3s ease;
+      }
+
+      .dark-mode .value-card {
+        background: var(--surface-dark);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      .value-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(6, 78, 59, 0.1);
+      }
+
+      .value-icon {
+        font-size: 48px;
+        color: var(--primary-light);
+        margin-bottom: 20px;
+      }
+
+      .dark-mode .value-icon {
+        color: #86efac;
+      }
+
+      .value-card h3 {
+        font-size: 20px;
+        font-weight: 700;
+        margin-bottom: 16px;
+      }
+
+      .dark-mode .value-card h3 {
+        color: #ffffff !important;
+      }
+
+      .value-card p {
+        font-size: 14px;
+        line-height: 1.6;
+        opacity: 0.8;
+      }
+
+      .dark-mode .value-card p {
+        color: #c0c4c8 !important;
+      }
+    </style>
+  </head>
+  <body class="light-mode">
+    <!-- SIDEBAR (giống index) -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <div class="sidebar-menu" id="sidebarMenu">
+      <div class="sidebar-header">
+        <h2 class="sidebar-brand">BRIAN LUU</h2>
+        <button class="sidebar-close" id="sidebarClose">
+          <span class="material-icons-round">close</span>
+        </button>
+      </div>
+      <div class="sidebar-content">
+        <div class="sidebar-section">
+          <h3 class="sidebar-section-title">KHÁM PHÁ</h3>
+          <ul class="sidebar-list">
+            <li>
+              <a href="gioi-thieu.html"
+                ><span class="material-icons-round">info</span> Giới thiệu</a
+              >
+            </li>
+            <li>
+              <a href="san-pham-moi.html"
+                ><span class="material-icons-round">new_releases</span> Sản phẩm
+                mới</a
+              >
+            </li>
+            <li>
+              <a href="khuyen-mai.html"
+                ><span class="material-icons-round">local_offer</span> Khuyến
+                mãi</a
+              >
+            </li>
+          </ul>
+        </div>
+        <div class="sidebar-section">
+          <h3 class="sidebar-section-title">HỖ TRỢ</h3>
+          <ul class="sidebar-list">
+            <li>
+              <a href="tro-giup.html"
+                ><span class="material-icons-round">help</span> Trung tâm trợ
+                giúp</a
+              >
+            </li>
+            <li>
+              <a href="van-chuyen.html"
+                ><span class="material-icons-round">local_shipping</span> Vận
+                chuyển</a
+              >
+            </li>
+            <li>
+              <a href="bao-hanh.html"
+                ><span class="material-icons-round">verified</span> Bảo hành</a
+              >
+            </li>
+            <li>
+              <a href="lien-he.html"
+                ><span class="material-icons-round">contact_support</span> Liên
+                hệ</a
+              >
+            </li>
+          </ul>
+        </div>
+        <div class="sidebar-section">
+          <h3 class="sidebar-section-title">CỘNG ĐỒNG</h3>
+          <ul class="sidebar-list">
+            <li>
+              <a href="tuyen-dung.html"
+                ><span class="material-icons-round">badge</span> Tuyển dụng</a
+              >
+            </li>
+            <li>
+              <a href="blog.html"
+                ><span class="material-icons-round">magazine</span> Blog</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="sidebar-footer">
+        <p>Est. 2024 · The Milan Residence</p>
+      </div>
+    </div>
+
+    <!-- HEADER -->
+    <header class="main-header glass-header">
+      <div class="header-left">
+        <button class="menu-btn" aria-label="Menu">
+          <span class="material-icons-round">menu</span>
+        </button>
+      </div>
+
+      <div class="header-center">
+        <h1 class="brand-name">BRIAN LUU</h1>
+        <p class="brand-slogan">
+          CHẠM VÀO PHONG CÁCH, SỐNG TRỌN TỪNG KHOẢNH KHẮC
+        </p>
+      </div>
+
+      <div class="header-right">
+        <button
+          id="darkModeToggle"
+          class="mode-toggle"
+          aria-label="Chuyển đổi chế độ sáng/tối"
+        >
+          <span class="material-symbols-outlined light-icon">light_mode</span>
+          <span class="material-symbols-outlined dark-icon">dark_mode</span>
+        </button>
+        <button class="search-btn" aria-label="Tìm kiếm">
+          <span class="material-icons-round">search</span>
+        </button>
+        <button class="cart-btn" aria-label="Giỏ hàng">
+          <span class="material-icons-round">shopping_bag</span>
+          <span class="cart-dot"></span>
+        </button>
+        <a
+          href="theo-doi-don-hang.html"
+          style="text-decoration: none; color: inherit"
+        >
+          <button
+            class="track-order-btn"
+            style="
+              background: none;
+              border: none;
+              cursor: pointer;
+              display: flex;
+              align-items: center;
+            "
+          >
+            <span class="material-icons-round" style="font-size: 24px"
+              >assignment</span
+            >
+          </button>
+        </a>
+      </div>
+    </header>
+    <!-- CATEGORY NAV -->
+    <nav class="category-nav glass-header">
+      <div class="nav-container hide-scrollbar">
+        <a href="index.html" class="nav-item">TẤT CẢ</a>
+        <a href="phong-khach.html" class="nav-item">PHÒNG KHÁCH</a>
+        <a href="phong-ngu.html" class="nav-item">PHÒNG NGỦ</a>
+        <a href="phong-an.html" class="nav-item">PHÒNG ĂN</a>
+        <a href="den.html" class="nav-item">ĐÈN</a>
+        <a href="van-phong.html" class="nav-item">VĂN PHÒNG</a>
+      </div>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <div class="about-section">
+      <h1 class="about-title">Câu chuyện Brian Luu</h1>
+
+      <!-- Hero Slider với 4 ảnh -->
+      <div class="about-hero-slider">
+        <div class="about-slider-container" id="aboutSlider">
+          <div class="about-slide active">
+            <img src="images/Seasonal.png" alt="Brian Luu Studio 1" />
+          </div>
+          <div class="about-slide">
+            <img src="images/gioi-thieu2.jpg" alt="Brian Luu Studio 2" />
+          </div>
+          <div class="about-slide">
+            <img src="images/gioithieu8.jpg" alt="Brian Luu Studio 3" />
+          </div>
+          <div class="about-slide">
+            <img src="images/gioithieu7.jpg" alt="Brian Luu Studio 4" />
+          </div>
+        </div>
+
+        <div class="about-slider-dots">
+          <span class="about-dot active" data-index="0"></span>
+          <span class="about-dot" data-index="1"></span>
+          <span class="about-dot" data-index="2"></span>
+          <span class="about-dot" data-index="3"></span>
+        </div>
+      </div>
+
+      <!-- Nội dung giới thiệu -->
+      <div class="about-content">
+        <div class="about-text">
+          <p>
+            Brian Luu khởi nguồn từ Milan, nơi giao thoa giữa di sản thủ công Ý
+            và tư duy thiết kế Brutalism hiện đại. Chúng tôi tôn vinh vẻ đẹp của
+            vật liệu thô mộc, sự trung thực trong kết cấu và hơi ấm từ dệt may
+            sắc rừng.
+          </p>
+          <p>
+            Mỗi sản phẩm là kết quả của hàng trăm giờ nghiên cứu tỷ lệ, kết cấu
+            và công năng. Từ những bản vẽ tay cho đến bước hoàn thiện cuối cùng,
+            chúng tôi không ngừng tinh chỉnh để tạo ra những món đồ nội thất
+            vượt thời gian.
+          </p>
+          <p>
+            Brutalism mềm mại – nghịch lý mà chúng tôi theo đuổi. Những khối bê
+            tông thô ráp được làm dịu lại bởi lớp nhung Forest Jurassic, những
+            đường cong nhân hậu trên khung thép mạnh mẽ.
+          </p>
+          <p>
+            Triết lý của chúng tôi rất đơn giản: thiết kế phải phục vụ cuộc
+            sống, không phải ngược lại. Vì vậy, mỗi đường nét, mỗi góc cạnh đều
+            được cân nhắc để mang lại sự thoải mái và tiện nghi tối đa cho người
+            sử dụng.
+          </p>
+        </div>
+
+        <div class="about-text">
+          <p>
+            Chúng tôi tự hào là thương hiệu nội thất Việt Nam đầu tiên theo đuổi
+            phong cách Brutalism Forest – sự kết hợp giữa vẻ đẹp nguyên bản của
+            vật liệu thô và hơi thở ấm áp của thiên nhiên.
+          </p>
+          <p>
+            Atelier của chúng tôi đặt tại trung tâm Milan và Hồ Chí Minh, nơi
+            đội ngũ nghệ nhân và kiến trúc sư cùng nhau tạo nên những tác phẩm
+            nội thất độc bản. Mỗi sản phẩm đều được chế tác thủ công, với sự tỉ
+            mỉ đến từng chi tiết.
+          </p>
+          <p>
+            Chúng tôi tin rằng, không gian sống phản ánh cá tính và giá trị của
+            mỗi người. Với Brian Luu, bạn không chỉ mua nội thất, bạn đang đầu
+            tư vào một phong cách sống – nơi brutalism gặp gỡ forest, nơi thô
+            mộc hòa quyện cùng tinh tế.
+          </p>
+        </div>
+      </div>
+
+      <!-- Values Section -->
+      <div class="values-section">
+        <h2 class="values-title">Giá trị cốt lõi</h2>
+        <div class="values-grid">
+          <div class="value-card">
+            <div class="value-icon">
+              <span class="material-icons-round">handshake</span>
+            </div>
+            <h3>THỦ CÔNG</h3>
+            <p>
+              Mỗi sản phẩm đều được hoàn thiện bằng tay bởi những nghệ nhân giàu
+              kinh nghiệm, với tình yêu và sự tỉ mỉ cao nhất.
+            </p>
+          </div>
+          <div class="value-card">
+            <div class="value-icon">
+              <span class="material-icons-round">forest</span>
+            </div>
+            <h3>BỀN VỮNG</h3>
+            <p>
+              Gỗ óc chó từ rừng trồng Bắc Mỹ, vải nhung từ sợi polyester tái
+              chế, cam kết phát triển bền vững với môi trường.
+            </p>
+          </div>
+          <div class="value-card">
+            <div class="value-icon">
+              <span class="material-icons-round">timeline</span>
+            </div>
+            <h3>VƯỢT THỜI GIAN</h3>
+            <p>
+              Thiết kế tối giản, bền bỉ cùng năm tháng, không chạy theo mốt nhất
+              thời, luôn giữ được vẻ đẹp nguyên bản.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="main-footer">
+      <div class="footer-container">
+        <div class="footer-grid">
+          <div class="footer-col">
+            <h4 class="footer-title">VỀ BRIAN LUU</h4>
+            <ul class="footer-menu">
+              <li><a href="gioi-thieu.html">Câu chuyện thương hiệu</a></li>
+
+              <li><a href="tuyen-dung.html">Tuyển dụng</a></li>
+              <li><a href="lien-he.html">Liên hệ</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4 class="footer-title">CHÍNH SÁCH</h4>
+            <ul class="footer-menu">
+              <li><a href="van-chuyen.html">Chính sách vận chuyển</a></li>
+              <li><a href="bao-hanh.html">Chính sách bảo hành</a></li>
+              <li><a href="gioi-thieu.html">Phát triển bền vững</a></li>
+              <li><a href="khuyen-mai.html">Chương trình thương mại</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4 class="footer-title">HỖ TRỢ</h4>
+            <ul class="footer-menu">
+              <li><a href="tro-giup.html">Trung tâm trợ giúp</a></li>
+              <li><a href="lien-he.html">Vị trí Atelier</a></li>
+
+              <li><a href="khuyen-mai.html">Khuyến mãi</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>© 2025 BRIAN LUU — THE MILAN RESIDENCE. THỦ CÔNG TẠI MILAN.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- BOTTOM NAV -->
+    <nav class="bottom-nav">
+      <button class="nav-icon" onclick="window.location.href = 'index.html'">
+        <span class="material-symbols-outlined">home</span>
+      </button>
+      <button
+        class="nav-icon"
+        onclick="window.location.href = 'phong-khach.html'"
+      >
+        <span class="material-symbols-outlined">grid_view</span>
+      </button>
+      <button
+        class="nav-icon"
+        onclick="window.location.href = 'yeu-thich.html'"
+      >
+        <span class="material-symbols-outlined">favorite</span>
+      </button>
+      <button
+        class="nav-icon active"
+        onclick="window.location.href = 'lien-he.html'"
+      >
+        <span class="material-symbols-outlined">person</span
+        ><span class="nav-dot"></span>
+      </button>
+    </nav>
+
+    <script>
+      // Slider cho trang giới thiệu
+      function initAboutSlider() {
+        const slides = document.querySelectorAll(".about-slide");
+        const dots = document.querySelectorAll(".about-dot");
+
+        if (!slides.length) return;
+
+        let currentSlide = 0;
+        const totalSlides = slides.length;
+
+        function showSlide(index) {
+          if (index < 0) index = totalSlides - 1;
+          if (index >= totalSlides) index = 0;
+
+          slides.forEach((slide, i) => {
+            slide.classList.toggle("active", i === index);
+          });
+
+          dots.forEach((dot, i) => {
+            dot.classList.toggle("active", i === index);
+          });
+
+          currentSlide = index;
+        }
+
+        function nextSlide() {
+          showSlide(currentSlide + 1);
+        }
+
+        // Tự động chuyển sau 4 giây
+        setInterval(nextSlide, 4000);
+
+        // Click vào dots để chuyển slide
+        dots.forEach((dot, index) => {
+          dot.addEventListener("click", () => {
+            showSlide(index);
+          });
+        });
+
+        showSlide(0);
+      }
+
+      // Khởi tạo khi trang load
+      document.addEventListener("DOMContentLoaded", function () {
+        initAboutSlider();
+      });
+    </script>
+    <script src="js/main.js"></script>
+  </body>
+</html>

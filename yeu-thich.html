@@ -1,0 +1,776 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sản phẩm yêu thích | Brian Luu</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons+Round"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0,1"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <style>
+      .wishlist-page {
+        max-width: 1200px;
+        margin: 40px auto;
+        padding: 0 24px 100px;
+      }
+
+      .wishlist-header {
+        text-align: center;
+        margin-bottom: 50px;
+      }
+
+      .wishlist-title {
+        font-family: var(--font-serif);
+        font-size: 2.5rem;
+        font-style: italic;
+        color: var(--primary-light);
+        margin-bottom: 15px;
+      }
+
+      .wishlist-count {
+        font-size: 14px;
+        opacity: 0.7;
+        letter-spacing: 1px;
+      }
+
+      .wishlist-empty {
+        text-align: center;
+        padding: 80px 20px;
+        background: white;
+        border-radius: 30px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+      }
+
+      .dark-mode .wishlist-empty {
+        background: var(--surface-dark);
+      }
+
+      .wishlist-empty-icon {
+        font-size: 64px;
+        color: var(--primary-light);
+        opacity: 0.3;
+        margin-bottom: 20px;
+      }
+
+      .wishlist-empty h3 {
+        font-size: 24px;
+        margin-bottom: 10px;
+      }
+
+      .wishlist-empty p {
+        opacity: 0.7;
+        margin-bottom: 30px;
+      }
+
+      .continue-shopping {
+        display: inline-block;
+        background: var(--primary-light);
+        color: white;
+        padding: 14px 40px;
+        border-radius: 40px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s;
+      }
+
+      .continue-shopping:hover {
+        background: #0a6e4f;
+        transform: translateY(-3px);
+      }
+
+      .wishlist-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 25px;
+      }
+
+      @media (max-width: 992px) {
+        .wishlist-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .wishlist-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      .wishlist-card {
+        position: relative;
+        background: white;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.03);
+        transition: all 0.3s;
+      }
+
+      .dark-mode .wishlist-card {
+        background: var(--surface-dark);
+      }
+
+      .wishlist-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 30px rgba(6, 78, 59, 0.1);
+      }
+
+      .wishlist-image {
+        aspect-ratio: 3/4;
+        overflow: hidden;
+        cursor: pointer;
+      }
+
+      .wishlist-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.7s;
+      }
+
+      .wishlist-card:hover .wishlist-image img {
+        transform: scale(1.08);
+      }
+
+      .wishlist-remove {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.9);
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #ef4444;
+        transition: all 0.3s;
+        z-index: 5;
+      }
+
+      .wishlist-remove:hover {
+        background: #ef4444;
+        color: white;
+        transform: scale(1.1);
+      }
+
+      .wishlist-info {
+        padding: 20px;
+      }
+
+      .wishlist-info h4 {
+        font-size: 16px;
+        font-weight: 700;
+        margin-bottom: 5px;
+        color: var(--text-light);
+      }
+
+      .dark-mode .wishlist-info h4 {
+        color: #ffffff;
+      }
+
+      .wishlist-info p {
+        font-size: 13px;
+        opacity: 0.6;
+        margin-bottom: 10px;
+      }
+
+      .wishlist-price {
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--primary-light);
+      }
+
+      .add-to-cart-small {
+        width: 100%;
+        background: transparent;
+        border: 2px solid var(--primary-light);
+        color: var(--primary-light);
+        padding: 10px;
+        border-radius: 30px;
+        font-weight: 600;
+        font-size: 12px;
+        cursor: pointer;
+        transition: all 0.3s;
+        margin-top: 15px;
+      }
+
+      .add-to-cart-small:hover {
+        background: var(--primary-light);
+        color: white;
+      }
+    </style>
+  </head>
+  <body class="light-mode">
+    <!-- SIDEBAR -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <div class="sidebar-menu" id="sidebarMenu">
+      <div class="sidebar-header">
+        <h2 class="sidebar-brand">BRIAN LUU</h2>
+        <button class="sidebar-close" id="sidebarClose">
+          <span class="material-icons-round">close</span>
+        </button>
+      </div>
+      <div class="sidebar-content">
+        <div class="sidebar-section">
+          <h3 class="sidebar-section-title">KHÁM PHÁ</h3>
+          <ul class="sidebar-list">
+            <li>
+              <a href="gioi-thieu.html"
+                ><span class="material-icons-round">info</span> Giới thiệu</a
+              >
+            </li>
+            <li>
+              <a href="san-pham-moi.html"
+                ><span class="material-icons-round">new_releases</span> Sản phẩm
+                mới</a
+              >
+            </li>
+            <li>
+              <a href="khuyen-mai.html"
+                ><span class="material-icons-round">local_offer</span> Khuyến
+                mãi</a
+              >
+            </li>
+          </ul>
+        </div>
+        <div class="sidebar-section">
+          <h3 class="sidebar-section-title">HỖ TRỢ</h3>
+          <ul class="sidebar-list">
+            <li>
+              <a href="tro-giup.html"
+                ><span class="material-icons-round">help</span> Trung tâm trợ
+                giúp</a
+              >
+            </li>
+            <li>
+              <a href="van-chuyen.html"
+                ><span class="material-icons-round">local_shipping</span> Vận
+                chuyển</a
+              >
+            </li>
+            <li>
+              <a href="bao-hanh.html"
+                ><span class="material-icons-round">verified</span> Bảo hành</a
+              >
+            </li>
+            <li>
+              <a href="lien-he.html"
+                ><span class="material-icons-round">contact_support</span> Liên
+                hệ</a
+              >
+            </li>
+          </ul>
+        </div>
+        <div class="sidebar-section">
+          <h3 class="sidebar-section-title">CỘNG ĐỒNG</h3>
+          <ul class="sidebar-list">
+            <li>
+              <a href="tuyen-dung.html"
+                ><span class="material-icons-round">badge</span> Tuyển dụng</a
+              >
+            </li>
+            <li></li>
+          </ul>
+        </div>
+      </div>
+      <div class="sidebar-footer">
+        <p>Est. 2024 · The Milan Residence</p>
+      </div>
+    </div>
+
+    <!-- HEADER -->
+    <header class="main-header glass-header">
+      <div class="header-left">
+        <button class="menu-btn">
+          <span class="material-icons-round">menu</span>
+        </button>
+      </div>
+      <div class="header-center">
+        <h1 class="brand-name">BRIAN LUU</h1>
+        <p class="brand-slogan">
+          CHẠM VÀO PHONG CÁCH, SỐNG TRỌN TỪNG KHOẢNH KHẮC
+        </p>
+      </div>
+      <div class="header-right">
+        <button
+          id="darkModeToggle"
+          class="mode-toggle"
+          aria-label="Chuyển đổi chế độ sáng/tối"
+        >
+          <span class="material-symbols-outlined light-icon">light_mode</span>
+          <span class="material-symbols-outlined dark-icon">dark_mode</span>
+        </button>
+        <button class="search-btn" aria-label="Tìm kiếm">
+          <span class="material-icons-round">search</span>
+        </button>
+        <button class="cart-btn" aria-label="Giỏ hàng">
+          <span class="material-icons-round">shopping_bag</span>
+          <span class="cart-dot"></span>
+        </button>
+        <a
+          href="theo-doi-don-hang.html"
+          style="text-decoration: none; color: inherit"
+        >
+          <button
+            class="track-order-btn"
+            style="
+              background: none;
+              border: none;
+              cursor: pointer;
+              display: flex;
+              align-items: center;
+            "
+          >
+            <span class="material-icons-round" style="font-size: 24px"
+              >assignment</span
+            >
+          </button>
+        </a>
+      </div>
+    </header>
+
+    <!-- CATEGORY NAV -->
+    <nav class="category-nav glass-header">
+      <div class="nav-container hide-scrollbar">
+        <a href="index.html" class="nav-item">TẤT CẢ</a>
+        <a href="phong-khach.html" class="nav-item">PHÒNG KHÁCH</a>
+        <a href="phong-ngu.html" class="nav-item">PHÒNG NGỦ</a>
+        <a href="phong-an.html" class="nav-item">PHÒNG ĂN</a>
+        <a href="den.html" class="nav-item">ĐÈN</a>
+        <a href="van-phong.html" class="nav-item">VĂN PHÒNG</a>
+      </div>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <div class="wishlist-page">
+      <div class="wishlist-header">
+        <h1 class="wishlist-title">Sản phẩm yêu thích</h1>
+        <p class="wishlist-count" id="wishlistCount">0 sản phẩm</p>
+      </div>
+
+      <div id="wishlistContainer">
+        <!-- JS sẽ load vào đây -->
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="main-footer">
+      <div class="footer-container">
+        <div class="footer-grid">
+          <div class="footer-col">
+            <h4 class="footer-title">VỀ BRIAN LUU</h4>
+            <ul class="footer-menu">
+              <li><a href="gioi-thieu.html">Câu chuyện thương hiệu</a></li>
+              <li><a href="tuyen-dung.html">Tuyển dụng</a></li>
+              <li><a href="lien-he.html">Liên hệ</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4 class="footer-title">CHÍNH SÁCH</h4>
+            <ul class="footer-menu">
+              <li><a href="van-chuyen.html">Chính sách vận chuyển</a></li>
+              <li><a href="bao-hanh.html">Chính sách bảo hành</a></li>
+              <li><a href="gioi-thieu.html">Phát triển bền vững</a></li>
+              <li><a href="khuyen-mai.html">Chương trình thương mại</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4 class="footer-title">HỖ TRỢ</h4>
+            <ul class="footer-menu">
+              <li><a href="tro-giup.html">Trung tâm trợ giúp</a></li>
+              <li><a href="lien-he.html">Vị trí Atelier</a></li>
+              <li><a href="khuyen-mai.html">Khuyến mãi</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>© 2025 BRIAN LUU — THE MILAN RESIDENCE. THỦ CÔNG TẠI MILAN.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- BOTTOM NAV -->
+    <nav class="bottom-nav">
+      <button class="nav-icon" onclick="window.location.href = 'index.html'">
+        <span class="material-symbols-outlined">home</span>
+      </button>
+      <button
+        class="nav-icon"
+        onclick="window.location.href = 'phong-khach.html'"
+      >
+        <span class="material-symbols-outlined">grid_view</span>
+      </button>
+      <button
+        class="nav-icon active"
+        onclick="window.location.href = 'yeu-thich.html'"
+      >
+        <span class="material-symbols-outlined">favorite</span>
+        <span class="nav-dot"></span>
+      </button>
+      <button class="nav-icon" onclick="window.location.href = 'lien-he.html'">
+        <span class="material-symbols-outlined">person</span>
+      </button>
+    </nav>
+
+    <script src="js/main.js"></script>
+    <script>
+      // ===== DATABASE SẢN PHẨM =====
+      const products = {
+        // Phòng khách
+        "sofa-em": {
+          name: "Ghế sofa êm",
+          category: "Phòng khách",
+          price: "26.899.000 ₫",
+          image: "cloud-sofa.jpg",
+        },
+        "ghe-nhung": {
+          name: "Ghế nhung",
+          category: "Phòng khách",
+          price: "12.300.000 ₫",
+          image: "velvet-armchair.jpg",
+        },
+        "ban-cam-thach": {
+          name: "Bàn cẩm thạch",
+          category: "Phòng khách",
+          price: "19.750.000 ₫",
+          image: "marble-table.jpg",
+        },
+        "den-nghe-thuat": {
+          name: "Đèn nghệ thuật kiến trúc",
+          category: "Phòng khách",
+          price: "13.500.000 ₫",
+          image: "sculptural-lamp.jpg",
+        },
+        "sofa-3-cho": {
+          name: "Sofa ba chỗ",
+          category: "Phòng khách",
+          price: "44.900.000 ₫",
+          image: "living-room-2.jpg",
+        },
+        "ghe-don": {
+          name: "Ghế đơn",
+          category: "Phòng khách",
+          price: "7.575.000 ₫",
+          image: "living-room-3.jpg",
+        },
+        "ban-tra": {
+          name: "Bàn trà",
+          category: "Phòng khách",
+          price: "12.000.000 ₫",
+          image: "living-room-4.jpg",
+        },
+        "ke-tivi": {
+          name: "Kệ tivi",
+          category: "Phòng khách",
+          price: "16.300.000 ₫",
+          image: "living-room-5.jpg",
+        },
+
+        // Phòng ngủ
+        "giuong-ngu": {
+          name: "Giường ngủ",
+          category: "Phòng ngủ",
+          price: "52.900.000 ₫",
+          image: "bedroom-2.jpg",
+        },
+        "tu-dau-giuong": {
+          name: "Tủ đầu giường",
+          category: "Phòng ngủ",
+          price: "7.200.000 ₫",
+          image: "bedroom-3.jpg",
+        },
+        "tu-quan-ao": {
+          name: "Tủ quần áo",
+          category: "Phòng ngủ",
+          price: "21.350.000 ₫",
+          image: "bedroom-4.jpg",
+        },
+        "ban-trang-diem": {
+          name: "Bàn trang điểm",
+          category: "Phòng ngủ",
+          price: "18.700.000 ₫",
+          image: "bedroom-5.jpg",
+        },
+        "ghe-thu-gian": {
+          name: "Ghế thư giãn",
+          category: "Phòng ngủ",
+          price: "23.200.000 ₫",
+          image: "bedroom-6.jpg",
+        },
+        "den-ngu": {
+          name: "Đèn ngủ",
+          category: "Phòng ngủ",
+          price: "8.900.000 ₫",
+          image: "lighting-7.jpg",
+        },
+
+        // Phòng ăn
+        "ban-an-cam-thach": {
+          name: "Bàn ăn đá cẩm thạch",
+          category: "Phòng ăn",
+          price: "26.600.000 ₫",
+          image: "dining-10.jpg",
+        },
+        "ghe-an": {
+          name: "Ghế ăn",
+          category: "Phòng ăn",
+          price: "3.100.000 ₫",
+          image: "dining-8.jpg",
+        },
+        "tu-dung-bep": {
+          name: "Tủ đựng bếp",
+          category: "Phòng ăn",
+          price: "12.500.000 ₫",
+          image: "dining-3.jpg",
+        },
+        "ghe-cao": {
+          name: "Ghế cao",
+          category: "Phòng ăn",
+          price: "2.900.000 ₫",
+          image: "dining-4.jpg",
+        },
+        "den-chum": {
+          name: "Đèn chùm",
+          category: "Phòng ăn",
+          price: "11.750.000 ₫",
+          image: "lighting-1.jpg",
+        },
+        "bep-dao": {
+          name: "Bếp đảo",
+          category: "Phòng ăn",
+          price: "23.980.000 ₫",
+          image: "dining-6.jpg",
+        },
+
+        // Đèn
+        "den-ho-quang": {
+          name: "Đèn hồ quang",
+          category: "Đèn",
+          price: "9.250.000 ₫",
+          image: "lighting-2.jpg",
+        },
+        "den-treo": {
+          name: "Đèn treo",
+          category: "Đèn",
+          price: "11.700.000 ₫",
+          image: "lighting-3.jpg",
+        },
+        "den-cau-thang": {
+          name: "Đèn cầu thang",
+          category: "Đèn",
+          price: "13.250.000 ₫",
+          image: "lighting-4.jpg",
+        },
+        "den-de-ban": {
+          name: "Đèn để bàn",
+          category: "Đèn",
+          price: "5.900.000 ₫",
+          image: "lighting-5.jpg",
+        },
+        "den-treo-tuong": {
+          name: "Đèn treo tường",
+          category: "Đèn",
+          price: "8.900.000 ₫",
+          image: "lighting-6.jpg",
+        },
+        "den-chum-cao-cap": {
+          name: "Đèn chùm cao cấp",
+          category: "Đèn",
+          price: "39.000.000 ₫",
+          image: "lighting-8.jpg",
+        },
+
+        // Văn phòng
+        "ban-go": {
+          name: "Bàn gỗ",
+          category: "Văn phòng",
+          price: "17.500.000 ₫",
+          image: "office-2.jpg",
+        },
+        "ghe-da": {
+          name: "Ghế da",
+          category: "Văn phòng",
+          price: "12.900.000 ₫",
+          image: "office-3.jpg",
+        },
+        "ke-dung": {
+          name: "Kệ đựng",
+          category: "Văn phòng",
+          price: "10.550.000 ₫",
+          image: "office-4.jpg",
+        },
+        "tu-tai-lieu": {
+          name: "Tủ tài liệu",
+          category: "Văn phòng",
+          price: "19.700.000 ₫",
+          image: "office-5.jpg",
+        },
+        "ghe-dem-cao-cap": {
+          name: "Ghế đệm cao cấp",
+          category: "Văn phòng",
+          price: "31.450.000 ₫",
+          image: "office-6.jpg",
+        },
+        "ban-dai": {
+          name: "Bàn dài",
+          category: "Văn phòng",
+          price: "28.300.000 ₫",
+          image: "office-7.jpg",
+        },
+      };
+
+      // Load danh sách yêu thích từ localStorage
+      function loadWishlist() {
+        const wishlistContainer = document.getElementById("wishlistContainer");
+        const wishlistCount = document.getElementById("wishlistCount");
+
+        // Lấy tất cả wishlist items từ localStorage
+        let wishlistItems = [];
+
+        // Duyệt qua localStorage để tìm các key wishlist_
+        for (let i = 0; i < localStorage.length; i++) {
+          const key = localStorage.key(i);
+          if (
+            key &&
+            key.startsWith("wishlist_") &&
+            localStorage.getItem(key) === "true"
+          ) {
+            const productId = key.replace("wishlist_", "");
+            // Lấy thông tin sản phẩm từ database
+            if (products[productId]) {
+              wishlistItems.push({
+                id: productId,
+                name: products[productId].name,
+                price: products[productId].price,
+                image: products[productId].image,
+                category: products[productId].category,
+              });
+            }
+          }
+        }
+
+        wishlistCount.textContent = `${wishlistItems.length} sản phẩm`;
+
+        if (wishlistItems.length === 0) {
+          wishlistContainer.innerHTML = `
+                    <div class="wishlist-empty">
+                        <div class="wishlist-empty-icon">
+                            <span class="material-icons-round">favorite_border</span>
+                        </div>
+                        <h3>Chưa có sản phẩm yêu thích</h3>
+                        <p>Hãy thêm sản phẩm vào danh sách yêu thích của bạn</p>
+                        <a href="index.html" class="continue-shopping">KHÁM PHÁ SẢN PHẨM</a>
+                    </div>
+                `;
+          return;
+        }
+
+        // Hiển thị danh sách
+        let html = '<div class="wishlist-grid">';
+        wishlistItems.forEach((item) => {
+          html += `
+                    <div class="wishlist-card">
+                        <div class="wishlist-image">
+                            <a href="san-pham.html?id=${item.id}">
+                                <img src="images/${item.image}" alt="${item.name}">
+                            </a>
+                        </div>
+                        <button class="wishlist-remove" onclick="removeFromWishlist('${item.id}')">
+                            <span class="material-icons-round">close</span>
+                        </button>
+                        <div class="wishlist-info">
+                            <h4>${item.name}</h4>
+                            <p>${item.category}</p>
+                            <div class="wishlist-price">${item.price}</div>
+                            <button class="add-to-cart-small" onclick="addToCartFromWishlist('${item.id}')">
+                                THÊM VÀO GIỎ
+                            </button>
+                        </div>
+                    </div>
+                `;
+        });
+        html += "</div>";
+        wishlistContainer.innerHTML = html;
+      }
+
+      // Xóa khỏi wishlist
+      function removeFromWishlist(productId) {
+        localStorage.setItem(`wishlist_${productId}`, "false");
+        loadWishlist();
+        if (typeof showToast === "function") {
+          showToast("🗑️ Đã xóa khỏi danh sách yêu thích");
+        } else {
+          alert("Đã xóa khỏi danh sách yêu thích");
+        }
+      }
+
+      // Thêm vào giỏ từ trang yêu thích
+      function addToCartFromWishlist(productId, btn) {
+        // Hiệu ứng nút
+        if (btn) {
+          btn.classList.add("add-to-cart-small-clicked");
+          setTimeout(() => {
+            btn.classList.remove("add-to-cart-small-clicked");
+          }, 200);
+        }
+
+        const product = products[productId];
+        if (!product) return;
+
+        const cartProduct = {
+          name: product.name,
+          price: product.price,
+          variant: "Tiêu chuẩn",
+          quantity: 1,
+          image: product.image,
+        };
+
+        // Lấy giỏ hàng hiện tại
+        let cart = JSON.parse(localStorage.getItem("brianLuuCart")) || [];
+
+        // Kiểm tra sản phẩm đã tồn tại chưa
+        const existingItem = cart.find(
+          (item) => item.name === cartProduct.name,
+        );
+
+        if (existingItem) {
+          existingItem.quantity += 1;
+        } else {
+          cart.push(cartProduct);
+        }
+
+        // Lưu lại
+        localStorage.setItem("brianLuuCart", JSON.stringify(cart));
+
+        // QUAN TRỌNG: Gọi refresh từ main.js
+        if (typeof window.refreshCart === "function") {
+          window.refreshCart();
+        }
+        if (typeof window.updateCartCount === "function") {
+          window.updateCartCount();
+        }
+
+        // Thông báo
+        alert(`✅ Đã thêm ${product.name} vào giỏ hàng!`);
+      }
+
+      // Cập nhật số giỏ hàng nếu có hàm
+      if (typeof updateCartCount === "function") updateCartCount();
+      if (window.updateCartCount) window.updateCartCount();
+
+      document.addEventListener("DOMContentLoaded", loadWishlist);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,408 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Phòng Khách | Brian Luu</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons+Round"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0,1"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body class="light-mode">
+    <!-- SIDEBAR  -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <div class="sidebar-menu" id="sidebarMenu">
+      <div class="sidebar-header">
+        <h2 class="sidebar-brand">BRIAN LUU</h2>
+        <button class="sidebar-close" id="sidebarClose">
+          <span class="material-icons-round">close</span>
+        </button>
+      </div>
+      <div class="sidebar-content">
+        <div class="sidebar-section">
+          <h3 class="sidebar-section-title">KHÁM PHÁ</h3>
+          <ul class="sidebar-list">
+            <li>
+              <a href="gioi-thieu.html"
+                ><span class="material-icons-round">info</span> Giới thiệu về
+                Brian Luu</a
+              >
+            </li>
+            <li>
+              <a href="san-pham-moi.html"
+                ><span class="material-icons-round">new_releases</span> Sản phẩm
+                mới</a
+              >
+            </li>
+            <li>
+              <a href="khuyen-mai.html"
+                ><span class="material-icons-round">local_offer</span> Khuyến
+                mãi</a
+              >
+            </li>
+          </ul>
+        </div>
+        <div class="sidebar-section">
+          <h3 class="sidebar-section-title">HỖ TRỢ</h3>
+          <ul class="sidebar-list">
+            <li>
+              <a href="tro-giup.html"
+                ><span class="material-icons-round">help</span> Trung tâm trợ
+                giúp</a
+              >
+            </li>
+            <li>
+              <a href="van-chuyen.html"
+                ><span class="material-icons-round">local_shipping</span> Vận
+                chuyển & Lắp đặt</a
+              >
+            </li>
+            <li>
+              <a href="bao-hanh.html"
+                ><span class="material-icons-round">verified</span> Bảo hành &
+                Bảo trì</a
+              >
+            </li>
+            <li>
+              <a href="lien-he.html"
+                ><span class="material-icons-round">contact_support</span> Liên
+                hệ</a
+              >
+            </li>
+          </ul>
+        </div>
+        <div class="sidebar-section">
+          <h3 class="sidebar-section-title">CỘNG ĐỒNG</h3>
+          <ul class="sidebar-list">
+            <li>
+              <a href="tuyen-dung.html"
+                ><span class="material-icons-round">badge</span> Tuyển dụng</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="sidebar-footer">
+        <p>Est. 2024 · The Milan Residence</p>
+      </div>
+    </div>
+
+    <!-- HEADER -->
+    <header class="main-header glass-header">
+      <div class="header-left">
+        <button class="menu-btn" aria-label="Menu">
+          <span class="material-icons-round">menu</span>
+        </button>
+      </div>
+      <div class="header-center">
+        <h1 class="brand-name">BRIAN LUU</h1>
+        <p class="brand-slogan">
+          CHẠM VÀO PHONG CÁCH, SỐNG TRỌN TỪNG KHOẢNH KHẮC
+        </p>
+      </div>
+      <div class="header-right">
+        <button id="darkModeToggle" class="mode-toggle">
+          <span class="material-symbols-outlined light-icon">light_mode</span>
+          <span class="material-symbols-outlined dark-icon">dark_mode</span>
+        </button>
+        <button class="search-btn">
+          <span class="material-icons-round">search</span>
+        </button>
+        <button class="cart-btn">
+          <span class="material-icons-round">shopping_bag</span>
+          <span class="cart-dot"></span>
+        </button>
+        <a
+          href="theo-doi-don-hang.html"
+          style="text-decoration: none; color: inherit"
+        >
+          <button
+            class="track-order-btn"
+            style="
+              background: none;
+              border: none;
+              cursor: pointer;
+              display: flex;
+              align-items: center;
+            "
+          >
+            <span class="material-icons-round" style="font-size: 24px"
+              >assignment</span
+            >
+          </button>
+        </a>
+      </div>
+    </header>
+
+    <!-- CATEGORY NAV -->
+    <nav class="category-nav glass-header">
+      <div class="nav-container hide-scrollbar">
+        <a href="index.html" class="nav-item">TẤT CẢ</a>
+        <a href="phong-khach.html" class="nav-item active">PHÒNG KHÁCH</a>
+        <a href="phong-ngu.html" class="nav-item">PHÒNG NGỦ</a>
+        <a href="phong-an.html" class="nav-item">PHÒNG ĂN</a>
+        <a href="den.html" class="nav-item">ĐÈN</a>
+        <a href="van-phong.html" class="nav-item">VĂN PHÒNG</a>
+      </div>
+    </nav>
+
+    <!-- ===== POSTER ĐỘNG PHÒNG KHÁCH ===== -->
+    <section class="dynamic-poster">
+      <div class="poster-slider" id="posterSliderPhongKhach">
+        <div class="poster-slide active">
+          <img
+            src="https://images.pexels.com/photos/32177959/pexels-photo-32177959.png"
+            alt="Phòng khách 1"
+          />
+        </div>
+        <div class="poster-slide">
+          <img
+            src="https://images.pexels.com/photos/6492384/pexels-photo-6492384.jpeg"
+            alt="Phòng khách 2"
+          />
+        </div>
+        <div class="poster-slide">
+          <img
+            src="https://images.pexels.com/photos/13813464/pexels-photo-13813464.jpeg"
+            alt="Phòng khách 3"
+          />
+        </div>
+        <div class="poster-overlay"></div>
+      </div>
+
+      <div class="poster-content">
+        <h2>PHÒNG KHÁCH</h2>
+        <p>BRUTALISM MỀM MẠI • ẤM CÚNG • ĐƯƠNG ĐẠI</p>
+      </div>
+
+      <div class="poster-dots">
+        <span class="poster-dot active" data-index="0"></span>
+        <span class="poster-dot" data-index="1"></span>
+        <span class="poster-dot" data-index="2"></span>
+      </div>
+    </section>
+    <!-- PRODUCT GRID - 8 SẢN PHẨM -->
+    <section class="signature-section">
+      <div class="section-header">
+        <div>
+          <h3 class="section-title-en">Living Room Collection</h3>
+          <p class="section-subtitle">8 SẢN PHẨM</p>
+        </div>
+      </div>
+
+      <div class="product-grid">
+        <!-- 1. GHẾ SOFA ÊM -->
+        <div class="product-card">
+          <div class="product-image">
+            <a href="san-pham.html?id=sofa-em">
+              <img src="images/cloud-sofa.jpg" alt="Ghế sofa êm" />
+            </a>
+            <button class="wishlist-btn">
+              <span class="material-symbols-outlined">favorite</span>
+            </button>
+          </div>
+          <div class="product-info">
+            <h4>GHẾ SOFA ÊM</h4>
+            <p>ĐỆM CAO CẤP</p>
+            <span class="price">26.899.000 ₫</span>
+          </div>
+        </div>
+        <!-- 2. GHẾ NHUNG -->
+        <div class="product-card">
+          <div class="product-image">
+            <a href="san-pham.html?id=ghe-nhung">
+              <img src="images/velvet-armchair.jpg" alt="Ghế nhung" />
+            </a>
+            <button class="wishlist-btn">
+              <span class="material-symbols-outlined">favorite</span>
+            </button>
+          </div>
+          <div class="product-info">
+            <h4>GHẾ NHUNG</h4>
+            <p>NHUNG CAO CẤP</p>
+            <span class="price">12.300.000 ₫</span>
+          </div>
+        </div>
+
+        <!-- 3. Bàn cẩm thạch -->
+        <div class="product-card">
+          <div class="product-image">
+            <a href="san-pham.html?id=ban-cam-thach">
+              <img src="images/marble-table.jpg" alt="Bàn cẩm thạch" />
+            </a>
+            <button class="wishlist-btn">
+              <span class="material-symbols-outlined">favorite</span>
+            </button>
+          </div>
+          <div class="product-info">
+            <h4>BÀN CẨM THẠCH</h4>
+            <p>ĐÁ CẨM THẠCH</p>
+            <span class="price">19.750.000 ₫</span>
+          </div>
+        </div>
+        <!-- 4. Đèn nghệ thuật kiên trúc -->
+        <div class="product-card">
+          <div class="product-image">
+            <a href="san-pham.html?id=den-nghe-thuat">
+              <img src="images/sculptural-lamp.jpg" alt="Đèn nghệ thuật" />
+            </a>
+            <button class="wishlist-btn">
+              <span class="material-symbols-outlined">favorite</span>
+            </button>
+          </div>
+          <div class="product-info">
+            <h4>ĐÈN NGHỆ THUẬT</h4>
+            <p>KIM LOẠI + PHA LÊ</p>
+            <span class="price">13.500.000 ₫</span>
+          </div>
+        </div>
+        <!-- 5. Sofa 3 chỗ -->
+        <div class="product-card">
+          <div class="product-image">
+            <a href="san-pham.html?id=sofa-3-cho">
+              <img src="images/living-room-2.jpg" alt="Sofa ba chỗ" />
+            </a>
+            <button class="wishlist-btn">
+              <span class="material-symbols-outlined">favorite</span>
+            </button>
+          </div>
+          <div class="product-info">
+            <h4>SOFA BA CHỖ</h4>
+            <p>ĐỆM + NHUNG</p>
+            <span class="price">44.900.000 ₫</span>
+          </div>
+        </div>
+
+        <!-- 6. Ghế đơn -->
+        <div class="product-card">
+          <div class="product-image">
+            <a href="san-pham.html?id=ghe-don">
+              <img src="images/living-room-3.jpg" alt="Ghế đơn" />
+            </a>
+            <button class="wishlist-btn">
+              <span class="material-symbols-outlined">favorite</span>
+            </button>
+          </div>
+          <div class="product-info">
+            <h4>GHẾ ĐƠN</h4>
+            <p>VẢI NHUNG</p>
+            <span class="price">7.575.000 ₫</span>
+          </div>
+        </div>
+
+        <!-- 7. Bàn trà -->
+        <div class="product-card">
+          <div class="product-image">
+            <a href="san-pham.html?id=ban-tra">
+              <img src="images/living-room-4.jpg" alt="Bàn trà" />
+            </a>
+            <button class="wishlist-btn">
+              <span class="material-symbols-outlined">favorite</span>
+            </button>
+          </div>
+          <div class="product-info">
+            <h4>BÀN TRÀ</h4>
+            <p>KÍNH + ĐỒNG</p>
+            <span class="price">12.000.000 ₫</span>
+          </div>
+        </div>
+
+        <!-- 8. Kệ tivi -->
+        <div class="product-card">
+          <div class="product-image">
+            <a href="san-pham.html?id=ke-tivi">
+              <img src="images/living-room-5.jpg" alt="Kệ tivi" />
+            </a>
+            <button class="wishlist-btn">
+              <span class="material-symbols-outlined">favorite</span>
+            </button>
+          </div>
+          <div class="product-info">
+            <h4>KỆ TV</h4>
+            <p>GỖ ÓC CHÓ</p>
+            <span class="price">16.300.000 ₫</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="main-footer">
+      <div class="footer-container">
+        <!-- Phần trên: 3 cột thông tin -->
+        <div class="footer-grid">
+          <!-- Cột 1: Về chúng tôi -->
+          <div class="footer-col">
+            <h4 class="footer-title">VỀ BRIAN LUU</h4>
+            <ul class="footer-menu">
+              <li><a href="gioi-thieu.html">Câu chuyện thương hiệu</a></li>
+              <li><a href="tuyen-dung.html">Tuyển dụng</a></li>
+              <li><a href="lien-he.html">Liên hệ</a></li>
+            </ul>
+          </div>
+
+          <!-- Cột 2: Chính sách -->
+          <div class="footer-col">
+            <h4 class="footer-title">CHÍNH SÁCH</h4>
+            <ul class="footer-menu">
+              <li><a href="van-chuyen.html">Chính sách vận chuyển</a></li>
+              <li><a href="bao-hanh.html">Chính sách bảo hành</a></li>
+              <li><a href="gioi-thieu.html">Phát triển bền vững</a></li>
+              <li><a href="khuyen-mai.html">Chương trình thương mại</a></li>
+            </ul>
+          </div>
+
+          <!-- Cột 3: Hỗ trợ -->
+          <div class="footer-col">
+            <h4 class="footer-title">HỖ TRỢ</h4>
+            <ul class="footer-menu">
+              <li><a href="tro-giup.html">Trung tâm trợ giúp</a></li>
+              <li><a href="lien-he.html">Vị trí Atelier</a></li>
+              <li><a href="khuyen-mai.html">Khuyến mãi</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Phần dưới: Copyright -->
+        <div class="footer-bottom">
+          <p>© 2025 BRIAN LUU — THE MILAN RESIDENCE. THỦ CÔNG TẠI MILAN.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ===== BOTTOM NAVIGATION ===== -->
+    <nav class="bottom-nav">
+      <button class="nav-icon" onclick="window.location.href = 'index.html'">
+        <span class="material-symbols-outlined">home</span>
+      </button>
+      <button
+        class="nav-icon active"
+        onclick="window.location.href = 'phong-an.html'"
+      >
+        <span class="material-symbols-outlined">grid_view</span>
+        <span class="nav-dot"></span>
+      </button>
+      <button
+        class="nav-icon"
+        onclick="window.location.href = 'yeu-thich.html'"
+      >
+        <span class="material-symbols-outlined">favorite</span>
+      </button>
+      <button class="nav-icon" onclick="window.location.href = 'lien-he.html'">
+        <span class="material-symbols-outlined">person</span>
+      </button>
+    </nav>
+
+    <script src="js/main.js"></script>
+  </body>
+</html>

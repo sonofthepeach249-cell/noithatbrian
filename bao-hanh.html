@@ -1,0 +1,432 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bảo hành & Bảo trì | Brian Luu</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons+Round"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0,1"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <style>
+      .warranty-container {
+        max-width: 1000px;
+        margin: 60px auto;
+        padding: 0 24px 80px;
+      }
+      .warranty-header {
+        text-align: center;
+        margin-bottom: 60px;
+      }
+      .warranty-badge {
+        display: inline-block;
+        background: var(--primary-light);
+        color: white;
+        padding: 12px 30px;
+        border-radius: 50px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        margin-bottom: 30px;
+      }
+      .warranty-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+        margin: 50px 0;
+      }
+      .warranty-item {
+        text-align: center;
+        padding: 40px 20px;
+        background: white;
+        border-radius: 16px;
+      }
+      .dark-mode .warranty-item {
+        background: var(--surface-dark);
+      }
+      .warranty-icon {
+        font-size: 48px;
+        color: var(--primary-light);
+        margin-bottom: 20px;
+      }
+      .warranty-year {
+        font-size: 32px;
+        font-weight: 800;
+        color: var(--primary-light);
+        margin: 15px 0;
+      }
+    </style>
+  </head>
+  <body class="light-mode">
+    <!-- SIDEBAR (giống các trang khác) -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <div class="sidebar-menu" id="sidebarMenu">
+      <div class="sidebar-header">
+        <h2 class="sidebar-brand">BRIAN LUU</h2>
+        <button class="sidebar-close" id="sidebarClose">
+          <span class="material-icons-round">close</span>
+        </button>
+      </div>
+      <div class="sidebar-content">
+        <div class="sidebar-section">
+          <h3 class="sidebar-section-title">KHÁM PHÁ</h3>
+          <ul class="sidebar-list">
+            <li>
+              <a href="gioi-thieu.html"
+                ><span class="material-icons-round">info</span> Giới thiệu về
+                Brian Luu</a
+              >
+            </li>
+            <li>
+              <a href="san-pham-moi.html"
+                ><span class="material-icons-round">new_releases</span> Sản phẩm
+                mới</a
+              >
+            </li>
+            <li>
+              <a href="khuyen-mai.html"
+                ><span class="material-icons-round">local_offer</span> Khuyến
+                mãi</a
+              >
+            </li>
+          </ul>
+        </div>
+        <div class="sidebar-section">
+          <h3 class="sidebar-section-title">HỖ TRỢ</h3>
+          <ul class="sidebar-list">
+            <li>
+              <a href="tro-giup.html"
+                ><span class="material-icons-round">help</span> Trung tâm trợ
+                giúp</a
+              >
+            </li>
+            <li>
+              <a href="van-chuyen.html"
+                ><span class="material-icons-round">local_shipping</span> Vận
+                chuyển & Lắp đặt</a
+              >
+            </li>
+            <li>
+              <a href="bao-hanh.html"
+                ><span class="material-icons-round">verified</span> Bảo hành &
+                Bảo trì</a
+              >
+            </li>
+            <li>
+              <a href="lien-he.html"
+                ><span class="material-icons-round">contact_support</span> Liên
+                hệ</a
+              >
+            </li>
+          </ul>
+        </div>
+        <div class="sidebar-section">
+          <h3 class="sidebar-section-title">CỘNG ĐỒNG</h3>
+          <ul class="sidebar-list">
+            <li>
+              <a href="tuyen-dung.html"
+                ><span class="material-icons-round">badge</span> Tuyển dụng</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="sidebar-footer">
+        <p>Est. 2024 · The Milan Residence</p>
+      </div>
+    </div>
+
+    <!-- ===== HEADER ===== -->
+    <header class="main-header glass-header">
+      <div class="header-left">
+        <button class="menu-btn" aria-label="Menu">
+          <span class="material-icons-round">menu</span>
+        </button>
+      </div>
+
+      <div class="header-center">
+        <h1 class="brand-name">BRIAN LUU</h1>
+        <p class="brand-slogan">
+          CHẠM VÀO PHONG CÁCH, SỐNG TRỌN TỪNG KHOẢNH KHẮC
+        </p>
+      </div>
+
+      <div class="header-right">
+        <button
+          id="darkModeToggle"
+          class="mode-toggle"
+          aria-label="Chuyển đổi chế độ sáng/tối"
+        >
+          <span class="material-symbols-outlined light-icon">light_mode</span>
+          <span class="material-symbols-outlined dark-icon">dark_mode</span>
+        </button>
+        <button class="search-btn" aria-label="Tìm kiếm">
+          <span class="material-icons-round">search</span>
+        </button>
+        <button class="cart-btn" aria-label="Giỏ hàng">
+          <span class="material-icons-round">shopping_bag</span>
+          <span class="cart-dot"></span>
+        </button>
+        <a
+          href="theo-doi-don-hang.html"
+          style="text-decoration: none; color: inherit"
+        >
+          <button
+            class="track-order-btn"
+            style="
+              background: none;
+              border: none;
+              cursor: pointer;
+              display: flex;
+              align-items: center;
+            "
+          >
+            <span class="material-icons-round" style="font-size: 24px"
+              >assignment</span
+            >
+          </button>
+        </a>
+      </div>
+    </header>
+
+    <!-- ===== DANH MỤC CHÍNH ===== -->
+    <nav class="category-nav glass-header">
+      <div class="nav-container hide-scrollbar">
+        <a href="index.html" class="nav-item">TẤT CẢ</a>
+        <a href="phong-khach.html" class="nav-item">PHÒNG KHÁCH</a>
+        <a href="phong-ngu.html" class="nav-item">PHÒNG NGỦ</a>
+        <a href="phong-an.html" class="nav-item">PHÒNG ĂN</a>
+        <a href="den.html" class="nav-item">ĐÈN</a>
+        <a href="van-phong.html" class="nav-item">VĂN PHÒNG</a>
+      </div>
+    </nav>
+
+    <div class="warranty-container">
+      <div class="warranty-header">
+        <span class="warranty-badge">BRIAN CARE</span>
+        <h1
+          style="
+            font-family: var(--font-serif);
+            font-size: 3rem;
+            font-style: italic;
+            margin-bottom: 20px;
+          "
+        >
+          Bảo hành & Bảo trì
+        </h1>
+        <p
+          style="
+            font-size: 18px;
+            opacity: 0.7;
+            max-width: 600px;
+            margin: 0 auto;
+          "
+        >
+          Cam kết chất lượng và sự bền bỉ vượt thời gian
+        </p>
+      </div>
+
+      <div class="warranty-grid">
+        <div class="warranty-item">
+          <span class="material-icons-round warranty-icon">weekend</span>
+          <h3>Khung gỗ</h3>
+          <div class="warranty-year">5 năm</div>
+          <p>Bảo hành cấu trúc, mối mọt</p>
+        </div>
+        <div class="warranty-item">
+          <span class="material-icons-round warranty-icon">chair</span>
+          <h3>Vải & Da</h3>
+          <div class="warranty-year">2 năm</div>
+          <p>Bảo hành bong tróc, phai màu</p>
+        </div>
+        <div class="warranty-item">
+          <span class="material-icons-round warranty-icon">hardware</span>
+          <h3>Cơ khí</h3>
+          <div class="warranty-year">2 năm</div>
+          <p>Bản lề, ray trượt, chân ghế</p>
+        </div>
+        <div class="warranty-item">
+          <span class="material-icons-round warranty-icon">diamond</span>
+          <h3>Đá Marble</h3>
+          <div class="warranty-year">3 năm</div>
+          <p>Bảo hành nứt vỡ do lỗi kỹ thuật</p>
+        </div>
+      </div>
+
+      <div
+        style="
+          background: rgba(6, 78, 59, 0.05);
+          border-radius: 24px;
+          padding: 40px;
+          margin-top: 60px;
+        "
+      >
+        <h3 style="font-size: 24px; margin-bottom: 30px">Quy trình bảo hành</h3>
+        <div
+          style="
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            text-align: center;
+          "
+        >
+          <div>
+            <span
+              style="
+                display: inline-block;
+                width: 40px;
+                height: 40px;
+                background: var(--primary-light);
+                color: white;
+                border-radius: 50%;
+                line-height: 40px;
+                margin-bottom: 16px;
+              "
+              >1</span
+            >
+            <p style="font-weight: 600">Tiếp nhận</p>
+            <p style="opacity: 0.6; font-size: 14px">
+              Gọi hotline hoặc điền form
+            </p>
+          </div>
+          <div>
+            <span
+              style="
+                display: inline-block;
+                width: 40px;
+                height: 40px;
+                background: var(--primary-light);
+                color: white;
+                border-radius: 50%;
+                line-height: 40px;
+                margin-bottom: 16px;
+              "
+              >2</span
+            >
+            <p style="font-weight: 600">Kiểm tra</p>
+            <p style="opacity: 0.6; font-size: 14px">
+              Kỹ thuật viên đến tận nơi
+            </p>
+          </div>
+          <div>
+            <span
+              style="
+                display: inline-block;
+                width: 40px;
+                height: 40px;
+                background: var(--primary-light);
+                color: white;
+                border-radius: 50%;
+                line-height: 40px;
+                margin-bottom: 16px;
+              "
+              >3</span
+            >
+            <p style="font-weight: 600">Xử lý</p>
+            <p style="opacity: 0.6; font-size: 14px">Sửa chữa hoặc thay thế</p>
+          </div>
+          <div>
+            <span
+              style="
+                display: inline-block;
+                width: 40px;
+                height: 40px;
+                background: var(--primary-light);
+                color: white;
+                border-radius: 50%;
+                line-height: 40px;
+                margin-bottom: 16px;
+              "
+              >4</span
+            >
+            <p style="font-weight: 600">Bàn giao</p>
+            <p style="opacity: 0.6; font-size: 14px">Kiểm tra và nghiệm thu</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="main-footer">
+      <div class="footer-container">
+        <!-- Phần trên: 3 cột thông tin -->
+        <div class="footer-grid">
+          <!-- Cột 1: Về chúng tôi -->
+          <div class="footer-col">
+            <h4 class="footer-title">VỀ BRIAN LUU</h4>
+            <ul class="footer-menu">
+              <li><a href="gioi-thieu.html">Câu chuyện thương hiệu</a></li>
+          
+              <li><a href="tuyen-dung.html">Tuyển dụng</a></li>
+              <li><a href="lien-he.html">Liên hệ</a></li>
+            </ul>
+          </div>
+
+          <!-- Cột 2: Chính sách -->
+          <div class="footer-col">
+            <h4 class="footer-title">CHÍNH SÁCH</h4>
+            <ul class="footer-menu">
+              <li><a href="van-chuyen.html">Chính sách vận chuyển</a></li>
+              <li><a href="bao-hanh.html">Chính sách bảo hành</a></li>
+              <li><a href="gioi-thieu.html">Phát triển bền vững</a></li>
+              <li><a href="khuyen-mai.html">Chương trình thương mại</a></li>
+            </ul>
+          </div>
+
+          <!-- Cột 3: Hỗ trợ -->
+          <div class="footer-col">
+            <h4 class="footer-title">HỖ TRỢ</h4>
+            <ul class="footer-menu">
+              <li><a href="tro-giup.html">Trung tâm trợ giúp</a></li>
+              <li><a href="lien-he.html">Vị trí Atelier</a></li>
+            
+              <li><a href="khuyen-mai.html">Khuyến mãi</a></li>
+            </ul>
+          </div>
+        </div>
+
+      
+        <!-- Phần dưới: Copyright -->
+         
+        <div class="footer-bottom">
+          <p>© 2025 BRIAN LUU — THE MILAN RESIDENCE. THỦ CÔNG TẠI MILAN.</p>
+        </div>
+      </div>
+    </footer>
+    
+    <nav class="bottom-nav">
+      <button class="nav-icon" onclick="window.location.href = 'index.html'">
+        <span class="material-symbols-outlined">home</span>
+      </button>
+      <button
+        class="nav-icon"
+        onclick="window.location.href = 'phong-khach.html'"
+      >
+        <span class="material-symbols-outlined">grid_view</span>
+      </button>
+      <button
+        class="nav-icon"
+        onclick="window.location.href = 'yeu-thich.html'"
+      >
+        <span class="material-symbols-outlined">favorite</span>
+      </button>
+      <button
+        class="nav-icon active"
+        onclick="window.location.href = 'lien-he.html'"
+      >
+        <span class="material-symbols-outlined">person</span>
+        <span class="nav-dot"></span>
+      </button>
+    </nav>
+  </body>
+</html>
+    <script src="js/main.js"></script>
+  </body>
+</html>

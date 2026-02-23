@@ -1,0 +1,791 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trung tâm trợ giúp | Brian Luu</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons+Round"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0,1"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <style>
+      .help-header {
+        background: #f4f7f2;
+        padding: 80px 24px;
+        text-align: center;
+      }
+      .dark-mode .help-header {
+        background: #1a1e24;
+      }
+      .help-header h1 {
+        font-family: var(--font-serif);
+        font-size: 3rem;
+        font-style: italic;
+        margin-bottom: 20px;
+      }
+      .help-search {
+        max-width: 600px;
+        margin: 40px auto 0;
+        position: relative;
+      }
+      .help-search input {
+        width: 100%;
+        padding: 20px 30px;
+        border-radius: 50px;
+        border: none;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        font-size: 16px;
+        outline: none;
+      }
+      .help-search input:focus {
+        box-shadow: 0 5px 20px rgba(6, 78, 59, 0.15);
+      }
+      .help-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 30px;
+        max-width: 1200px;
+        margin: 60px auto;
+        padding: 0 24px;
+      }
+      .help-item {
+        padding: 40px 30px;
+        background: white;
+        border-radius: 20px;
+        text-align: center;
+        transition: var(--transition);
+        cursor: pointer;
+      }
+      .dark-mode .help-item {
+        background: var(--surface-dark);
+      }
+      .help-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+      }
+      .help-icon {
+        font-size: 48px;
+        color: var(--primary-light);
+        margin-bottom: 24px;
+      }
+
+      .faq-section {
+        max-width: 800px;
+        margin: 80px auto;
+        padding: 0 24px;
+      }
+      .faq-title {
+        font-family: var(--font-serif);
+        font-size: 2rem;
+        font-style: italic;
+        margin-bottom: 40px;
+        text-align: center;
+        color: var(--primary-light);
+      }
+      .faq-item {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        padding: 16px 0;
+      }
+      .faq-question {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+        font-weight: 600;
+        padding: 8px 0;
+        transition: all 0.3s;
+      }
+      .faq-question:hover {
+        color: var(--primary-light);
+      }
+      .faq-question .material-icons-round {
+        transition: transform 0.3s;
+      }
+      .faq-question.active .material-icons-round {
+        transform: rotate(180deg);
+      }
+      .faq-answer {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+        opacity: 0.8;
+        line-height: 1.6;
+      }
+      .faq-answer.show {
+        max-height: 200px;
+        padding: 16px 0 8px;
+      }
+
+      .search-results-container {
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 0 24px;
+        display: none;
+      }
+      .search-result-item {
+        background: white;
+        border-radius: 20px;
+        padding: 24px;
+        margin-bottom: 16px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.03);
+        cursor: pointer;
+        transition: all 0.3s;
+        border-left: 4px solid transparent;
+      }
+      .dark-mode .search-result-item {
+        background: var(--surface-dark);
+        border-color: var(--border-dark);
+      }
+      .search-result-item:hover {
+        transform: translateX(5px);
+        box-shadow: 0 10px 25px rgba(6, 78, 59, 0.1);
+        border-left: 4px solid var(--primary-light);
+      }
+      .search-result-item h4 {
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 8px;
+        color: var(--primary-light);
+      }
+      .search-result-item .category {
+        display: inline-block;
+        background: rgba(6, 78, 59, 0.1);
+        color: var(--primary-light);
+        padding: 4px 12px;
+        border-radius: 30px;
+        font-size: 12px;
+        font-weight: 600;
+        margin-bottom: 12px;
+      }
+      .dark-mode .search-result-item .category {
+        background: rgba(52, 211, 153, 0.2);
+        color: #86efac;
+      }
+      .search-result-item .answer-preview {
+        font-size: 14px;
+        opacity: 0.7;
+        margin: 8px 0;
+        line-height: 1.5;
+      }
+      .search-result-item .full-answer {
+        margin-top: 16px;
+        padding-top: 16px;
+        border-top: 1px solid rgba(0, 0, 0, 0.05);
+        font-size: 15px;
+        line-height: 1.6;
+        display: none;
+      }
+      .dark-mode .search-result-item .full-answer {
+        border-top-color: rgba(255, 255, 255, 0.05);
+      }
+      .search-result-item .full-answer.show {
+        display: block;
+        animation: fadeIn 0.3s ease;
+      }
+      .search-result-item .click-hint {
+        font-size: 13px;
+        color: var(--primary-light);
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        margin-top: 12px;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .no-results {
+        text-align: center;
+        padding: 60px 20px;
+        background: white;
+        border-radius: 20px;
+      }
+      .dark-mode .no-results {
+        background: var(--surface-dark);
+      }
+      .no-results .material-icons-round {
+        font-size: 64px;
+        color: var(--primary-light);
+        opacity: 0.3;
+        margin-bottom: 20px;
+      }
+      .no-results h3 {
+        font-size: 24px;
+        margin-bottom: 10px;
+        color: var(--text-light);
+      }
+      .dark-mode .no-results h3 {
+        color: #ffffff;
+      }
+      .no-results p {
+        font-size: 16px;
+        opacity: 0.7;
+        margin-bottom: 30px;
+      }
+      .no-results button {
+        background: var(--primary-light);
+        color: white;
+        border: none;
+        padding: 14px 32px;
+        border-radius: 40px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+      .no-results button:hover {
+        background: #0a6e4f;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(6, 78, 59, 0.2);
+      }
+
+      /* Giống style tuyển dụng */
+      .job-tag {
+        background: rgba(6, 78, 59, 0.1);
+        color: var(--primary-light);
+        padding: 6px 16px;
+        border-radius: 30px;
+        font-size: 12px;
+        font-weight: 600;
+        display: inline-block;
+      }
+      .dark-mode .job-tag {
+        background: rgba(52, 211, 153, 0.2);
+        color: #86efac;
+      }
+    </style>
+  </head>
+  <body class="light-mode">
+    <!-- SIDEBAR (giống các trang khác) -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <div class="sidebar-menu" id="sidebarMenu">
+      <div class="sidebar-header">
+        <h2 class="sidebar-brand">BRIAN LUU</h2>
+        <button class="sidebar-close" id="sidebarClose">
+          <span class="material-icons-round">close</span>
+        </button>
+      </div>
+      <div class="sidebar-content">
+        <div class="sidebar-section">
+          <h3 class="sidebar-section-title">KHÁM PHÁ</h3>
+          <ul class="sidebar-list">
+            <li>
+              <a href="gioi-thieu.html"
+                ><span class="material-icons-round">info</span> Giới thiệu về
+                Brian Luu</a
+              >
+            </li>
+            <li>
+              <a href="san-pham-moi.html"
+                ><span class="material-icons-round">new_releases</span> Sản phẩm
+                mới</a
+              >
+            </li>
+            <li>
+              <a href="khuyen-mai.html"
+                ><span class="material-icons-round">local_offer</span> Khuyến
+                mãi</a
+              >
+            </li>
+          </ul>
+        </div>
+        <div class="sidebar-section">
+          <h3 class="sidebar-section-title">HỖ TRỢ</h3>
+          <ul class="sidebar-list">
+            <li>
+              <a href="tro-giup.html"
+                ><span class="material-icons-round">help</span> Trung tâm trợ
+                giúp</a
+              >
+            </li>
+            <li>
+              <a href="van-chuyen.html"
+                ><span class="material-icons-round">local_shipping</span> Vận
+                chuyển & Lắp đặt</a
+              >
+            </li>
+            <li>
+              <a href="bao-hanh.html"
+                ><span class="material-icons-round">verified</span> Bảo hành &
+                Bảo trì</a
+              >
+            </li>
+            <li>
+              <a href="lien-he.html"
+                ><span class="material-icons-round">contact_support</span> Liên
+                hệ</a
+              >
+            </li>
+          </ul>
+        </div>
+        <div class="sidebar-section">
+          <h3 class="sidebar-section-title">CỘNG ĐỒNG</h3>
+          <ul class="sidebar-list">
+            <li>
+              <a href="tuyen-dung.html"
+                ><span class="material-icons-round">badge</span> Tuyển dụng</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="sidebar-footer">
+        <p>Est. 2024 · The Milan Residence</p>
+      </div>
+    </div>
+
+    <!-- HEADER -->
+    <header class="main-header glass-header">
+      <div class="header-left">
+        <button class="menu-btn" aria-label="Menu">
+          <span class="material-icons-round">menu</span>
+        </button>
+      </div>
+      <div class="header-center">
+        <h1 class="brand-name">BRIAN LUU</h1>
+        <p class="brand-slogan">
+          CHẠM VÀO PHONG CÁCH, SỐNG TRỌN TỪNG KHOẢNH KHẮC
+        </p>
+      </div>
+      <div class="header-right">
+        <button
+          id="darkModeToggle"
+          class="mode-toggle"
+          aria-label="Chuyển đổi chế độ sáng/tối"
+        >
+          <span class="material-symbols-outlined light-icon">light_mode</span>
+          <span class="material-symbols-outlined dark-icon">dark_mode</span>
+        </button>
+        <button class="search-btn" aria-label="Tìm kiếm">
+          <span class="material-icons-round">search</span>
+        </button>
+        <button class="cart-btn" aria-label="Giỏ hàng">
+          <span class="material-icons-round">shopping_bag</span>
+          <span class="cart-dot"></span>
+        </button>
+        <a
+          href="theo-doi-don-hang.html"
+          style="text-decoration: none; color: inherit"
+        >
+          <button
+            class="track-order-btn"
+            style="
+              background: none;
+              border: none;
+              cursor: pointer;
+              display: flex;
+              align-items: center;
+            "
+          >
+            <span class="material-icons-round" style="font-size: 24px"
+              >assignment</span
+            >
+          </button>
+        </a>
+      </div>
+    </header>
+
+    <!-- CATEGORY NAV -->
+    <nav class="category-nav glass-header">
+      <div class="nav-container hide-scrollbar">
+        <a href="index.html" class="nav-item">TẤT CẢ</a>
+        <a href="phong-khach.html" class="nav-item">PHÒNG KHÁCH</a>
+        <a href="phong-ngu.html" class="nav-item">PHÒNG NGỦ</a>
+        <a href="phong-an.html" class="nav-item">PHÒNG ĂN</a>
+        <a href="den.html" class="nav-item">ĐÈN</a>
+        <a href="van-phong.html" class="nav-item">VĂN PHÒNG</a>
+      </div>
+    </nav>
+
+    <section class="help-header">
+      <h1>Trung tâm trợ giúp</h1>
+      <p>Chúng tôi luôn sẵn sàng hỗ trợ bạn 24/7</p>
+      <div class="help-search">
+        <input
+          type="text"
+          id="helpSearchInput"
+          placeholder="Tìm kiếm câu hỏi..."
+        />
+        <button
+          id="helpSearchBtn"
+          style="
+            position: absolute;
+            right: 20px;
+            top: 18px;
+            background: none;
+            border: none;
+            cursor: pointer;
+          "
+        >
+          <span class="material-icons-round">search</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Search Results -->
+    <div id="searchResults" class="search-results-container"></div>
+
+    <!-- Help Categories -->
+    <div id="helpCategories">
+      <div class="help-grid">
+        <div
+          class="help-item"
+          onclick="window.location.href = 'van-chuyen.html'"
+        >
+          <span class="material-icons-round help-icon">local_shipping</span>
+          <h3 style="margin-bottom: 12px">Đơn hàng & Vận chuyển</h3>
+          <p style="opacity: 0.7">
+            Theo dõi đơn hàng, thời gian giao, phí vận chuyển
+          </p>
+          <span
+            style="
+              display: inline-block;
+              margin-top: 24px;
+              color: var(--primary-light);
+              font-weight: 600;
+            "
+            >Xem chi tiết →</span
+          >
+        </div>
+        <div class="help-item" onclick="window.location.href = 'bao-hanh.html'">
+          <span class="material-icons-round help-icon">verified</span>
+          <h3 style="margin-bottom: 12px">Bảo hành & Sửa chữa</h3>
+          <p style="opacity: 0.7">
+            Chính sách bảo hành, yêu cầu sửa chữa, thay thế
+          </p>
+          <span
+            style="
+              display: inline-block;
+              margin-top: 24px;
+              color: var(--primary-light);
+              font-weight: 600;
+            "
+            >Xem chi tiết →</span
+          >
+        </div>
+        <div
+          class="help-item"
+          onclick="window.location.href = 'thanh-toan.html'"
+        >
+          <span class="material-icons-round help-icon">currency_exchange</span>
+          <h3 style="margin-bottom: 12px">Thanh toán & Hoàn tiền</h3>
+          <p style="opacity: 0.7">
+            Phương thức thanh toán, chính sách đổi trả, hoàn tiền
+          </p>
+          <span
+            style="
+              display: inline-block;
+              margin-top: 24px;
+              color: var(--primary-light);
+              font-weight: 600;
+            "
+            >Xem chi tiết →</span
+          >
+        </div>
+        <div class="help-item" onclick="window.location.href = 'lien-he.html'">
+          <span class="material-icons-round help-icon">settings</span>
+          <h3 style="margin-bottom: 12px">Lắp đặt & Bảo trì</h3>
+          <p style="opacity: 0.7">Hướng dẫn lắp đặt, bảo quản sản phẩm</p>
+          <span
+            style="
+              display: inline-block;
+              margin-top: 24px;
+              color: var(--primary-light);
+              font-weight: 600;
+            "
+            >Xem chi tiết →</span
+          >
+        </div>
+      </div>
+
+      <!-- FAQ Section -->
+      <div class="faq-section">
+        <h2 class="faq-title">Câu hỏi thường gặp</h2>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            <span>Thời gian giao hàng trung bình bao lâu?</span>
+            <span class="material-icons-round">expand_more</span>
+          </div>
+          <div class="faq-answer">
+            3-5 tuần đối với hàng đặt trước, 3-5 ngày với hàng có sẵn. Miễn phí
+            vận chuyển nội thành HCM và Hà Nội cho đơn hàng trên 20 triệu.
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            <span>Có được đổi trả sản phẩm không?</span>
+            <span class="material-icons-round">expand_more</span>
+          </div>
+          <div class="faq-answer">
+            Có, trong vòng 7 ngày nếu sản phẩm lỗi kỹ thuật. Sản phẩm đổi trả
+            phải còn nguyên tem, chưa qua sử dụng.
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            <span>Làm thế nào để bảo quản mặt đá marble?</span>
+            <span class="material-icons-round">expand_more</span>
+          </div>
+          <div class="faq-answer">
+            Tránh va đập mạnh, lau bằng khăn mềm, không dùng chất tẩy mạnh. Định
+            kỳ 6 tháng nên phủ một lớp bảo vệ chuyên dụng.
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            <span>Phương thức thanh toán nào được chấp nhận?</span>
+            <span class="material-icons-round">expand_more</span>
+          </div>
+          <div class="faq-answer">
+            Chúng tôi chấp nhận thẻ tín dụng (Visa, Master), chuyển khoản ngân
+            hàng và thanh toán khi nhận hàng (COD).
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            <span>Có chính sách bảo hành như thế nào?</span>
+            <span class="material-icons-round">expand_more</span>
+          </div>
+          <div class="faq-answer">
+            Bảo hành 5 năm cho khung gỗ, 2 năm cho vải/da và cơ khí. Bảo hành
+            vàng 10 năm cho sản phẩm đặc biệt.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="main-footer">
+      <div class="footer-container">
+        <div class="footer-grid">
+          <div class="footer-col">
+            <h4 class="footer-title">VỀ BRIAN LUU</h4>
+            <ul class="footer-menu">
+              <li><a href="gioi-thieu.html">Câu chuyện thương hiệu</a></li>
+              <li><a href="tuyen-dung.html">Tuyển dụng</a></li>
+              <li><a href="lien-he.html">Liên hệ</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4 class="footer-title">CHÍNH SÁCH</h4>
+            <ul class="footer-menu">
+              <li><a href="van-chuyen.html">Chính sách vận chuyển</a></li>
+              <li><a href="bao-hanh.html">Chính sách bảo hành</a></li>
+              <li><a href="gioi-thieu.html">Phát triển bền vững</a></li>
+              <li><a href="khuyen-mai.html">Chương trình thương mại</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4 class="footer-title">HỖ TRỢ</h4>
+            <ul class="footer-menu">
+              <li><a href="tro-giup.html">Trung tâm trợ giúp</a></li>
+              <li><a href="lien-he.html">Vị trí Atelier</a></li>
+              <li><a href="khuyen-mai.html">Khuyến mãi</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>© 2025 BRIAN LUU — THE MILAN RESIDENCE. THỦ CÔNG TẠI MILAN.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- BOTTOM NAV -->
+    <nav class="bottom-nav">
+      <button class="nav-icon" onclick="window.location.href = 'index.html'">
+        <span class="material-symbols-outlined">home</span>
+      </button>
+      <button
+        class="nav-icon"
+        onclick="window.location.href = 'phong-khach.html'"
+      >
+        <span class="material-symbols-outlined">grid_view</span>
+      </button>
+      <button
+        class="nav-icon"
+        onclick="window.location.href = 'yeu-thich.html'"
+      >
+        <span class="material-symbols-outlined">favorite</span>
+      </button>
+      <button
+        class="nav-icon active"
+        onclick="window.location.href = 'lien-he.html'"
+      >
+        <span class="material-symbols-outlined">person</span
+        ><span class="nav-dot"></span>
+      </button>
+    </nav>
+
+    <script src="js/main.js"></script>
+    <script>
+      // Database câu hỏi thường gặp
+      const faqDatabase = [
+        {
+          question: "Thời gian giao hàng trung bình bao lâu?",
+          answer:
+            "3-5 tuần đối với hàng đặt trước, 3-5 ngày với hàng có sẵn. Miễn phí vận chuyển nội thành HCM và Hà Nội cho đơn hàng trên 20 triệu.",
+          category: "Vận chuyển",
+        },
+        {
+          question: "Có được đổi trả sản phẩm không?",
+          answer:
+            "Có, trong vòng 7 ngày nếu sản phẩm lỗi kỹ thuật. Sản phẩm đổi trả phải còn nguyên tem, chưa qua sử dụng.",
+          category: "Đổi trả",
+        },
+        {
+          question: "Làm thế nào để bảo quản mặt đá marble?",
+          answer:
+            "Tránh va đập mạnh, lau bằng khăn mềm, không dùng chất tẩy mạnh. Định kỳ 6 tháng nên phủ một lớp bảo vệ chuyên dụng.",
+          category: "Bảo quản",
+        },
+        {
+          question: "Phương thức thanh toán nào được chấp nhận?",
+          answer:
+            "Chúng tôi chấp nhận thẻ tín dụng (Visa, Master), chuyển khoản ngân hàng và thanh toán khi nhận hàng (COD).",
+          category: "Thanh toán",
+        },
+        {
+          question: "Có chính sách bảo hành như thế nào?",
+          answer:
+            "Bảo hành 5 năm cho khung gỗ, 2 năm cho vải/da và cơ khí. Bảo hành vàng 10 năm cho sản phẩm đặc biệt.",
+          category: "Bảo hành",
+        },
+        {
+          question: "Có lắp đặt tận nơi không?",
+          answer:
+            "Có, chúng tôi có đội ngũ kỹ thuật viên chuyên nghiệp hỗ trợ lắp đặt tận nơi. Miễn phí trong nội thành.",
+          category: "Lắp đặt",
+        },
+        {
+          question: "Làm sao để theo dõi đơn hàng?",
+          answer:
+            "Bạn có thể theo dõi đơn hàng trực tiếp trên website qua mục 'Theo dõi đơn hàng' với mã đơn được cung cấp.",
+          category: "Đơn hàng",
+        },
+      ];
+
+      // Toggle FAQ
+      function toggleFAQ(element) {
+        const faqItem = element.closest(".faq-item");
+        const answer = faqItem.querySelector(".faq-answer");
+        const icon = element.querySelector(".material-icons-round");
+
+        element.classList.toggle("active");
+        answer.classList.toggle("show");
+      }
+
+      // Toggle câu trả lời trong kết quả tìm kiếm
+      function toggleSearchAnswer(element) {
+        const fullAnswer = element.querySelector(".full-answer");
+        const isVisible = fullAnswer.classList.contains("show");
+
+        // Đóng tất cả các câu trả lời khác
+        document
+          .querySelectorAll(".search-result-item .full-answer")
+          .forEach((el) => {
+            el.classList.remove("show");
+          });
+
+        // Mở câu trả lời được chọn
+        if (!isVisible) {
+          fullAnswer.classList.add("show");
+        }
+      }
+
+      // Tìm kiếm câu hỏi
+      function searchFAQ() {
+        const searchInput = document.getElementById("helpSearchInput");
+        const query = searchInput.value.trim().toLowerCase();
+        const categories = document.getElementById("helpCategories");
+        const searchResults = document.getElementById("searchResults");
+
+        if (query === "") {
+          categories.style.display = "block";
+          searchResults.style.display = "none";
+          return;
+        }
+
+        // Tìm kiếm trong database
+        const results = faqDatabase.filter(
+          (item) =>
+            item.question.toLowerCase().includes(query) ||
+            item.answer.toLowerCase().includes(query) ||
+            item.category.toLowerCase().includes(query),
+        );
+
+        // Ẩn categories, hiển thị kết quả tìm kiếm
+        categories.style.display = "none";
+        searchResults.style.display = "block";
+
+        if (results.length > 0) {
+          let html =
+            '<h3 style="margin-bottom: 20px; font-size: 1.5rem;">Kết quả tìm kiếm:</h3>';
+          results.forEach((item) => {
+            html += `
+                        <div class="search-result-item" onclick="toggleSearchAnswer(this)">
+                            <span class="category">${item.category}</span>
+                            <h4>${item.question}</h4>
+                            <p class="answer-preview">${item.answer.substring(0, 60)}...</p>
+                            <div class="full-answer">
+                                ${item.answer}
+                            </div>
+                            <div class="click-hint">
+                                <span class="material-icons-round" style="font-size: 16px;">click</span>
+                                Nhấp để xem câu trả lời
+                            </div>
+                        </div>
+                    `;
+          });
+          searchResults.innerHTML = html;
+        } else {
+          searchResults.innerHTML = `
+                    <div class="no-results">
+                        <span class="material-icons-round">search_off</span>
+                        <h3>Không tìm thấy kết quả</h3>
+                        <p>Không có câu hỏi nào phù hợp với "${query}"</p>
+                        <button onclick="clearSearch()">Xem tất cả câu hỏi</button>
+                    </div>
+                `;
+        }
+      }
+
+      // Xóa tìm kiếm và quay lại danh sách
+      function clearSearch() {
+        document.getElementById("helpSearchInput").value = "";
+        document.getElementById("helpCategories").style.display = "block";
+        document.getElementById("searchResults").style.display = "none";
+      }
+
+      // Sự kiện tìm kiếm
+      document.addEventListener("DOMContentLoaded", function () {
+        const searchInput = document.getElementById("helpSearchInput");
+        const searchBtn = document.getElementById("helpSearchBtn");
+
+        searchInput.addEventListener("keypress", function (e) {
+          if (e.key === "Enter") {
+            searchFAQ();
+          }
+        });
+
+        searchBtn.addEventListener("click", searchFAQ);
+      });
+    </script>
+  </body>
+</html>
