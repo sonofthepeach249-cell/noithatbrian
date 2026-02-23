@@ -1886,429 +1886,6 @@ body.dark-mode .sidebar-menu {
   border: 1px solid var(--border-dark) !important;
 }
 
-/* ===== TỐI ƯU GIAO DIỆN MOBILE ===== */
-
-/* 1. HEADER - thu gọn trên mobile */
-@media (max-width: 768px) {
-  .main-header {
-    padding: 8px 12px !important;
-  }
-
-  .brand-name {
-    font-size: 1.1rem !important;
-    letter-spacing: 0.1em !important;
-  }
-
-  .brand-slogan {
-    display: none; /* Ẩn slogan trên mobile để gọn */
-  }
-
-  .header-left button,
-  .header-right button,
-  .header-right a button {
-    width: 36px !important;
-    height: 36px !important;
-  }
-
-  .header-right .material-icons-round,
-  .header-right .material-symbols-outlined {
-    font-size: 20px !important;
-  }
-
-  /* Đồng bộ màu nút trên mobile */
-  .light-mode .track-order-btn .material-icons-round,
-  .light-mode .search-btn .material-icons-round,
-  .light-mode .cart-btn .material-icons-round,
-  .light-mode .mode-toggle .material-symbols-outlined {
-    color: #2c3e50 !important;
-  }
-
-  .dark-mode .track-order-btn .material-icons-round,
-  .dark-mode .search-btn .material-icons-round,
-  .dark-mode .cart-btn .material-icons-round,
-  .dark-mode .mode-toggle .material-symbols-outlined {
-    color: #ffffff !important;
-  }
-
-  /* Fix nút theo dõi đơn hàng bị xanh */
-  .track-order-btn {
-    background: transparent !important;
-    border: none !important;
-  }
-}
-
-/* 2. CATEGORY NAV - scroll ngang mượt */
-@media (max-width: 768px) {
-  .category-nav {
-    top: 60px !important;
-    padding: 0 !important;
-  }
-
-  .nav-container {
-    padding: 12px 16px !important;
-    gap: 20px !important;
-  }
-
-  .nav-item {
-    font-size: 11px !important;
-    white-space: nowrap;
-    padding: 6px 0 !important;
-  }
-
-  /* Fix lỗi hiển thị chữ */
-  .nav-item:first-child {
-    padding-left: 4px;
-  }
-}
-
-/* 3. HERO SLIDER - điều chỉnh cho mobile */
-@media (max-width: 768px) {
-  .hero-slider-section {
-    height: 450px !important;
-  }
-
-  .slide-content {
-    bottom: 40px !important;
-    left: 20px !important;
-    right: 20px !important;
-  }
-
-  .slide-title {
-    font-size: 2.2rem !important;
-  }
-
-  .slide-desc {
-    font-size: 0.85rem !important;
-    margin-bottom: 20px !important;
-  }
-
-  .slide-btn {
-    padding: 12px 24px !important;
-    font-size: 9px !important;
-  }
-}
-
-/* 4. PRODUCT GRID - 2 cột đều nhau */
-@media (max-width: 768px) {
-  .product-grid {
-    gap: 12px !important;
-  }
-
-  .product-card {
-    margin-bottom: 10px;
-  }
-
-  .product-image {
-    border-radius: 12px !important;
-  }
-
-  .product-info h4 {
-    font-size: 13px !important;
-    margin-bottom: 2px !important;
-  }
-
-  .product-info p {
-    font-size: 9px !important;
-    margin-top: 2px !important;
-  }
-
-  .price {
-    font-size: 14px !important;
-    margin-top: 4px !important;
-  }
-
-  .wishlist-btn {
-    width: 32px !important;
-    height: 32px !important;
-    top: 8px !important;
-    right: 8px !important;
-  }
-
-  .wishlist-btn .material-symbols-outlined {
-    font-size: 18px !important;
-  }
-}
-
-/* 5. SECTION HEADER */
-@media (max-width: 768px) {
-  .section-header {
-    margin-bottom: 20px !important;
-  }
-
-  .section-title-en {
-    font-size: 1.5rem !important;
-  }
-
-  .section-subtitle {
-    font-size: 9px !important;
-  }
-
-  .filter-btn {
-    width: 36px !important;
-    height: 36px !important;
-  }
-}
-
-/* 6. QUOTE SECTION */
-@media (max-width: 768px) {
-  .quote-section {
-    padding: 40px 16px !important;
-  }
-
-  .quote-text {
-    font-size: 1.2rem !important;
-  }
-
-  .quote-author {
-    font-size: 8px !important;
-  }
-}
-
-/* 7. NEWSLETTER */
-@media (max-width: 768px) {
-  .newsletter-section {
-    padding: 40px 16px !important;
-  }
-
-  .newsletter-title {
-    font-size: 1.5rem !important;
-  }
-
-  .newsletter-desc {
-    font-size: 0.85rem !important;
-  }
-
-  .newsletter-input {
-    font-size: 14px !important;
-    padding: 12px 0 !important;
-  }
-
-  .newsletter-btn {
-    font-size: 9px !important;
-  }
-}
-
-/* 8. FOOTER - 2 cột trên mobile */
-@media (max-width: 768px) {
-  .main-footer {
-    padding: 40px 16px 20px !important;
-  }
-
-  .footer-grid {
-    grid-template-columns: 1fr 1fr !important;
-    gap: 20px !important;
-  }
-
-  .footer-col {
-    gap: 8px !important;
-  }
-
-  .footer-title {
-    font-size: 12px !important;
-    margin-bottom: 4px !important;
-  }
-
-  .footer-title::after {
-    width: 30px !important;
-    height: 2px !important;
-  }
-
-  .footer-menu a {
-    font-size: 11px !important;
-    padding: 4px 0 !important;
-  }
-
-  .footer-bottom {
-    margin-top: 30px !important;
-    padding-top: 20px !important;
-  }
-
-  .footer-bottom p {
-    font-size: 9px !important;
-    line-height: 1.4 !important;
-  }
-}
-
-/* 9. BOTTOM NAV (nếu còn) */
-@media (max-width: 768px) {
-  .bottom-nav {
-    height: 70px !important;
-    padding: 0 16px 10px !important;
-  }
-
-  .nav-icon .material-symbols-outlined {
-    font-size: 22px !important;
-  }
-}
-
-/* 10. TRANG CHI TIẾT SẢN PHẨM */
-@media (max-width: 768px) {
-  .product-detail-container {
-    padding: 1rem 1rem 3rem !important;
-  }
-
-  .product-main {
-    gap: 30px !important;
-    margin-bottom: 40px !important;
-  }
-
-  .product-title {
-    font-size: 1.8rem !important;
-  }
-
-  .product-price {
-    font-size: 1.6rem !important;
-    margin: 10px 0 !important;
-  }
-
-  .size-btn {
-    min-width: 50px !important;
-    height: 40px !important;
-    font-size: 13px !important;
-  }
-
-  .quantity-btn {
-    width: 40px !important;
-    height: 40px !important;
-  }
-
-  .add-to-cart-btn {
-    padding: 14px !important;
-    font-size: 12px !important;
-  }
-
-  .tab-btn {
-    font-size: 12px !important;
-    padding: 6px 0 !important;
-  }
-}
-
-/* 11. TRANG THANH TOÁN */
-@media (max-width: 768px) {
-  .checkout-wrapper {
-    padding: 20px 16px 60px !important;
-  }
-
-  .checkout-header {
-    flex-direction: column !important;
-    align-items: flex-start !important;
-    gap: 15px !important;
-  }
-
-  .checkout-steps {
-    width: 100% !important;
-    justify-content: space-between !important;
-    padding: 12px 16px !important;
-  }
-
-  .step-text {
-    font-size: 12px !important;
-  }
-
-  .checkout-form-section {
-    padding: 25px !important;
-  }
-
-  .form-card {
-    padding: 20px !important;
-  }
-
-  .form-row {
-    grid-template-columns: 1fr !important;
-    gap: 12px !important;
-  }
-
-  .order-summary-modern {
-    padding: 25px !important;
-  }
-
-  .cart-item-modern {
-    gap: 12px !important;
-  }
-
-  .cart-item-image {
-    width: 60px !important;
-    height: 60px !important;
-  }
-
-  .cart-item-name {
-    font-size: 14px !important;
-  }
-
-  .place-order-btn {
-    padding: 16px !important;
-    font-size: 16px !important;
-  }
-}
-
-/* 12. TRANG THEO DÕI ĐƠN HÀNG */
-@media (max-width: 768px) {
-  .tracking-container {
-    padding: 20px 16px 60px !important;
-  }
-
-  .tracking-title {
-    font-size: 2rem !important;
-  }
-
-  .search-orders {
-    flex-direction: column !important;
-    gap: 10px !important;
-  }
-
-  .search-input {
-    width: 100% !important;
-  }
-
-  .search-btn {
-    width: 100% !important;
-  }
-
-  .order-card {
-    padding: 20px !important;
-  }
-
-  .info-grid {
-    grid-template-columns: 1fr !important;
-    gap: 15px !important;
-  }
-
-  .tracking-timeline {
-    flex-wrap: wrap !important;
-    gap: 10px !important;
-  }
-
-  .timeline-step {
-    min-width: 45% !important;
-  }
-}
-
-/* 13. FIX LỖI HIỂN THỊ CHỮ */
-@media (max-width: 480px) {
-  .brand-name {
-    font-size: 1rem !important;
-  }
-
-  .product-info h4 {
-    font-size: 12px !important;
-  }
-
-  .price {
-    font-size: 13px !important;
-  }
-
-  .footer-menu a {
-    font-size: 10px !important;
-  }
-}
-
-/* 14. ẨN slogan trên mobile rất nhỏ */
-@media (max-width: 360px) {
-  .brand-slogan {
-    display: none !important;
-  }
-}
-
 /* Nút xóa sản phẩm */
 .cart-item button[aria-label="Xóa sản phẩm"] {
   transition: all 0.2s ease;
@@ -3284,4 +2861,590 @@ body.dark-mode .sidebar-menu {
   top: 10px;
   left: 10px;
   right: auto;
+}
+/* ===== TỐI ƯU MOBILE - NHÌN ĐẸP HƠN ===== */
+
+/* 1. HEADER - thu gọn và căn giữa */
+@media (max-width: 768px) {
+  .main-header {
+    padding: 10px 12px !important;
+  }
+
+  .brand-name {
+    font-size: 1.1rem !important;
+    letter-spacing: 0.1em !important;
+    white-space: nowrap;
+  }
+
+  .brand-slogan {
+    display: none !important; /* Ẩn slogan trên mobile để gọn */
+  }
+
+  .header-left button,
+  .header-right button,
+  .header-right a button {
+    width: 36px !important;
+    height: 36px !important;
+  }
+
+  .header-right .material-icons-round,
+  .header-right .material-symbols-outlined {
+    font-size: 20px !important;
+  }
+
+  /* Đồng bộ màu nút */
+  .light-mode .header-right button .material-icons-round,
+  .light-mode .header-right button .material-symbols-outlined {
+    color: #2c3e50 !important;
+  }
+
+  .dark-mode .header-right button .material-icons-round,
+  .dark-mode .header-right button .material-symbols-outlined {
+    color: #ffffff !important;
+  }
+}
+
+/* 2. CATEGORY NAV - scroll ngang mượt */
+@media (max-width: 768px) {
+  .category-nav {
+    top: 60px !important;
+    padding: 0 !important;
+  }
+
+  .nav-container {
+    padding: 10px 16px !important;
+    gap: 20px !important;
+    -webkit-overflow-scrolling: touch; /* Scroll mượt trên iOS */
+  }
+
+  .nav-item {
+    font-size: 11px !important;
+    font-weight: 600 !important;
+    padding: 6px 0 !important;
+    white-space: nowrap;
+    opacity: 0.9;
+  }
+
+  .nav-item.active {
+    font-weight: 700 !important;
+    border-bottom-width: 2px !important;
+  }
+}
+
+/* 3. HERO SLIDER - tối ưu chiều cao */
+@media (max-width: 768px) {
+  .hero-slider-section {
+    height: 450px !important;
+  }
+
+  .slide-content {
+    bottom: 50px !important;
+    left: 20px !important;
+    right: 20px !important;
+    max-width: 100% !important;
+  }
+
+  .slide-tag {
+    font-size: 9px !important;
+    margin-bottom: 8px !important;
+  }
+
+  .slide-title {
+    font-size: 2.2rem !important;
+    line-height: 1.2 !important;
+    margin-bottom: 10px !important;
+  }
+
+  .slide-desc {
+    font-size: 0.9rem !important;
+    margin-bottom: 20px !important;
+    opacity: 0.9 !important;
+  }
+
+  .slide-btn {
+    padding: 12px 20px !important;
+    font-size: 10px !important;
+    width: 100% !important; /* Nút full width trên mobile */
+    text-align: center !important;
+  }
+}
+
+/* 4. PRODUCT GRID - 2 cột cân đối */
+@media (max-width: 768px) {
+  .signature-section {
+    padding: 40px 16px !important;
+  }
+
+  .section-header {
+    margin-bottom: 20px !important;
+  }
+
+  .section-title-en {
+    font-size: 1.5rem !important;
+  }
+
+  .section-subtitle {
+    font-size: 9px !important;
+    letter-spacing: 0.15em !important;
+  }
+
+  .product-grid {
+    gap: 12px !important;
+  }
+
+  .product-card {
+    margin-bottom: 5px !important;
+  }
+
+  .product-image {
+    border-radius: 12px !important;
+  }
+
+  .product-info {
+    margin-top: 8px !important;
+    padding: 0 2px !important;
+  }
+
+  .product-info h4 {
+    font-size: 13px !important;
+    font-weight: 700 !important;
+    margin-bottom: 2px !important;
+    line-height: 1.3 !important;
+  }
+
+  .product-info p {
+    font-size: 9px !important;
+    letter-spacing: 0.1em !important;
+    margin-top: 2px !important;
+  }
+
+  .price {
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    margin-top: 5px !important;
+  }
+
+  .wishlist-btn {
+    width: 30px !important;
+    height: 30px !important;
+    top: 8px !important;
+    right: 8px !important;
+  }
+
+  .wishlist-btn .material-symbols-outlined {
+    font-size: 16px !important;
+  }
+}
+
+/* 5. QUOTE SECTION */
+@media (max-width: 768px) {
+  .quote-section {
+    padding: 40px 16px !important;
+  }
+
+  .quote-icon {
+    font-size: 2rem !important;
+  }
+
+  .quote-text {
+    font-size: 1.2rem !important;
+    line-height: 1.5 !important;
+  }
+
+  .quote-divider {
+    width: 60px !important;
+    margin: 20px auto !important;
+  }
+
+  .quote-author {
+    font-size: 8px !important;
+    letter-spacing: 0.4em !important;
+  }
+}
+
+/* 6. NEWSLETTER */
+@media (max-width: 768px) {
+  .newsletter-section {
+    padding: 40px 16px !important;
+  }
+
+  .newsletter-title {
+    font-size: 1.5rem !important;
+  }
+
+  .newsletter-desc {
+    font-size: 0.9rem !important;
+    margin-bottom: 30px !important;
+  }
+
+  .newsletter-input {
+    font-size: 14px !important;
+    padding: 12px 0 !important;
+  }
+
+  .newsletter-btn {
+    font-size: 9px !important;
+    bottom: 12px !important;
+  }
+}
+
+/* 7. FOOTER - 2 cột gọn gàng */
+@media (max-width: 768px) {
+  .main-footer {
+    padding: 40px 16px 20px !important;
+    margin-top: 30px !important;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 20px !important;
+    margin-bottom: 30px !important;
+  }
+
+  .footer-col {
+    gap: 8px !important;
+  }
+
+  .footer-title {
+    font-size: 12px !important;
+    margin-bottom: 6px !important;
+  }
+
+  .footer-title::after {
+    width: 25px !important;
+    height: 2px !important;
+  }
+
+  .footer-menu {
+    gap: 6px !important;
+  }
+
+  .footer-menu a {
+    font-size: 11px !important;
+    padding: 4px 0 !important;
+  }
+
+  .footer-bottom {
+    margin-top: 20px !important;
+    padding-top: 15px !important;
+  }
+
+  .footer-bottom p {
+    font-size: 9px !important;
+    line-height: 1.5 !important;
+    opacity: 0.6 !important;
+  }
+}
+
+/* 8. BOTTOM NAV - điều chỉnh cho mobile */
+@media (max-width: 768px) {
+  .bottom-nav {
+    height: 70px !important;
+    padding: 0 12px 10px !important;
+    background: rgba(253, 252, 249, 0.98) !important;
+  }
+
+  .dark-mode .bottom-nav {
+    background: rgba(10, 12, 16, 0.98) !important;
+  }
+
+  .nav-icon {
+    min-width: 44px !important;
+  }
+
+  .nav-icon .material-symbols-outlined {
+    font-size: 22px !important;
+  }
+}
+
+/* 9. PAGE BANNER (cho các trang danh mục) */
+@media (max-width: 768px) {
+  .page-banner {
+    height: 250px !important;
+  }
+
+  .banner-content {
+    bottom: 30px !important;
+    left: 20px !important;
+  }
+
+  .banner-title {
+    font-size: 2rem !important;
+    margin-bottom: 5px !important;
+  }
+
+  .banner-subtitle {
+    font-size: 9px !important;
+    letter-spacing: 0.2em !important;
+  }
+}
+
+/* 10. TRANG CHI TIẾT SẢN PHẨM */
+@media (max-width: 768px) {
+  .product-detail-container {
+    padding: 16px 16px 40px !important;
+  }
+
+  .breadcrumb {
+    font-size: 10px !important;
+    margin-bottom: 20px !important;
+    flex-wrap: wrap !important;
+  }
+
+  .product-main {
+    gap: 25px !important;
+    margin-bottom: 30px !important;
+  }
+
+  .product-gallery {
+    gap: 10px !important;
+  }
+
+  .thumbnail-list {
+    gap: 8px !important;
+  }
+
+  .thumbnail {
+    width: 60px !important;
+    height: 60px !important;
+  }
+
+  .product-title {
+    font-size: 1.8rem !important;
+  }
+
+  .product-price {
+    font-size: 1.6rem !important;
+    margin: 10px 0 !important;
+  }
+
+  .size-options {
+    flex-wrap: wrap !important;
+  }
+
+  .size-btn {
+    min-width: 50px !important;
+    height: 40px !important;
+    font-size: 13px !important;
+    padding: 0 12px !important;
+  }
+
+  .quantity-btn {
+    width: 40px !important;
+    height: 40px !important;
+  }
+
+  .add-to-cart-btn {
+    padding: 14px !important;
+    font-size: 12px !important;
+  }
+
+  .tab-headers {
+    gap: 15px !important;
+  }
+
+  .tab-btn {
+    font-size: 12px !important;
+    padding: 8px 0 !important;
+  }
+}
+
+/* 11. TRANG THANH TOÁN */
+@media (max-width: 768px) {
+  .checkout-wrapper {
+    padding: 20px 16px 60px !important;
+  }
+
+  .checkout-header {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 15px !important;
+  }
+
+  .checkout-logo h1 {
+    font-size: 1.8rem !important;
+  }
+
+  .checkout-steps {
+    width: 100% !important;
+    padding: 12px !important;
+    gap: 15px !important;
+  }
+
+  .step {
+    gap: 5px !important;
+  }
+
+  .step-number {
+    width: 25px !important;
+    height: 25px !important;
+    font-size: 12px !important;
+  }
+
+  .step-text {
+    font-size: 11px !important;
+  }
+
+  .checkout-form-section,
+  .order-summary-modern {
+    padding: 25px !important;
+  }
+
+  .form-card {
+    padding: 20px !important;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr !important;
+    gap: 15px !important;
+  }
+
+  .cart-item-modern {
+    gap: 12px !important;
+  }
+
+  .cart-item-image {
+    width: 60px !important;
+    height: 60px !important;
+  }
+
+  .cart-item-name {
+    font-size: 14px !important;
+  }
+
+  .place-order-btn {
+    padding: 16px !important;
+    font-size: 16px !important;
+  }
+}
+
+/* 12. TRANG THEO DÕI ĐƠN HÀNG */
+@media (max-width: 768px) {
+  .tracking-container {
+    padding: 20px 16px 60px !important;
+  }
+
+  .tracking-title {
+    font-size: 2rem !important;
+  }
+
+  .search-orders {
+    flex-direction: column !important;
+    gap: 10px !important;
+  }
+
+  .search-input,
+  .search-btn {
+    width: 100% !important;
+  }
+
+  .order-card {
+    padding: 20px !important;
+  }
+
+  .order-header {
+    flex-wrap: wrap !important;
+    gap: 10px !important;
+  }
+
+  .order-id {
+    font-size: 16px !important;
+  }
+
+  .order-date {
+    font-size: 11px !important;
+  }
+
+  .info-grid {
+    grid-template-columns: 1fr !important;
+    gap: 15px !important;
+  }
+
+  .tracking-timeline {
+    flex-wrap: wrap !important;
+    gap: 15px !important;
+  }
+
+  .timeline-step {
+    min-width: 45% !important;
+  }
+
+  .timeline-label {
+    font-size: 11px !important;
+  }
+}
+
+/* 13. TRANG YÊU THÍCH */
+@media (max-width: 768px) {
+  .wishlist-page {
+    padding: 20px 16px 60px !important;
+  }
+
+  .wishlist-title {
+    font-size: 2rem !important;
+  }
+
+  .wishlist-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
+  }
+
+  .wishlist-card {
+    border-radius: 16px !important;
+  }
+
+  .wishlist-info {
+    padding: 12px !important;
+  }
+
+  .wishlist-info h4 {
+    font-size: 13px !important;
+  }
+
+  .wishlist-price {
+    font-size: 14px !important;
+  }
+
+  .add-to-cart-small {
+    padding: 8px !important;
+    font-size: 10px !important;
+  }
+}
+
+/* 14. FIX LỖI HIỂN THỊ CHỮ TRÊN MOBILE */
+@media (max-width: 480px) {
+  .brand-name {
+    font-size: 1rem !important;
+  }
+
+  .product-info h4 {
+    font-size: 12px !important;
+  }
+
+  .price {
+    font-size: 13px !important;
+  }
+
+  .footer-menu a {
+    font-size: 10px !important;
+  }
+
+  .banner-title {
+    font-size: 1.8rem !important;
+  }
+
+  .cart-item-name {
+    font-size: 13px !important;
+  }
+
+  .wishlist-info h4 {
+    font-size: 12px !important;
+  }
+}
+
+/* 15. ẨN slogan trên màn hình rất nhỏ */
+@media (max-width: 360px) {
+  .brand-slogan {
+    display: none !important;
+  }
 }
