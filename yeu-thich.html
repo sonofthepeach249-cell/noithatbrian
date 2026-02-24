@@ -18,6 +18,11 @@
     />
     <link rel="stylesheet" href="css/style.css" />
     <style>
+      /* Ẩn hoàn toàn wishlist-count ở header */
+      .header-right .wishlist-count,
+      .header-right [class*="wishlist-count"] {
+        display: none !important;
+      }
       .wishlist-page {
         max-width: 1200px;
         margin: 40px auto;
@@ -228,7 +233,8 @@
           <ul class="sidebar-list">
             <li>
               <a href="gioi-thieu.html"
-                ><span class="material-icons-round">info</span> Giới thiệu</a
+                ><span class="material-icons-round">info</span> Giới thiệu về
+                Brian Luu</a
               >
             </li>
             <li>
@@ -257,12 +263,13 @@
             <li>
               <a href="van-chuyen.html"
                 ><span class="material-icons-round">local_shipping</span> Vận
-                chuyển</a
+                chuyển & Lắp đặt</a
               >
             </li>
             <li>
               <a href="bao-hanh.html"
-                ><span class="material-icons-round">verified</span> Bảo hành</a
+                ><span class="material-icons-round">verified</span> Bảo hành &
+                Bảo trì</a
               >
             </li>
             <li>
@@ -281,7 +288,6 @@
                 ><span class="material-icons-round">badge</span> Tuyển dụng</a
               >
             </li>
-            <li></li>
           </ul>
         </div>
       </div>
@@ -290,19 +296,21 @@
       </div>
     </div>
 
-    <!-- HEADER -->
+    <!-- ===== HEADER ===== -->
     <header class="main-header glass-header">
       <div class="header-left">
-        <button class="menu-btn">
+        <button class="menu-btn" aria-label="Menu">
           <span class="material-icons-round">menu</span>
         </button>
       </div>
+
       <div class="header-center">
         <h1 class="brand-name">BRIAN LUU</h1>
         <p class="brand-slogan">
           CHẠM VÀO PHONG CÁCH, SỐNG TRỌN TỪNG KHOẢNH KHẮC
         </p>
       </div>
+
       <div class="header-right">
         <button
           id="darkModeToggle"
@@ -341,10 +349,10 @@
       </div>
     </header>
 
-    <!-- CATEGORY NAV -->
+    <!-- ===== DANH MỤC CHÍNH ===== -->
     <nav class="category-nav glass-header">
       <div class="nav-container hide-scrollbar">
-        <a href="index.html" class="nav-item">TẤT CẢ</a>
+        <a href="index.html" class="nav-item active">TẤT CẢ</a>
         <a href="phong-khach.html" class="nav-item">PHÒNG KHÁCH</a>
         <a href="phong-ngu.html" class="nav-item">PHÒNG NGỦ</a>
         <a href="phong-an.html" class="nav-item">PHÒNG ĂN</a>
@@ -417,7 +425,6 @@
         onclick="window.location.href = 'yeu-thich.html'"
       >
         <span class="material-symbols-outlined">favorite</span>
-        <span class="nav-dot"></span>
       </button>
       <button class="nav-icon" onclick="window.location.href = 'lien-he.html'">
         <span class="material-symbols-outlined">person</span>
@@ -707,8 +714,20 @@
 
       // Xóa khỏi wishlist
       function removeFromWishlist(productId) {
+        // Xóa trong localStorage
         localStorage.setItem(`wishlist_${productId}`, "false");
+
+        // Cập nhật lại danh sách hiển thị
         loadWishlist();
+
+        // Gọi hàm cập nhật số ở bottom nav
+        if (typeof window.updateWishlistCount === "function") {
+          window.updateWishlistCount();
+        } else if (typeof updateWishlistCount === "function") {
+          updateWishlistCount();
+        }
+
+        // Thông báo
         if (typeof showToast === "function") {
           showToast("🗑️ Đã xóa khỏi danh sách yêu thích");
         } else {
@@ -754,7 +773,7 @@
         // Lưu lại
         localStorage.setItem("brianLuuCart", JSON.stringify(cart));
 
-        // QUAN TRỌNG: Gọi refresh từ main.js
+        // Gọi refresh từ main.js
         if (typeof window.refreshCart === "function") {
           window.refreshCart();
         }
@@ -766,12 +785,7 @@
         alert(`✅ Đã thêm ${product.name} vào giỏ hàng!`);
       }
 
-      // Cập nhật số giỏ hàng nếu có hàm
-      if (typeof updateCartCount === "function") updateCartCount();
-      if (window.updateCartCount) window.updateCartCount();
-
       document.addEventListener("DOMContentLoaded", loadWishlist);
     </script>
   </body>
 </html>
-
