@@ -1,581 +1,570 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="vi">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Theo dõi đơn hàng | Brian Luu</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/icon?family=Material+Icons+Round"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0,1"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="css/style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0,1" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
     <style>
-      .tracking-container {
-        max-width: 1000px;
-        margin: 40px auto;
-        padding: 0 24px 80px;
-      }
-
-      .tracking-header {
-        text-align: center;
-        margin-bottom: 50px;
-      }
-
-      .tracking-title {
-        font-family: var(--font-serif);
-        font-size: 2.5rem;
-        font-style: italic;
-        color: var(--primary-light);
-        margin-bottom: 20px;
-      }
-
-      .order-card {
-        background: white;
-        border-radius: 24px;
-        padding: 30px;
-        margin-bottom: 30px;
-        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.03);
-      }
-
-      .dark-mode .order-card {
-        background: var(--surface-dark);
-      }
-
-      .order-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding-bottom: 20px;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-        margin-bottom: 20px;
-        flex-wrap: wrap;
-        gap: 16px;
-      }
-
-      .order-id {
-        font-size: 20px;
-        font-weight: 700;
-        color: var(--primary-light);
-      }
-
-      .order-date {
-        font-size: 14px;
-        opacity: 0.6;
-      }
-
-      .order-status {
-        display: inline-block;
-        padding: 8px 20px;
-        border-radius: 30px;
-        font-size: 13px;
-        font-weight: 600;
-        background: rgba(6, 78, 59, 0.1);
-        color: var(--primary-light);
-      }
-
-      .status-processing {
-        background: #fff3cd;
-        color: #856404;
-      }
-
-      .status-confirmed {
-        background: #d4edda;
-        color: #155724;
-      }
-
-      .status-shipped {
-        background: #cce5ff;
-        color: #004085;
-      }
-
-      .status-delivered {
-        background: #d1e7dd;
-        color: #0f5132;
-      }
-
-      .info-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 30px;
-        margin-bottom: 30px;
-      }
-
-      @media (max-width: 768px) {
-        .info-grid {
-          grid-template-columns: 1fr;
+        .tracking-container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 24px 80px;
         }
-      }
 
-      .info-section {
-        background: rgba(0, 0, 0, 0.02);
-        border-radius: 16px;
-        padding: 20px;
-      }
+        .tracking-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
 
-      .info-title {
-        font-size: 16px;
-        font-weight: 600;
-        margin-bottom: 16px;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        color: var(--primary-light);
-      }
+        .tracking-title {
+            font-family: var(--font-serif);
+            font-size: 2.5rem;
+            font-style: italic;
+            color: var(--primary-light);
+            margin-bottom: 20px;
+        }
 
-      .info-content {
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-      }
+        .order-card {
+            background: white;
+            border-radius: 24px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.03);
+        }
 
-      .info-row {
-        display: flex;
-        gap: 8px;
-        font-size: 14px;
-      }
+        .dark-mode .order-card {
+            background: var(--surface-dark);
+        }
 
-      .info-label {
-        font-weight: 600;
-        min-width: 100px;
-        opacity: 0.7;
-      }
+        .order-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
 
-      .info-value {
-        font-weight: 500;
-      }
+        .order-id {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary-light);
+        }
 
-      .product-list {
-        margin: 20px 0;
-      }
+        .order-date {
+            font-size: 14px;
+            opacity: 0.6;
+        }
 
-      .tracking-item {
-        display: flex;
-        gap: 16px;
-        padding: 16px 0;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-      }
+        .order-status {
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 600;
+            background: rgba(6, 78, 59, 0.1);
+            color: var(--primary-light);
+        }
 
-      .tracking-item-image {
-        width: 70px;
-        height: 70px;
-        border-radius: 12px;
-        overflow: hidden;
-        background: var(--surface-light);
-        flex-shrink: 0;
-      }
+        .status-processing {
+            background: #fff3cd;
+            color: #856404;
+        }
 
-      .tracking-item-image img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
+        .status-confirmed {
+            background: #d4edda;
+            color: #155724;
+        }
 
-      .tracking-item-details {
-        flex: 1;
-      }
+        .status-shipped {
+            background: #cce5ff;
+            color: #004085;
+        }
 
-      .tracking-item-name {
-        font-weight: 600;
-        margin-bottom: 4px;
-      }
+        .status-delivered {
+            background: #d1e7dd;
+            color: #0f5132;
+        }
 
-      .tracking-item-price {
-        font-weight: 700;
-        color: var(--primary-light);
-      }
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-bottom: 30px;
+        }
 
-      .order-summary-box {
-        background: rgba(6, 78, 59, 0.05);
-        border-radius: 16px;
-        padding: 20px;
-        margin: 20px 0;
-      }
+        @media (max-width: 768px) {
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
 
-      .summary-row {
-        display: flex;
-        justify-content: space-between;
-        padding: 8px 0;
-        font-size: 15px;
-      }
+        .info-section {
+            background: rgba(0, 0, 0, 0.02);
+            border-radius: 16px;
+            padding: 20px;
+        }
 
-      .summary-row.total {
-        font-size: 18px;
-        font-weight: 700;
-        border-top: 1px solid rgba(0, 0, 0, 0.05);
-        margin-top: 8px;
-        padding-top: 16px;
-        color: var(--primary-light);
-      }
+        .info-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary-light);
+        }
 
-      .tracking-timeline {
-        display: flex;
-        justify-content: space-between;
-        margin: 40px 0;
-        position: relative;
-      }
+        .info-content {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
 
-      .timeline-step {
-        flex: 1;
-        text-align: center;
-        position: relative;
-      }
+        .info-row {
+            display: flex;
+            gap: 8px;
+            font-size: 14px;
+        }
 
-      .timeline-step::before {
-        content: "";
-        position: absolute;
-        top: 15px;
-        left: 0;
-        width: 100%;
-        height: 2px;
-        background: rgba(0, 0, 0, 0.1);
-        z-index: 1;
-      }
+        .info-label {
+            font-weight: 600;
+            min-width: 100px;
+            opacity: 0.7;
+        }
 
-      .timeline-step:first-child::before {
-        left: 50%;
-        width: 50%;
-      }
+        .info-value {
+            font-weight: 500;
+        }
 
-      .timeline-step:last-child::before {
-        width: 50%;
-      }
+        .product-list {
+            margin: 20px 0;
+        }
 
-      .timeline-icon {
-        width: 32px;
-        height: 32px;
-        border-radius: 50%;
-        background: #e0e0e0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 0 auto 10px;
-        position: relative;
-        z-index: 2;
-        color: white;
-      }
+        .tracking-item {
+            display: flex;
+            gap: 16px;
+            padding: 16px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
 
-      .timeline-step.completed .timeline-icon {
-        background: var(--primary-light);
-      }
+        .tracking-item-image {
+            width: 70px;
+            height: 70px;
+            border-radius: 12px;
+            overflow: hidden;
+            background: var(--surface-light);
+            flex-shrink: 0;
+        }
 
-      .timeline-step.active .timeline-icon {
-        background: var(--primary-light);
-        box-shadow: 0 0 0 4px rgba(6, 78, 59, 0.2);
-      }
+        .tracking-item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
 
-      .timeline-label {
-        font-size: 13px;
-        font-weight: 600;
-      }
+        .tracking-item-details {
+            flex: 1;
+        }
 
-      .timeline-date {
-        font-size: 11px;
-        opacity: 0.6;
-        margin-top: 4px;
-      }
+        .tracking-item-name {
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
 
-      .btn-back {
-        display: inline-block;
-        background: transparent;
-        border: 2px solid var(--primary-light);
-        color: var(--primary-light);
-        padding: 14px 30px;
-        border-radius: 40px;
-        font-weight: 600;
-        text-decoration: none;
-        transition: var(--transition);
-        margin-top: 30px;
-      }
+        .tracking-item-price {
+            font-weight: 700;
+            color: var(--primary-light);
+        }
 
-      .btn-back:hover {
-        background: var(--primary-light);
-        color: white;
-      }
+        .order-summary-box {
+            background: rgba(6, 78, 59, 0.05);
+            border-radius: 16px;
+            padding: 20px;
+            margin: 20px 0;
+        }
 
-      .search-orders {
-        max-width: 500px;
-        margin: 0 auto 40px;
-        display: flex;
-        gap: 10px;
-      }
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            font-size: 15px;
+        }
 
-      .search-input {
-        flex: 1;
-        padding: 14px 20px;
-        border: 1px solid rgba(0, 0, 0, 0.1);
-        border-radius: 40px;
-        font-size: 15px;
-        background: transparent;
-      }
+        .summary-row.total {
+            font-size: 18px;
+            font-weight: 700;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            margin-top: 8px;
+            padding-top: 16px;
+            color: var(--primary-light);
+        }
 
-      .search-btn {
-        background: var(--primary-light);
-        color: white;
-        border: none;
-        padding: 14px 30px;
-        border-radius: 40px;
-        font-weight: 600;
-        cursor: pointer;
-      }
+        .tracking-timeline {
+            display: flex;
+            justify-content: space-between;
+            margin: 40px 0;
+            position: relative;
+        }
+
+        .timeline-step {
+            flex: 1;
+            text-align: center;
+            position: relative;
+        }
+
+        .timeline-step::before {
+            content: "";
+            position: absolute;
+            top: 15px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: rgba(0, 0, 0, 0.1);
+            z-index: 1;
+        }
+
+        .timeline-step:first-child::before {
+            left: 50%;
+            width: 50%;
+        }
+
+        .timeline-step:last-child::before {
+            width: 50%;
+        }
+
+        .timeline-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+            position: relative;
+            z-index: 2;
+            color: white;
+        }
+
+        .timeline-step.completed .timeline-icon {
+            background: var(--primary-light);
+        }
+
+        .timeline-step.active .timeline-icon {
+            background: var(--primary-light);
+            box-shadow: 0 0 0 4px rgba(6, 78, 59, 0.2);
+        }
+
+        .timeline-label {
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .timeline-date {
+            font-size: 11px;
+            opacity: 0.6;
+            margin-top: 4px;
+        }
+
+        .btn-back {
+            display: inline-block;
+            background: transparent;
+            border: 2px solid var(--primary-light);
+            color: var(--primary-light);
+            padding: 14px 30px;
+            border-radius: 40px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            margin-top: 30px;
+        }
+
+        .btn-back:hover {
+            background: var(--primary-light);
+            color: white;
+        }
+
+        .search-orders {
+            max-width: 500px;
+            margin: 0 auto 40px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 14px 20px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 40px;
+            font-size: 15px;
+            background: transparent;
+        }
+
+        .search-btn {
+            background: var(--primary-light);
+            color: white;
+            border: none;
+            padding: 14px 30px;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+        }
     </style>
-  </head>
-  <body class="light-mode">
+</head>
+<body class="light-mode">
     <!-- SIDEBAR -->
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
     <div class="sidebar-menu" id="sidebarMenu">
-      <!-- Nội dung sidebar giống index -->
-      <div class="sidebar-header">
-        <h2 class="sidebar-brand">BRIAN LUU</h2>
-        <button class="sidebar-close" id="sidebarClose">
-          <span class="material-icons-round">close</span>
-        </button>
-      </div>
-      <div class="sidebar-content">
-        <div class="sidebar-section">
-          <h3 class="sidebar-section-title">KHÁM PHÁ</h3>
-          <ul class="sidebar-list">
-            <li>
-              <a href="gioi-thieu.html"
-                ><span class="material-icons-round">info</span> Giới thiệu</a
-              >
-            </li>
-            <li>
-              <a href="san-pham-moi.html"
-                ><span class="material-icons-round">new_releases</span> Sản phẩm
-                mới</a
-              >
-            </li>
-            <li>
-              <a href="khuyen-mai.html"
-                ><span class="material-icons-round">local_offer</span> Khuyến
-                mãi</a
-              >
-            </li>
-          </ul>
+        <div class="sidebar-header">
+            <h2 class="sidebar-brand">BRIAN LUU</h2>
+            <button class="sidebar-close" id="sidebarClose">
+                <span class="material-icons-round">close</span>
+            </button>
         </div>
-        <div class="sidebar-section">
-          <h3 class="sidebar-section-title">HỖ TRỢ</h3>
-          <ul class="sidebar-list">
-            <li>
-              <a href="tro-giup.html"
-                ><span class="material-icons-round">help</span> Trung tâm trợ
-                giúp</a
-              >
-            </li>
-            <li>
-              <a href="van-chuyen.html"
-                ><span class="material-icons-round">local_shipping</span> Vận
-                chuyển</a
-              >
-            </li>
-            <li>
-              <a href="bao-hanh.html"
-                ><span class="material-icons-round">verified</span> Bảo hành</a
-              >
-            </li>
-            <li>
-              <a href="lien-he.html"
-                ><span class="material-icons-round">contact_support</span> Liên
-                hệ</a
-              >
-            </li>
-          </ul>
+        <div class="sidebar-content">
+            <div class="sidebar-section">
+                <h3 class="sidebar-section-title">KHÁM PHÁ</h3>
+                <ul class="sidebar-list">
+                    <li><a href="gioi-thieu.html"><span class="material-icons-round">info</span> Giới thiệu</a></li>
+                    <li><a href="san-pham-moi.html"><span class="material-icons-round">new_releases</span> Sản phẩm mới</a></li>
+                    <li><a href="khuyen-mai.html"><span class="material-icons-round">local_offer</span> Khuyến mãi</a></li>
+                </ul>
+            </div>
+            <div class="sidebar-section">
+                <h3 class="sidebar-section-title">HỖ TRỢ</h3>
+                <ul class="sidebar-list">
+                    <li><a href="tro-giup.html"><span class="material-icons-round">help</span> Trung tâm trợ giúp</a></li>
+                    <li><a href="van-chuyen.html"><span class="material-icons-round">local_shipping</span> Vận chuyển</a></li>
+                    <li><a href="bao-hanh.html"><span class="material-icons-round">verified</span> Bảo hành</a></li>
+                    <li><a href="lien-he.html"><span class="material-icons-round">contact_support</span> Liên hệ</a></li>
+                </ul>
+            </div>
+            <div class="sidebar-section">
+                <h3 class="sidebar-section-title">CỘNG ĐỒNG</h3>
+                <ul class="sidebar-list">
+                    <li><a href="tuyen-dung.html"><span class="material-icons-round">badge</span> Tuyển dụng</a></li>
+                    <li><a href="blog.html"><span class="material-icons-round">magazine</span> Blog</a></li>
+                </ul>
+            </div>
         </div>
-        <div class="sidebar-section">
-          <h3 class="sidebar-section-title">CỘNG ĐỒNG</h3>
-          <ul class="sidebar-list">
-            <li>
-              <a href="tuyen-dung.html"
-                ><span class="material-icons-round">badge</span> Tuyển dụng</a
-              >
-            </li>
-            <li>
-              <a href="blog.html"
-                ><span class="material-icons-round">magazine</span> Blog</a
-              >
-            </li>
-          </ul>
+        <div class="sidebar-footer">
+            <p>Est. 2024 · The Milan Residence</p>
         </div>
-      </div>
-      <div class="sidebar-footer">
-        <p>Est. 2024 · The Milan Residence</p>
-      </div>
     </div>
 
     <!-- HEADER -->
     <header class="main-header glass-header">
-      <div class="header-left">
-        <button class="menu-btn">
-          <span class="material-icons-round">menu</span>
-        </button>
-      </div>
-      <div class="header-center">
-        <h1 class="brand-name">BRIAN LUU</h1>
-        <p class="brand-slogan">
-          CHẠM VÀO PHONG CÁCH, SỐNG TRỌN TỪNG KHOẢNH KHẮC
-        </p>
-      </div>
-      <div class="header-right">
-        <button id="darkModeToggle" class="mode-toggle">
-          <span class="material-symbols-outlined light-icon">light_mode</span>
-          <span class="material-symbols-outlined dark-icon">dark_mode</span>
-        </button>
-        <button class="search-btn">
-          <span class="material-icons-round">search</span>
-        </button>
-        <button class="cart-btn">
-          <span class="material-icons-round">shopping_bag</span
-          ><span class="cart-dot"></span>
-        </button>
-      </div>
+        <div class="header-left">
+            <button class="menu-btn"><span class="material-icons-round">menu</span></button>
+        </div>
+        <div class="header-center">
+            <h1 class="brand-name">BRIAN LUU</h1>
+            <p class="brand-slogan">CHẠM VÀO PHONG CÁCH, SỐNG TRỌN TỪNG KHOẢNH KHẮC</p>
+        </div>
+        <div class="header-right">
+            <button id="darkModeToggle" class="mode-toggle">
+                <span class="material-symbols-outlined light-icon">light_mode</span>
+                <span class="material-symbols-outlined dark-icon">dark_mode</span>
+            </button>
+            <button class="search-btn"><span class="material-icons-round">search</span></button>
+            <button class="cart-btn"><span class="material-icons-round">shopping_bag</span><span class="cart-dot"></span></button>
+            <a href="theo-doi-don-hang.html" style="text-decoration: none; color: inherit">
+                <button class="track-order-btn" style="background: none; border: none; cursor: pointer;">
+                    <span class="material-icons-round">assignment</span>
+                </button>
+            </a>
+        </div>
     </header>
 
     <!-- CATEGORY NAV -->
     <nav class="category-nav glass-header">
-      <div class="nav-container hide-scrollbar">
-        <a href="index.html" class="nav-item">TẤT CẢ</a>
-        <a href="phong-khach.html" class="nav-item">PHÒNG KHÁCH</a>
-        <a href="phong-ngu.html" class="nav-item">PHÒNG NGỦ</a>
-        <a href="phong-an.html" class="nav-item">PHÒNG ĂN</a>
-        <a href="den.html" class="nav-item">ĐÈN</a>
-        <a href="van-phong.html" class="nav-item">VĂN PHÒNG</a>
-      </div>
+        <div class="nav-container hide-scrollbar">
+            <a href="index.html" class="nav-item">TẤT CẢ</a>
+            <a href="phong-khach.html" class="nav-item">PHÒNG KHÁCH</a>
+            <a href="phong-ngu.html" class="nav-item">PHÒNG NGỦ</a>
+            <a href="phong-an.html" class="nav-item">PHÒNG ĂN</a>
+            <a href="den.html" class="nav-item">ĐÈN</a>
+            <a href="van-phong.html" class="nav-item">VĂN PHÒNG</a>
+        </div>
     </nav>
 
     <!-- MAIN CONTENT -->
     <div class="tracking-container">
-      <div class="tracking-header">
-        <h1 class="tracking-title">Theo dõi đơn hàng</h1>
-        <p>Tra cứu thông tin đơn hàng bạn đã đặt</p>
-      </div>
+        <div class="tracking-header">
+            <h1 class="tracking-title">Theo dõi đơn hàng</h1>
+            <p>Tra cứu thông tin đơn hàng bạn đã đặt</p>
+        </div>
 
-      <!-- Form tìm kiếm đơn hàng -->
-      <div class="search-orders">
-        <input
-          type="text"
-          id="searchOrderId"
-          class="search-input"
-          placeholder="Nhập mã đơn hàng (VD: DH1234567890)"
-        />
-        <button class="search-btn" onclick="searchOrder()">Tìm kiếm</button>
-      </div>
+        <!-- Form tìm kiếm đơn hàng -->
+        <div class="search-orders">
+            <input type="text" id="searchOrderId" class="search-input" placeholder="Nhập mã đơn hàng (VD: DH1234567890)">
+            <button class="search-btn" onclick="searchOrder()">Tìm kiếm</button>
+        </div>
 
-      <div id="orderResult">
-        <!-- Kết quả tìm kiếm sẽ hiển thị ở đây -->
-      </div>
+        <div id="orderResult"></div>
 
-      <!-- Danh sách đơn hàng gần đây -->
-      <div id="recentOrders">
-        <h3 style="margin-bottom: 20px">Đơn hàng gần đây của bạn</h3>
-        <div id="ordersList"></div>
-      </div>
+        <!-- Danh sách đơn hàng gần đây -->
+        <div id="recentOrders">
+            <h3 style="margin-bottom: 20px;">Đơn hàng gần đây của bạn</h3>
+            <div id="ordersList"></div>
+        </div>
     </div>
 
     <!-- FOOTER -->
     <footer class="main-footer">
-      <div class="footer-links">
-        <div class="footer-col">
-          <a href="van-chuyen.html">Chính sách vận chuyển</a>
-          <a href="gioi-thieu.html">Phát triển bền vững</a>
-          <a href="lien-he.html">Vị trí Atelier</a>
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4 class="footer-title">VỀ BRIAN LUU</h4>
+                    <ul class="footer-menu">
+                        <li><a href="gioi-thieu.html">Câu chuyện thương hiệu</a></li>
+                        <li><a href="tuyen-dung.html">Tuyển dụng</a></li>
+                        <li><a href="lien-he.html">Liên hệ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4 class="footer-title">CHÍNH SÁCH</h4>
+                    <ul class="footer-menu">
+                        <li><a href="van-chuyen.html">Chính sách vận chuyển</a></li>
+                        <li><a href="bao-hanh.html">Chính sách bảo hành</a></li>
+                        <li><a href="gioi-thieu.html">Phát triển bền vững</a></li>
+                        <li><a href="khuyen-mai.html">Chương trình thương mại</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4 class="footer-title">HỖ TRỢ</h4>
+                    <ul class="footer-menu">
+                        <li><a href="tro-giup.html">Trung tâm trợ giúp</a></li>
+                        <li><a href="lien-he.html">Vị trí Atelier</a></li>
+                        <li><a href="khuyen-mai.html">Khuyến mãi</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 BRIAN LUU — THE MILAN RESIDENCE. THỦ CÔNG TẠI MILAN.</p>
+            </div>
         </div>
-        <div class="footer-col">
-          <a href="tro-giup.html">Hỗ trợ khách hàng</a>
-          <a href="khuyen-mai.html">Chương trình thương mại</a>
-          <a href="blog.html">Báo chí</a>
-        </div>
-      </div>
-      <p class="copyright">
-        © 2025 BRIAN LUU — THE MILAN RESIDENCE. THỦ CÔNG TẠI MILAN.
-      </p>
     </footer>
 
-    <!-- BOTTOM NAV (đã tắt) -->
+    <!-- BOTTOM NAV -->
+    <nav class="bottom-nav">
+        <button class="nav-icon" onclick="window.location.href='index.html'"><span class="material-symbols-outlined">home</span></button>
+        <button class="nav-icon" onclick="window.location.href='phong-khach.html'"><span class="material-symbols-outlined">grid_view</span></button>
+        <button class="nav-icon" onclick="window.location.href='yeu-thich.html'"><span class="material-symbols-outlined">favorite</span></button>
+        <button class="nav-icon active" onclick="window.location.href='lien-he.html'"><span class="material-symbols-outlined">person</span><span class="nav-dot"></span></button>
+    </nav>
 
+    <script src="js/main.js"></script>
     <script>
-      // Hiển thị danh sách đơn hàng gần đây
-      function displayRecentOrders() {
-        const orders = JSON.parse(localStorage.getItem("brianLuuOrders")) || [];
-        const ordersList = document.getElementById("ordersList");
-
-        if (orders.length === 0) {
-          ordersList.innerHTML =
-            '<p style="text-align: center; opacity: 0.7;">Bạn chưa có đơn hàng nào.</p>';
-          return;
+        // ===== CÁC HÀM XỬ LÝ ĐƠN HÀNG =====
+        
+        // Hàm xử lý phương thức vận chuyển
+        function getShippingMethod(order) {
+            if (!order) return "Giao hàng tiêu chuẩn";
+            if (order.shipping) {
+                if (typeof order.shipping === "string") return order.shipping;
+                if (order.shipping.method) return order.shipping.method;
+            }
+            if (order.shippingMethod) return order.shippingMethod;
+            return "Giao hàng tiêu chuẩn";
         }
 
-        // Sắp xếp đơn hàng mới nhất lên đầu
-        orders.reverse();
+        // Hàm xử lý phí vận chuyển
+        function getShippingFee(order) {
+            if (!order) return "Miễn phí";
+            let fee = 0;
+            if (order.shipping?.fee) fee = order.shipping.fee;
+            if (order.shippingFee) fee = order.shippingFee;
+            if (fee > 0) return new Intl.NumberFormat("vi-VN").format(fee) + " ₫";
+            const shippingMethod = getShippingMethod(order);
+            if (shippingMethod && shippingMethod.includes("nhanh")) return "150.000 ₫";
+            return "Miễn phí";
+        }
 
-        let html = "";
-        orders.slice(0, 5).forEach((order) => {
-          const totalFormatted =
-            new Intl.NumberFormat("vi-VN").format(order.total) + " ₫";
+        // Hàm xử lý phương thức thanh toán
+        function getPaymentMethod(order) {
+            if (!order) return "COD";
+            if (order.payment) {
+                if (typeof order.payment === "string") return order.payment;
+                if (order.payment.method) return order.payment.method;
+            }
+            if (order.paymentMethod) return order.paymentMethod;
+            return "COD";
+        }
 
-          html += `
+        // Hiển thị danh sách đơn hàng gần đây
+        function displayRecentOrders() {
+            const orders = JSON.parse(localStorage.getItem("brianLuuOrders")) || [];
+            const ordersList = document.getElementById("ordersList");
+
+            if (orders.length === 0) {
+                ordersList.innerHTML = '<p style="text-align: center; opacity: 0.7;">Bạn chưa có đơn hàng nào.</p>';
+                return;
+            }
+
+            orders.reverse();
+            let html = "";
+            orders.slice(0, 5).forEach((order) => {
+                const totalFormatted = new Intl.NumberFormat("vi-VN").format(order.total) + " ₫";
+                html += `
                     <div class="order-card" onclick="viewOrder('${order.id}')" style="cursor: pointer;">
                         <div class="order-header">
                             <span class="order-id">${order.id}</span>
-                            <span class="order-date">${order.date}</span>
-                            <span class="order-status status-${order.status === "Đang xử lý" ? "processing" : "confirmed"}">${order.status}</span>
+                            <span class="order-date">${order.date || ""}</span>
+                            <span class="order-status status-${order.status === "Đang xử lý" ? "processing" : "confirmed"}">${order.status || "Đang xử lý"}</span>
                         </div>
                         <div style="display: flex; justify-content: space-between; align-items: center;">
-                            <div>
-                                <strong>${order.customer.fullName}</strong> - ${order.customer.phone}
-                            </div>
+                            <div><strong>${order.customer?.fullName || "Khách hàng"}</strong> - ${order.customer?.phone || ""}</div>
                             <div style="font-weight: 700; color: var(--primary-light);">${totalFormatted}</div>
                         </div>
                         <div style="margin-top: 16px; font-size: 13px; opacity: 0.6;">
-                            ${order.items.length} sản phẩm · ${order.payment}
+                            ${order.items?.length || 0} sản phẩm · ${getPaymentMethod(order)}
                         </div>
                     </div>
                 `;
-        });
-
-        ordersList.innerHTML = html;
-      }
-
-      // Xem chi tiết đơn hàng
-      function viewOrder(orderId) {
-        window.location.href = "theo-doi-don-hang.html?id=" + orderId;
-      }
-
-      // Tìm kiếm đơn hàng
-      function searchOrder() {
-        const searchId = document.getElementById("searchOrderId").value.trim();
-        if (!searchId) {
-          alert("Vui lòng nhập mã đơn hàng!");
-          return;
+            });
+            ordersList.innerHTML = html;
         }
 
-        window.location.href = "theo-doi-don-hang.html?id=" + searchId;
-      }
+        // Xem chi tiết đơn hàng
+        function viewOrder(orderId) {
+            window.location.href = "theo-doi-don-hang.html?id=" + orderId;
+        }
 
-      // Lấy ID từ URL
-      function getOrderIdFromUrl() {
-        const urlParams = new URLSearchParams(window.location.search);
-        return urlParams.get("id");
-      }
+        // Tìm kiếm đơn hàng
+        function searchOrder() {
+            const searchId = document.getElementById("searchOrderId").value.trim();
+            if (!searchId) {
+                alert("Vui lòng nhập mã đơn hàng!");
+                return;
+            }
+            window.location.href = "theo-doi-don-hang.html?id=" + searchId;
+        }
 
-      // Hiển thị chi tiết 1 đơn hàng
-      function displayOrderDetail() {
-        const orderId = getOrderIdFromUrl();
-        if (!orderId) return;
+        // Lấy ID từ URL
+        function getOrderIdFromUrl() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get("id");
+        }
 
-        const orders = JSON.parse(localStorage.getItem("brianLuuOrders")) || [];
-        const order = orders.find((o) => o.id === orderId);
+        // Hiển thị chi tiết 1 đơn hàng
+        function displayOrderDetail() {
+            const orderId = getOrderIdFromUrl();
+            if (!orderId) return;
 
-        if (!order) {
-          document.getElementById("recentOrders").style.display = "none";
-          document.getElementById("orderResult").innerHTML = `
+            const orders = JSON.parse(localStorage.getItem("brianLuuOrders")) || [];
+            const order = orders.find((o) => o.id === orderId);
+
+            if (!order) {
+                document.getElementById("recentOrders").style.display = "none";
+                document.getElementById("orderResult").innerHTML = `
                     <div class="order-card" style="text-align: center; padding: 60px;">
                         <span class="material-icons-round" style="font-size: 48px; color: var(--primary-light); opacity: 0.5;">search_off</span>
                         <h3 style="margin: 20px 0;">Không tìm thấy đơn hàng</h3>
@@ -583,47 +572,44 @@
                         <a href="theo-doi-don-hang.html" class="btn-back">Quay lại</a>
                     </div>
                 `;
-          return;
-        }
+                return;
+            }
 
-        document.getElementById("recentOrders").style.display = "none";
+            document.getElementById("recentOrders").style.display = "none";
 
-        const totalFormatted =
-          new Intl.NumberFormat("vi-VN").format(order.total) + " ₫";
+            const totalFormatted = new Intl.NumberFormat("vi-VN").format(order.total) + " ₫";
 
-        let itemsHtml = "";
-        order.items.forEach((item) => {
-          const price =
-            parseFloat(item.price.replace(/[₫$,.]/g, "").trim()) || 0;
-          const itemTotal = price * item.quantity;
-          const formattedPrice =
-            new Intl.NumberFormat("vi-VN").format(price) + " ₫";
-          const formattedItemTotal =
-            new Intl.NumberFormat("vi-VN").format(itemTotal) + " ₫";
+            let itemsHtml = "";
+            if (order.items && order.items.length > 0) {
+                order.items.forEach((item) => {
+                    const price = parseFloat(item.price.replace(/[₫$,.]/g, "").trim()) || 0;
+                    const itemTotal = price * item.quantity;
+                    const formattedPrice = new Intl.NumberFormat("vi-VN").format(price) + " ₫";
+                    const formattedItemTotal = new Intl.NumberFormat("vi-VN").format(itemTotal) + " ₫";
 
-          itemsHtml += `
-                    <div class="tracking-item">
-                        <div class="tracking-item-image">
-                            <img src="images/${item.image || "default.jpg"}" alt="${item.name}">
+                    itemsHtml += `
+                        <div class="tracking-item">
+                            <div class="tracking-item-image">
+                                <img src="images/${item.image || "default.jpg"}" alt="${item.name}">
+                            </div>
+                            <div class="tracking-item-details">
+                                <div class="tracking-item-name">${item.name}</div>
+                                <div style="font-size: 13px; opacity: 0.6;">${item.variant || "Tiêu chuẩn"}</div>
+                                <div class="tracking-item-price">${formattedPrice} × ${item.quantity}</div>
+                            </div>
+                            <div style="font-weight: 700; color: var(--primary-light);">${formattedItemTotal}</div>
                         </div>
-                        <div class="tracking-item-details">
-                            <div class="tracking-item-name">${item.name}</div>
-                            <div style="font-size: 13px; opacity: 0.6; margin: 4px 0;">${item.variant || "Tiêu chuẩn"}</div>
-                            <div class="tracking-item-price">${formattedPrice} × ${item.quantity}</div>
-                        </div>
-                        <div style="font-weight: 700; color: var(--primary-light);">${formattedItemTotal}</div>
-                    </div>
-                `;
-        });
+                    `;
+                });
+            }
 
-        // Timeline trạng thái đơn hàng
-        let statusStep = 1;
-        if (order.status === "Đang xử lý") statusStep = 1;
-        else if (order.status === "Đã xác nhận") statusStep = 2;
-        else if (order.status === "Đang giao") statusStep = 3;
-        else if (order.status === "Đã giao") statusStep = 4;
+            let statusStep = 1;
+            if (order.status === "Đang xử lý") statusStep = 1;
+            else if (order.status === "Đã xác nhận") statusStep = 2;
+            else if (order.status === "Đang giao") statusStep = 3;
+            else if (order.status === "Đã giao") statusStep = 4;
 
-        document.getElementById("orderResult").innerHTML = `
+            document.getElementById("orderResult").innerHTML = `
                 <div class="order-card">
                     <div class="order-header">
                         <span class="order-id">${order.id}</span>
@@ -631,124 +617,73 @@
                         <span class="order-status status-${order.status === "Đang xử lý" ? "processing" : "confirmed"}">${order.status}</span>
                     </div>
                     
-                    <!-- Timeline -->
                     <div class="tracking-timeline">
                         <div class="timeline-step ${statusStep >= 1 ? "completed" : ""}">
-                            <div class="timeline-icon">
-                                <span class="material-icons-round" style="font-size: 18px;">check</span>
-                            </div>
+                            <div class="timeline-icon"><span class="material-icons-round">check</span></div>
                             <div class="timeline-label">Đặt hàng</div>
                             <div class="timeline-date">${order.date}</div>
                         </div>
                         <div class="timeline-step ${statusStep >= 2 ? "completed" : statusStep === 1 ? "active" : ""}">
-                            <div class="timeline-icon">
-                                <span class="material-icons-round" style="font-size: 18px;">inventory</span>
-                            </div>
+                            <div class="timeline-icon"><span class="material-icons-round">inventory</span></div>
                             <div class="timeline-label">Xác nhận</div>
                         </div>
                         <div class="timeline-step ${statusStep >= 3 ? "completed" : statusStep === 2 ? "active" : ""}">
-                            <div class="timeline-icon">
-                                <span class="material-icons-round" style="font-size: 18px;">local_shipping</span>
-                            </div>
+                            <div class="timeline-icon"><span class="material-icons-round">local_shipping</span></div>
                             <div class="timeline-label">Đang giao</div>
                         </div>
                         <div class="timeline-step ${statusStep >= 4 ? "completed" : statusStep === 3 ? "active" : ""}">
-                            <div class="timeline-icon">
-                                <span class="material-icons-round" style="font-size: 18px;">check_circle</span>
-                            </div>
+                            <div class="timeline-icon"><span class="material-icons-round">check_circle</span></div>
                             <div class="timeline-label">Đã giao</div>
                         </div>
                     </div>
                     
-                    <!-- Thông tin khách hàng và giao hàng -->
                     <div class="info-grid">
                         <div class="info-section">
-                            <div class="info-title">
-                                <span class="material-icons-round">person</span> Thông tin khách hàng
-                            </div>
+                            <div class="info-title"><span class="material-icons-round">person</span> Thông tin khách hàng</div>
                             <div class="info-content">
-                                <div class="info-row">
-                                    <span class="info-label">Họ tên:</span>
-                                    <span class="info-value">${order.customer.fullName}</span>
-                                </div>
-                                <div class="info-row">
-                                    <span class="info-label">SĐT:</span>
-                                    <span class="info-value">${order.customer.phone}</span>
-                                </div>
-                                <div class="info-row">
-                                    <span class="info-label">Email:</span>
-                                    <span class="info-value">${order.customer.email}</span>
-                                </div>
+                                <div class="info-row"><span class="info-label">Họ tên:</span><span class="info-value">${order.customer?.fullName || ""}</span></div>
+                                <div class="info-row"><span class="info-label">SĐT:</span><span class="info-value">${order.customer?.phone || ""}</span></div>
+                                <div class="info-row"><span class="info-label">Email:</span><span class="info-value">${order.customer?.email || ""}</span></div>
                             </div>
                         </div>
                         
                         <div class="info-section">
-                            <div class="info-title">
-                                <span class="material-icons-round">local_shipping</span> Thông tin giao hàng
-                            </div>
+                            <div class="info-title"><span class="material-icons-round">local_shipping</span> Thông tin giao hàng</div>
                             <div class="info-content">
-                                <div class="info-row">
-                                    <span class="info-label">Địa chỉ:</span>
-                                    <span class="info-value">${order.customer.address}</span>
-                                </div>
-                                <div class="info-row">
-                                    <span class="info-label">Tỉnh/TP:</span>
-                                    <span class="info-value">${order.customer.city}</span>
-                                </div>
-                               <div class="info-row">
-    <span class="info-label">Vận chuyển:</span>
-    <span class="info-value">${order.shippingMethod || order.shipping?.method || "Giao hàng tiêu chuẩn"}</span>
-</div>
-<div class="info-row">
-    <span class="info-label">Phí ship:</span>
-    <span class="info-value">${order.shippingFee ? new Intl.NumberFormat("vi-VN").format(order.shippingFee) + " ₫" : "Miễn phí"}</span>
-</div>
-<div class="info-row">
-    <span class="info-label">Thanh toán:</span>
-    <span class="info-value">${order.paymentMethod || "COD"}</span>
-</div>
+                                <div class="info-row"><span class="info-label">Địa chỉ:</span><span class="info-value">${order.customer?.address || ""}</span></div>
+                                <div class="info-row"><span class="info-label">Tỉnh/TP:</span><span class="info-value">${order.customer?.city || ""}</span></div>
+                                <div class="info-row"><span class="info-label">Vận chuyển:</span><span class="info-value">${getShippingMethod(order)}</span></div>
+                                <div class="info-row"><span class="info-label">Phí ship:</span><span class="info-value">${getShippingFee(order)}</span></div>
+                                <div class="info-row"><span class="info-label">Thanh toán:</span><span class="info-value">${getPaymentMethod(order)}</span></div>
                             </div>
                         </div>
                     </div>
                     
-                    <!-- Danh sách sản phẩm -->
                     <h4 style="margin: 30px 0 20px;">Sản phẩm đã đặt</h4>
-                    <div class="product-list">
-                        ${itemsHtml}
+                    <div class="product-list">${itemsHtml || "<p>Không có sản phẩm</p>"}</div>
+                    
+                    <div class="order-summary-box">
+                        <div class="summary-row"><span>Tạm tính</span><span>${totalFormatted}</span></div>
+                        <div class="summary-row"><span>Phí vận chuyển</span><span>${getShippingFee(order)}</span></div>
+                        <div class="summary-row total"><span>Tổng cộng</span><span>${totalFormatted}</span></div>
                     </div>
                     
-                    <!-- Tổng kết -->
-                   <div class="order-summary-box">
-    <div class="summary-row">
-        <span>Tạm tính</span>
-        <span>${totalFormatted}</span>
-    </div>
-    <div class="summary-row">
-        <span>Phí vận chuyển</span>
-        <span>${order.shippingFee ? new Intl.NumberFormat("vi-VN").format(order.shippingFee) + " ₫" : "Miễn phí"}</span>
-    </div>
-    <div class="summary-row total">
-        <span>Tổng cộng</span>
-        <span>${totalFormatted}</span>
-    </div>
-</div>
                     <div style="text-align: center;">
                         <a href="theo-doi-don-hang.html" class="btn-back">← Xem tất cả đơn hàng</a>
                     </div>
                 </div>
             `;
-      }
-
-      // Khởi tạo trang
-      document.addEventListener("DOMContentLoaded", function () {
-        const orderId = getOrderIdFromUrl();
-        if (orderId) {
-          displayOrderDetail();
-        } else {
-          displayRecentOrders();
         }
-      });
+
+        // Khởi tạo trang
+        document.addEventListener("DOMContentLoaded", function () {
+            const orderId = getOrderIdFromUrl();
+            if (orderId) {
+                displayOrderDetail();
+            } else {
+                displayRecentOrders();
+            }
+        });
     </script>
-    <script src="js/main.js"></script>
-  </body>
+</body>
 </html>
