@@ -18,6 +18,7 @@
     />
     <link rel="stylesheet" href="css/style.css" />
     <style>
+      
       .promo-banner {
         background: linear-gradient(135deg, #2c4a3b 0%, #064e3b 100%);
         color: white;
@@ -78,6 +79,104 @@
         margin-top: 20px;
       }
     </style>
+    <style>
+  /* ===== KHUYẾN MÃI - ĐỒNG BỘ MÀU SẮC ===== */
+  
+  /* Banner chính */
+  .promo-banner h1 {
+    color: #ffffff !important;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.2) !important;
+  }
+  
+  /* Card khuyến mãi */
+  .promo-card {
+    background: white !important;
+    border-radius: 20px !important;
+    padding: 40px 30px !important;
+    text-align: center !important;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.03) !important;
+    transition: all 0.3s !important;
+    border: 1px solid rgba(6,78,59,0.1) !important;
+  }
+  
+  .promo-card:hover {
+    transform: translateY(-10px) !important;
+    box-shadow: 0 20px 40px rgba(6,78,59,0.15) !important;
+  }
+  
+  /* Icon */
+  .promo-icon {
+    font-size: 48px !important;
+    color: var(--primary-light) !important;
+    margin-bottom: 24px !important;
+    opacity: 1 !important;
+  }
+  
+  /* Tiêu đề card */
+  .promo-card h3 {
+    font-size: 24px !important;
+    font-weight: 700 !important;
+    margin-bottom: 16px !important;
+    color: #1f2937 !important;
+  }
+  
+  /* Mô tả */
+  .promo-card p {
+    color: #4b5563 !important;
+    font-size: 15px !important;
+    line-height: 1.6 !important;
+  }
+  
+  /* Số phần trăm giảm giá - QUAN TRỌNG */
+  .promo-discount {
+    font-size: 36px !important;
+    font-weight: 800 !important;
+    color: var(--primary-light) !important;
+    margin: 20px 0 !important;
+    text-shadow: 0 2px 10px rgba(6,78,59,0.2) !important;
+  }
+  
+  /* Mã code */
+  .promo-code {
+    background: rgba(6,78,59,0.1) !important;
+    color: var(--primary-light) !important;
+    padding: 12px !important;
+    border-radius: 8px !important;
+    font-weight: 700 !important;
+    letter-spacing: 1px !important;
+    margin-top: 20px !important;
+    border: 1px solid rgba(6,78,59,0.2) !important;
+  }
+  
+  /* ===== DARK MODE ===== */
+  .dark-mode .promo-card {
+    background: var(--surface-dark) !important;
+    border-color: var(--border-dark) !important;
+  }
+  
+  .dark-mode .promo-card h3 {
+    color: #ffffff !important;
+  }
+  
+  .dark-mode .promo-card p {
+    color: #c0c4c8 !important;
+  }
+  
+  .dark-mode .promo-icon {
+    color: #86efac !important;
+  }
+  
+  .dark-mode .promo-discount {
+    color: #86efac !important;
+    text-shadow: 0 0 15px rgba(134,239,172,0.3) !important;
+  }
+  
+  .dark-mode .promo-code {
+    background: rgba(134,239,172,0.1) !important;
+    color: #86efac !important;
+    border-color: rgba(134,239,172,0.2) !important;
+  }
+</style>
   </head>
   <body class="light-mode">
     <!-- SIDEBAR (giống các trang khác) -->
