@@ -912,5 +912,172 @@
         .getElementById("applyModalOverlay")
         .addEventListener("click", closeApplyModal);
     </script>
+    <style>
+      /* CSS hiện tại của bạn giữ nguyên, thêm phần này ở cuối */
+
+      /* ===== ĐỒNG BỘ MÀU SẮC TRANG TUYỂN DỤNG ===== */
+
+      /* Tiêu đề chính - màu xanh lá đậm */
+      .career-container h1 {
+        color: var(--primary-light) !important;
+      }
+
+      .dark-mode .career-container h1 {
+        color: #86efac !important;
+      }
+
+      /* Mô tả phụ - xám vừa */
+      .career-container > p {
+        color: #4b5563 !important;
+      }
+
+      .dark-mode .career-container > p {
+        color: #c0c4c8 !important;
+      }
+
+      /* Job tag - FULL-TIME, PART-TIME... */
+      .job-tag {
+        background: rgba(6, 78, 59, 0.1) !important;
+        color: var(--primary-light) !important;
+        font-weight: 700 !important;
+        letter-spacing: 0.5px !important;
+        padding: 6px 16px !important;
+        border-radius: 30px !important;
+        display: inline-block !important;
+        font-size: 12px !important;
+      }
+
+      .dark-mode .job-tag {
+        background: rgba(52, 211, 153, 0.15) !important;
+        color: #86efac !important;
+      }
+
+      /* Tiêu đề công việc */
+      .job-item h3 {
+        color: #1f2937 !important;
+        font-weight: 700 !important;
+        font-size: 22px !important;
+        margin: 12px 0 8px !important;
+      }
+
+      .dark-mode .job-item h3 {
+        color: #ffffff !important;
+      }
+
+      /* Địa điểm */
+      .job-item p {
+        color: #6b7280 !important;
+        font-size: 14px !important;
+      }
+
+      .dark-mode .job-item p {
+        color: #9ca3af !important;
+      }
+
+      /* Nút ứng tuyển */
+      .apply-btn {
+        background: var(--primary-light) !important;
+        color: white !important;
+        border: none !important;
+        padding: 12px 32px !important;
+        border-radius: 40px !important;
+        font-weight: 600 !important;
+        font-size: 14px !important;
+        cursor: pointer !important;
+        transition: all 0.3s !important;
+        letter-spacing: 0.5px !important;
+      }
+
+      .apply-btn:hover {
+        background: #0a6e4f !important;
+        transform: translateY(-2px) !important;
+        box-shadow: 0 5px 15px rgba(6, 78, 59, 0.2) !important;
+      }
+
+      .dark-mode .apply-btn {
+        background: #34d399 !important;
+        color: #0a0c10 !important;
+      }
+
+      .dark-mode .apply-btn:hover {
+        background: #4ade80 !important;
+      }
+
+      /* Card công việc */
+      .job-item {
+        background: white !important;
+        border-radius: 20px !important;
+        padding: 32px !important;
+        transition: all 0.3s !important;
+        border: 1px solid rgba(0, 0, 0, 0.05) !important;
+      }
+
+      .dark-mode .job-item {
+        background: var(--surface-dark) !important;
+        border-color: var(--border-dark) !important;
+      }
+
+      .job-item:hover {
+        transform: translateX(10px) !important;
+        box-shadow: 0 10px 30px rgba(6, 78, 59, 0.1) !important;
+      }
+
+      /* Phần "Không tìm thấy vị trí phù hợp?" */
+      .career-container > div:last-child {
+        background: rgba(6, 78, 59, 0.05) !important;
+        border-radius: 24px !important;
+        padding: 40px !important;
+        text-align: center !important;
+      }
+
+      .dark-mode .career-container > div:last-child {
+        background: rgba(52, 211, 153, 0.05) !important;
+      }
+
+      .career-container > div:last-child h4 {
+        color: var(--primary-light) !important;
+        font-size: 24px !important;
+        margin-bottom: 16px !important;
+      }
+
+      .dark-mode .career-container > div:last-child h4 {
+        color: #86efac !important;
+      }
+
+      .career-container > div:last-child p {
+        color: #4b5563 !important;
+      }
+
+      .dark-mode .career-container > div:last-child p {
+        color: #c0c4c8 !important;
+      }
+
+      .career-container > div:last-child button {
+        background: transparent !important;
+        border: 2px solid var(--primary-light) !important;
+        color: var(--primary-light) !important;
+        padding: 16px 40px !important;
+        border-radius: 40px !important;
+        font-weight: 700 !important;
+        cursor: pointer !important;
+        transition: all 0.3s !important;
+      }
+
+      .career-container > div:last-child button:hover {
+        background: var(--primary-light) !important;
+        color: white !important;
+        transform: translateY(-2px) !important;
+      }
+
+      .dark-mode .career-container > div:last-child button {
+        border-color: #86efac !important;
+        color: #86efac !important;
+      }
+
+      .dark-mode .career-container > div:last-child button:hover {
+        background: #86efac !important;
+        color: #0a0c10 !important;
+      }
+    </style>
   </body>
 </html>
