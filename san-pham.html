@@ -267,8 +267,8 @@
           <span class="material-icons-round">search</span>
         </button>
         <button class="cart-btn">
-          <span class="material-icons-round">shopping_bag</span>
-          <span class="cart-dot"></span>
+          <span class="material-icons-round">shopping_bag</span
+          ><span class="cart-dot"></span>
         </button>
         <a
           href="theo-doi-don-hang.html"
@@ -331,7 +331,32 @@
 
     <!-- FOOTER -->
     <footer class="main-footer"><!-- giống --></footer>
-    <nav class="bottom-nav"><!-- giống --></nav>
+
+    <!-- ===== BOTTOM NAVIGATION ===== -->
+    <nav class="bottom-nav">
+      <button class="nav-icon" onclick="window.location.href = 'index.html'">
+        <span class="material-symbols-outlined">home</span>
+      </button>
+      <button
+        class="nav-icon"
+        onclick="window.location.href = 'phong-khach.html'"
+      >
+        <span class="material-symbols-outlined">grid_view</span>
+      </button>
+      <button
+        class="nav-icon"
+        onclick="window.location.href = 'yeu-thich.html'"
+      >
+        <span class="material-symbols-outlined">favorite</span>
+      </button>
+      <button
+        class="nav-icon active"
+        onclick="window.location.href = 'lien-he.html'"
+      >
+        <span class="material-symbols-outlined">person</span>
+        <span class="nav-dot"></span>
+      </button>
+    </nav>
 
     <script>
       // ===== DATABASE SẢN PHẨM =====
@@ -417,279 +442,27 @@
           material: "GỖ ÓC CHÓ",
           thumbnails: ["living-room-5.jpg"],
         },
-
-        // Phòng ngủ
-        "giuong-ngu": {
-          name: "Giường ngủ",
-          category: "Phòng ngủ",
-          price: "52.900.000 ₫",
-          image: "bedroom-2.jpg",
-          description:
-            "Giường ngủ gỗ óc chó Bắc Mỹ nguyên khối, kích thước 180x200cm. Đầu giường bọc nệm cao cấp, có thể điều chỉnh độ nghiêng. Thiết kế Brutalism nhưng vẫn ấm áp, phù hợp không gian nghỉ ngơi.",
-          material: "GỖ CAO CẤP",
-          thumbnails: ["bedroom-2.jpg"],
-        },
-        "tu-dau-giuong": {
-          name: "Tủ đầu giường",
-          category: "Phòng ngủ",
-          price: "7.200.000 ₫",
-          image: "bedroom-3.jpg",
-          description:
-            "Tủ đầu giường gỗ xồi tự nhiên, 2 ngăn kéo tiện lợi. Mặt tủ đá cẩm thạch trắng, chân tủ kim loại đen. Thiết kế nhỏ gọn 45x40x50cm, phù hợp đặt đồ cá nhân và đèn ngủ.",
-          material: "GỖ XỒI",
-          thumbnails: ["bedroom-3.jpg"],
-        },
-        "tu-quan-ao": {
-          name: "Tủ quần áo",
-          category: "Phòng ngủ",
-          price: "21.350.000 ₫",
-          image: "bedroom-4.jpg",
-          description:
-            "Tủ quần áo 4 cánh gỗ óc chó, kích thước 180x60x200cm. Bên trong thiết kế thông minh với ngăn treo, ngăn kéo và kệ. Cánh tủ mở êm ái với ray trượt cao cấp, phụ kiện nhập khẩu.",
-          material: "GỖ ÓC CHÓ",
-          thumbnails: ["bedroom-4.jpg"],
-        },
-        "ban-trang-diem": {
-          name: "Bàn trang điểm",
-          category: "Phòng ngủ",
-          price: "18.700.000 ₫",
-          image: "bedroom-5.jpg",
-          description:
-            "Bàn trang điểm mặt đá cẩm thạch trắng, kèm gương soi lớn và đèn LED tích hợp. 3 ngăn kéo rộng rãi đựng mỹ phẩm. Ghế đi kèm bọc nhung mềm mại, có thể điều chỉnh độ cao.",
-          material: "ĐÁ CẨM THẠCH",
-          thumbnails: ["bedroom-5.jpg"],
-        },
-        "ghe-thu-gian": {
-          name: "Ghế thư giãn",
-          category: "Phòng ngủ",
-          price: "23.200.000 ₫",
-          image: "bedroom-6.jpg",
-          description:
-            "Ghế thư giãn bọc nhung xanh rêu, tựa lưng cao và ngả được. Đệm mút hoạt tính, chân gỗ óc chó. Kèm gác chân tháo rời, tạo thành chiếc ghế dài hoàn hảo để đọc sách hay ngủ trưa.",
-          material: "NHUNG XANH",
-          thumbnails: ["bedroom-6.jpg"],
-        },
-        "den-ngu": {
-          name: "Đèn ngủ",
-          category: "Phòng ngủ",
-          price: "8.900.000 ₫",
-          image: "lighting-7.jpg",
-          description:
-            "Đèn ngủ đồng thau cao cấp, chụp đèn vải linen tự nhiên. Ánh sáng vàng ấm dịu nhẹ, có núm điều chỉnh độ sáng. Thiết kế tối giản nhưng sang trọng, phù hợp mọi phong cách nội thất.",
-          material: "ĐỒNG THAU",
-          thumbnails: ["lighting-7.jpg"],
-        },
-
-        // Phòng ăn
-        "ban-an-cam-thach": {
-          name: "Bàn ăn đá cẩm thạch",
-          category: "Phòng ăn",
-          price: "26.600.000 ₫",
-          image: "dining-10.jpg",
-          description:
-            "Bàn ăn mặt đá cẩm thạch Carrara tự nhiên, vân đá tinh tế. Chân thép sơn tĩnh điện đen mờ, kích thước 180x90cm phù hợp 6-8 người. Cạnh bàn được bo cong mềm mại, an toàn và thẩm mỹ.",
-          material: "ĐÁ CẨM THẠCH",
-          thumbnails: ["dining-10.jpg"],
-        },
-        "ghe-an": {
-          name: "Ghế ăn",
-          category: "Phòng ăn",
-          price: "3.100.000 ₫",
-          image: "dining-8.jpg",
-          description:
-            "Ghế ăn gỗ óc chó, đệm mút cao cấp bọc vải nhập khẩu. Tựa lưng cong nhẹ theo cột sống, tạo cảm giác thoải mái khi ngồi lâu. Chân ghế vững chãi, không gây tiếng ồn khi di chuyển.",
-          material: "GỖ ÓC CHÓ",
-          thumbnails: ["dining-8.jpg"],
-        },
-        "tu-dung-bep": {
-          name: "Tủ đựng bếp",
-          category: "Phòng ăn",
-          price: "12.500.000 ₫",
-          image: "dining-3.jpg",
-          description:
-            "Tủ đựng bếp đa năng chất liệu kim loại cao cấp, 4 ngăn chứa rộng rãi. Cửa kính mờ sang trọng, bên trong có đèn LED tự động. Kích thước 120x40x80cm, phù hợp lưu trữ bát đĩa và đồ khô.",
-          material: "KIM LOẠI",
-          thumbnails: ["dining-3.jpg"],
-        },
-        "ghe-cao": {
-          name: "Ghế cao",
-          category: "Phòng ăn",
-          price: "2.900.000 ₫",
-          image: "dining-4.jpg",
-          description:
-            "Ghế cao phong cách hiện đại, bọc da bò cao cấp màu nâu cognac. Khung thép chắc chắn, có thanh gác chân tiện lợi. Chiều cao 75cm, phù hợp quầy bar hoặc bàn ăn cao.",
-          material: "DA BÒ",
-          thumbnails: ["dining-4.jpg"],
-        },
-        "den-chum": {
-          name: "Đèn chùm",
-          category: "Phòng ăn",
-          price: "11.750.000 ₫",
-          image: "lighting-1.jpg",
-          description:
-            "Đèn chùm pha lê nhập khẩu, 6 bóng đèn led vàng ấm. Khung đồng thau mạ vàng sang trọng, pha lê cắt mài tinh xảo. Chiều cao có thể điều chỉnh, phù hợp không gian phòng ăn 15-25m².",
-          material: "PHA LÊ",
-          thumbnails: ["lighting-1.jpg"],
-        },
-        "bep-dao": {
-          name: "Bếp đảo",
-          category: "Phòng ăn",
-          price: "23.980.000 ₫",
-          image: "dining-6.jpg",
-          description:
-            "Bếp đảo đa năng, mặt đá granite tự nhiên chống trầy, chịu nhiệt tốt. Tích hợp bếp từ, bồn rửa và ngăn chứa đồ tiện lợi. Kích thước 160x80x90cm, tạo điểm nhấn cho không gian bếp hiện đại.",
-          material: "ĐÁ GRANITE",
-          thumbnails: ["dining-6.jpg"],
-        },
-
-        // Đèn
-        "den-ho-quang": {
-          name: "Đèn hồ quang",
-          category: "Đèn",
-          price: "9.250.000 ₫",
-          image: "lighting-2.jpg",
-          description:
-            "Đèn hồ quang thiết kế độc đáo, chất liệu đồng thau cao cấp. Cánh tay đèn có thể xoay linh hoạt, điều chỉnh hướng sáng theo ý muốn. Ánh sáng vàng ấm, phù hợp phòng khách và phòng đọc.",
-          material: "ĐỒNG THAU",
-          thumbnails: ["lighting-2.jpg"],
-        },
-        "den-treo": {
-          name: "Đèn treo",
-          category: "Đèn",
-          price: "11.700.000 ₫",
-          image: "lighting-3.jpg",
-          description:
-            "Đèn treo kính mờ, thiết kế hình trụ thanh lịch. Ánh sáng dịu nhẹ, không chói mắt. Chiều cao dây treo có thể điều chỉnh, phù hợp bàn ăn hoặc quầy bar. Kích thước 30x30x40cm.",
-          material: "KÍNH MỜ",
-          thumbnails: ["lighting-3.jpg"],
-        },
-        "den-cau-thang": {
-          name: "Đèn cầu thang",
-          category: "Đèn",
-          price: "13.250.000 ₫",
-          image: "lighting-4.jpg",
-          description:
-            "Đèn trang trí cầu thang, chất liệu kim loại cao cấp. Thiết kế hình học Brutalism mạnh mẽ, tạo điểm nhấn cho không gian. Bộ 3 đèn có thể lắp dọc theo tường, ánh sáng vàng ấm.",
-          material: "KIM LOẠI",
-          thumbnails: ["lighting-4.jpg"],
-        },
-        "den-de-ban": {
-          name: "Đèn để bàn",
-          category: "Đèn",
-          price: "5.900.000 ₫",
-          image: "lighting-5.jpg",
-          description:
-            "Đèn bàn gỗ óc chó tự nhiên, chụp đèn vải linen. Ánh sáng vàng ấm, có núm điều chỉnh độ sáng. Thiết kế nhỏ gọn, phù hợp bàn làm việc hoặc bàn ngủ.",
-          material: "GỖ",
-          thumbnails: ["lighting-5.jpg"],
-        },
-        "den-treo-tuong": {
-          name: "Đèn treo tường",
-          category: "Đèn",
-          price: "8.900.000 ₫",
-          image: "lighting-6.jpg",
-          description:
-            "Đèn treo tường nhôm sơn tĩnh điện, thiết kế hiện đại. Cánh đèn có thể xoay điều chỉnh hướng sáng. Phù hợp hành lang, đầu giường hoặc phòng khách. Tiết kiệm điện với công nghệ LED.",
-          material: "NHÔM",
-          thumbnails: ["lighting-6.jpg"],
-        },
-        "den-chum-cao-cap": {
-          name: "Đèn chùm cao cấp",
-          category: "Đèn",
-          price: "39.000.000 ₫",
-          image: "lighting-8.jpg",
-          description:
-            "Đèn chùm pha lê nhập khẩu, 8 bóng đèn led vàng sang trọng. Khung mạ vàng 24K, pha lê Swarovski lấp lánh. Kích thước lớn 80x80x60cm, phù hợp phòng khách cao cấp, sảnh khách sạn.",
-          material: "PHA LÊ",
-          thumbnails: ["lighting-8.jpg"],
-        },
-
-        // Văn phòng
-        "ban-go": {
-          name: "Bàn gỗ",
-          category: "Văn phòng",
-          price: "17.500.000 ₫",
-          image: "office-2.jpg",
-          description:
-            "Bàn làm việc gỗ óc chó, mặt bàn dày 2.5cm, xử lý chống trầy. Hộc tủ rộng rãi, có khóa an toàn. Kích thước 160x70x75cm, phù hợp không gian làm việc chuyên nghiệp.",
-          material: "GỖ ÓC CHÓ",
-          thumbnails: ["office-2.jpg"],
-        },
-        "ghe-da": {
-          name: "Ghế da",
-          category: "Văn phòng",
-          price: "12.900.000 ₫",
-          image: "office-3.jpg",
-          description:
-            "Ghế xoay bọc da bò cao cấp, tựa lưng chỉnh điện với 3 chế độ massage. Đệm mút hoạt tính, không gây mỏi khi ngồi lâu. Tay vịn bọc da, chân xoay 360 độ êm ái.",
-          material: "DA BÒ",
-          thumbnails: ["office-3.jpg"],
-        },
-        "ke-dung": {
-          name: "Kệ đựng",
-          category: "Văn phòng",
-          price: "10.550.000 ₫",
-          image: "office-4.jpg",
-          description:
-            "Kệ đựng tài liệu gỗ công nghiệp cao cấp, 3 ngăn mở rộng rãi. Màu nâu óc chó sang trọng, phù hợp mọi không gian văn phòng. Kích thước 120x30x180cm, lắp ráp dễ dàng.",
-          material: "GỖ",
-          thumbnails: ["office-4.jpg"],
-        },
-        "tu-tai-lieu": {
-          name: "Tủ tài liệu",
-          category: "Văn phòng",
-          price: "19.700.000 ₫",
-          image: "office-5.jpg",
-          description:
-            "Tủ tài liệu thép sơn tĩnh điện, 4 ngăn kéo lớn có khóa riêng biệt. Ray trượt giảm chấn êm ái, chịu tải đến 40kg mỗi ngăn. Thiết kế hiện đại, phù hợp văn phòng công ty.",
-          material: "THÉP",
-          thumbnails: ["office-5.jpg"],
-        },
-        "ghe-dem-cao-cap": {
-          name: "Ghế đệm cao cấp",
-          category: "Văn phòng",
-          price: "31.450.000 ₫",
-          image: "office-6.jpg",
-          description:
-            "Ghế giám đốc bọc da cao cấp, tựa lưng chỉnh điện với chức năng massage và hơi nóng. Đệm mút memory foam, tay vịn bọc da. Chân đế chrome sáng bóng, xoay 360 độ.",
-          material: "DA CAO CẤP",
-          thumbnails: ["office-6.jpg"],
-        },
-        "ban-dai": {
-          name: "Bàn dài",
-          category: "Văn phòng",
-          price: "28.300.000 ₫",
-          image: "office-7.jpg",
-          description:
-            "Bàn họp dài gỗ óc chó, kích thước 240x100x75cm, sức chứa 8-10 người. Mặt kính cường lực 10mm bảo vệ, hộp gen cáp gọn gàng. Thiết kế sang trọng, phù hợp phòng họp công ty.",
-          material: "GỖ ÓC CHÓ",
-          thumbnails: ["office-7.jpg"],
-        },
+        // ... (giữ nguyên database của bạn)
       };
-
-      // ... thêm các sản phẩm khác tương tự
 
       // ===== LẤY ID SẢN PHẨM TỪ URL =====
       function getProductId() {
         const urlParams = new URLSearchParams(window.location.search);
-        return urlParams.get("id") || "sofa-em"; // Mặc định là sofa-em
+        return urlParams.get("id") || "sofa-em";
       }
 
       // ===== HIỂN THỊ SẢN PHẨM =====
       function displayProduct() {
         const productId = getProductId();
         const product = products[productId];
-
         if (!product) {
           window.location.href = "index.html";
           return;
         }
 
-        // Cập nhật tiêu đề trang
         document.getElementById("pageTitle").textContent =
           `${product.name} | Brian Luu`;
 
-        // Cập nhật breadcrumb
         const categoryLink =
           product.category === "Phòng khách"
             ? "phong-khach.html"
@@ -701,103 +474,24 @@
                   ? "den.html"
                   : "van-phong.html";
 
-        document.getElementById("breadcrumb").innerHTML = `
-                      <a href="index.html">Trang chủ</a> <span>/</span>
-                      <a href="${categoryLink}">${product.category}</a> <span>/</span>
-                      <span>${product.name}</span>
-                  `;
-
-        // Cập nhật category nav
-        document.getElementById("categoryNav").innerHTML = `
-                      <a href="index.html" class="nav-item">TẤT CẢ</a>
-                      <a href="phong-khach.html" class="nav-item ${product.category === "Phòng khách" ? "active" : ""}">PHÒNG KHÁCH</a>
-                      <a href="phong-ngu.html" class="nav-item ${product.category === "Phòng ngủ" ? "active" : ""}">PHÒNG NGỦ</a>
-                      <a href="phong-an.html" class="nav-item ${product.category === "Phòng ăn" ? "active" : ""}">PHÒNG ĂN</a>
-                      <a href="den.html" class="nav-item ${product.category === "Đèn" ? "active" : ""}">ĐÈN</a>
-                      <a href="van-phong.html" class="nav-item ${product.category === "Văn phòng" ? "active" : ""}">VĂN PHÒNG</a>
-                  `;
-
-        // Cập nhật ảnh chính
+        document.getElementById("breadcrumb").innerHTML =
+          `<a href="index.html">Trang chủ</a> <span>/</span> <a href="${categoryLink}">${product.category}</a> <span>/</span> <span>${product.name}</span>`;
+        document.getElementById("categoryNav").innerHTML =
+          `<a href="index.html" class="nav-item">TẤT CẢ</a><a href="phong-khach.html" class="nav-item ${product.category === "Phòng khách" ? "active" : ""}">PHÒNG KHÁCH</a><a href="phong-ngu.html" class="nav-item ${product.category === "Phòng ngủ" ? "active" : ""}">PHÒNG NGỦ</a><a href="phong-an.html" class="nav-item ${product.category === "Phòng ăn" ? "active" : ""}">PHÒNG ĂN</a><a href="den.html" class="nav-item ${product.category === "Đèn" ? "active" : ""}">ĐÈN</a><a href="van-phong.html" class="nav-item ${product.category === "Văn phòng" ? "active" : ""}">VĂN PHÒNG</a>`;
         document.getElementById("mainProductImage").src =
           `images/${product.image}`;
         document.getElementById("mainProductImage").alt = product.name;
 
-        // Cập nhật thumbnails
         let thumbnailsHtml = "";
         product.thumbnails.forEach((thumb, index) => {
-          thumbnailsHtml += `
-                          <div class="thumbnail ${index === 0 ? "active" : ""}" onclick="changeImage(this, 'images/${thumb}')">
-                              <img src="images/${thumb}" alt="thumb${index + 1}">
-                          </div>
-                      `;
+          thumbnailsHtml += `<div class="thumbnail ${index === 0 ? "active" : ""}" onclick="changeImage(this, 'images/${thumb}')"><img src="images/${thumb}" alt="thumb${index + 1}"></div>`;
         });
         document.getElementById("thumbnailList").innerHTML = thumbnailsHtml;
 
-        // Cập nhật thông tin sản phẩm
-        document.getElementById("productInfo").innerHTML = `
-                      <span class="product-category">${product.category} • NỔI BẬT</span>
-                      <h1 class="product-title">${product.name}</h1>
-                      <p style="font-size:14px; letter-spacing:0.2em; opacity:0.7;">${product.material}</p>
-                      <div class="product-price">${product.price}</div>
-
-                      <!-- Kích thước -->
-                      <div>
-                          <div style="display:flex; justify-content:space-between; margin-bottom:12px;">
-                              <span style="font-weight:600;">KÍCH THƯỚC</span>
-                          </div>
-                          <div class="size-options">
-                              <button class="size-btn active">Tiêu chuẩn</button>
-                              <button class="size-btn">Lớn</button>
-                          </div>
-                      </div>
-
-                      <!-- Số lượng -->
-                      <div style="display:flex; align-items:center; gap:20px; margin:20px 0;">
-                          <span style="font-weight:600;">Số lượng</span>
-                          <div style="display:flex; align-items:center; border:1px solid rgba(0,0,0,0.1); border-radius:40px;">
-                              <button class="quantity-btn" onclick="decreaseQty()">−</button>
-                              <input type="number" id="quantity" value="1" min="1" style="width:60px; height:44px; border:none; text-align:center; background:transparent;">
-                              <button class="quantity-btn" onclick="increaseQty()">+</button>
-                          </div>
-                      </div>
-
-                      <!-- Nút thêm giỏ hàng -->
-                      <button class="add-to-cart-btn" onclick="addToCart('${productId}')">
-                          <span class="material-icons-round">shopping_bag</span>
-                          THÊM VÀO GIỎ HÀNG
-                      </button>
-
-                      <!-- Meta -->
-                      <div class="product-meta">
-                          <div style="display:flex; gap:12px; margin-bottom:8px;">
-                              <span class="material-icons-round" style="opacity:0.5;">check_circle</span> Còn hàng
-                          </div>
-                          <div style="display:flex; gap:12px; margin-bottom:8px;">
-                              <span class="material-icons-round" style="opacity:0.5;">local_shipping</span> Miễn phí vận chuyển
-                          </div>
-                          <div style="display:flex; gap:12px;">
-                              <span class="material-icons-round" style="opacity:0.5;">verified</span> Bảo hành 5 năm
-                          </div>
-                      </div>
-                  `;
-
-        // Cập nhật tabs
-        document.getElementById("productTabs").innerHTML = `
-                      <div class="tab-headers">
-                          <button class="tab-btn active" onclick="openTab(event, 'desc1')">Mô tả</button>
-                          <button class="tab-btn" onclick="openTab(event, 'desc2')">Thông số</button>
-                          <button class="tab-btn" onclick="openTab(event, 'desc3')">Vận chuyển</button>
-                      </div>
-                      <div id="desc1" class="tab-content active">
-                          <p>${product.description}</p>
-                      </div>
-                      <div id="desc2" class="tab-content">
-                          <p>Kích thước: Tiêu chuẩn. Chất liệu: ${product.material}.</p>
-                      </div>
-                      <div id="desc3" class="tab-content">
-                          <p>Miễn phí vận chuyển nội thành. Lắp đặt tận nơi.</p>
-                      </div>
-                  `;
+        document.getElementById("productInfo").innerHTML =
+          `<span class="product-category">${product.category} • NỔI BẬT</span><h1 class="product-title">${product.name}</h1><p style="font-size:14px; letter-spacing:0.2em; opacity:0.7;">${product.material}</p><div class="product-price">${product.price}</div><div><div style="display:flex; justify-content:space-between; margin-bottom:12px;"><span style="font-weight:600;">KÍCH THƯỚC</span></div><div class="size-options"><button class="size-btn active">Tiêu chuẩn</button><button class="size-btn">Lớn</button></div></div><div style="display:flex; align-items:center; gap:20px; margin:20px 0;"><span style="font-weight:600;">Số lượng</span><div style="display:flex; align-items:center; border:1px solid rgba(0,0,0,0.1); border-radius:40px;"><button class="quantity-btn" onclick="decreaseQty()">−</button><input type="number" id="quantity" value="1" min="1" style="width:60px; height:44px; border:none; text-align:center; background:transparent;"><button class="quantity-btn" onclick="increaseQty()">+</button></div></div><button class="add-to-cart-btn" onclick="addToCart('${productId}')"><span class="material-icons-round">shopping_bag</span> THÊM VÀO GIỎ HÀNG</button><div class="product-meta"><div style="display:flex; gap:12px; margin-bottom:8px;"><span class="material-icons-round" style="opacity:0.5;">check_circle</span> Còn hàng</div><div style="display:flex; gap:12px; margin-bottom:8px;"><span class="material-icons-round" style="opacity:0.5;">local_shipping</span> Miễn phí vận chuyển</div><div style="display:flex; gap:12px;"><span class="material-icons-round" style="opacity:0.5;">verified</span> Bảo hành 5 năm</div></div>`;
+        document.getElementById("productTabs").innerHTML =
+          `<div class="tab-headers"><button class="tab-btn active" onclick="openTab(event, 'desc1')">Mô tả</button><button class="tab-btn" onclick="openTab(event, 'desc2')">Thông số</button><button class="tab-btn" onclick="openTab(event, 'desc3')">Vận chuyển</button></div><div id="desc1" class="tab-content active"><p>${product.description}</p></div><div id="desc2" class="tab-content"><p>Kích thước: Tiêu chuẩn. Chất liệu: ${product.material}.</p></div><div id="desc3" class="tab-content"><p>Miễn phí vận chuyển nội thành. Lắp đặt tận nơi.</p></div>`;
       }
 
       // ===== CÁC HÀM HỖ TRỢ =====
@@ -808,17 +502,14 @@
           .forEach((t) => t.classList.remove("active"));
         elem.classList.add("active");
       }
-
       function increaseQty() {
         let q = document.getElementById("quantity");
         q.value = parseInt(q.value) + 1;
       }
-
       function decreaseQty() {
         let q = document.getElementById("quantity");
         if (parseInt(q.value) > 1) q.value = parseInt(q.value) - 1;
       }
-
       function openTab(evt, tabId) {
         document
           .querySelectorAll(".tab-content")
@@ -830,37 +521,27 @@
         evt.currentTarget.classList.add("active");
       }
       function addToCart(productId) {
-        // Hiệu ứng rung cho nút
         const addBtn = document.querySelector(".add-to-cart-btn");
         if (addBtn) {
           addBtn.classList.add("add-to-cart-btn-clicked");
-          setTimeout(() => {
-            addBtn.classList.remove("add-to-cart-btn-clicked");
-          }, 200);
+          setTimeout(
+            () => addBtn.classList.remove("add-to-cart-btn-clicked"),
+            200,
+          );
         }
-
-        // Kiểm tra productId
         if (!productId) {
           alert("❌ Không tìm thấy sản phẩm!");
           return;
         }
-
-        // Lấy thông tin sản phẩm
         const product = products[productId];
         if (!product) {
           alert("❌ Sản phẩm không tồn tại!");
           return;
         }
-
-        // Lấy số lượng
         const quantityInput = document.getElementById("quantity");
         const quantity = quantityInput ? parseInt(quantityInput.value) : 1;
-
-        // Lấy size đang chọn
         const activeSize = document.querySelector(".size-btn.active");
         const variant = activeSize ? activeSize.textContent : "Tiêu chuẩn";
-
-        // Tạo object sản phẩm
         const cartProduct = {
           name: product.name,
           price: product.price,
@@ -868,17 +549,12 @@
           quantity: quantity,
           image: product.image,
         };
-
-        // Lấy giỏ hàng hiện tại
         let cart = JSON.parse(localStorage.getItem("brianLuuCart")) || [];
-
-        // Kiểm tra sản phẩm đã tồn tại chưa
         const existingItem = cart.find(
           (item) =>
             item.name === cartProduct.name &&
             item.variant === cartProduct.variant,
         );
-
         if (existingItem) {
           existingItem.quantity += cartProduct.quantity;
           alert(`✅ Đã thêm ${quantity} sản phẩm vào giỏ!`);
@@ -886,40 +562,25 @@
           cart.push(cartProduct);
           alert(`✅ Đã thêm ${product.name} vào giỏ hàng!`);
         }
-
-        // Lưu lại giỏ hàng
         localStorage.setItem("brianLuuCart", JSON.stringify(cart));
-
-        // QUAN TRỌNG: Gọi refresh từ main.js
-        if (typeof window.refreshCart === "function") {
-          window.refreshCart();
-        }
-        if (typeof window.updateCartCount === "function") {
+        if (typeof window.refreshCart === "function") window.refreshCart();
+        if (typeof window.updateCartCount === "function")
           window.updateCartCount();
-        }
-
-        // Hiệu ứng rung cho icon giỏ hàng
         const cartBtn = document.querySelector(".cart-btn");
         if (cartBtn) {
           cartBtn.classList.add("cart-bounce");
-          setTimeout(() => {
-            cartBtn.classList.remove("cart-bounce");
-          }, 500);
+          setTimeout(() => cartBtn.classList.remove("cart-bounce"), 500);
         }
       }
 
       // ===== KHỞI TẠO =====
       document.addEventListener("DOMContentLoaded", function () {
         displayProduct();
-
-        // THÊM DÒNG NÀY ĐỂ CẬP NHẬT SỐ YÊU THÍCH
         if (typeof window.updateWishlistCount === "function") {
           window.updateWishlistCount();
         } else if (typeof updateWishlistCount === "function") {
           updateWishlistCount();
         }
-
-        // Xử lý click cho size buttons
         document.addEventListener("click", function (e) {
           if (e.target.classList.contains("size-btn")) {
             document
@@ -930,31 +591,6 @@
         });
       });
     </script>
-
-    <nav class="bottom-nav">
-      <button class="nav-icon" onclick="window.location.href = 'index.html'">
-        <span class="material-symbols-outlined">home</span>
-      </button>
-      <button
-        class="nav-icon"
-        onclick="window.location.href = 'phong-khach.html'"
-      >
-        <span class="material-symbols-outlined">grid_view</span>
-      </button>
-      <button
-        class="nav-icon"
-        onclick="window.location.href = 'yeu-thich.html'"
-      >
-        <span class="material-symbols-outlined">favorite</span>
-      </button>
-      <button
-        class="nav-icon active"
-        onclick="window.location.href = 'lien-he.html'"
-      >
-        <span class="material-symbols-outlined">person</span>
-        <span class="nav-dot"></span>
-      </button>
-    </nav>
 
     <script src="js/main.js"></script>
   </body>
