@@ -912,6 +912,13 @@
       document.addEventListener("DOMContentLoaded", function () {
         displayProduct();
 
+        // THÊM DÒNG NÀY ĐỂ CẬP NHẬT SỐ YÊU THÍCH
+        if (typeof window.updateWishlistCount === "function") {
+          window.updateWishlistCount();
+        } else if (typeof updateWishlistCount === "function") {
+          updateWishlistCount();
+        }
+
         // Xử lý click cho size buttons
         document.addEventListener("click", function (e) {
           if (e.target.classList.contains("size-btn")) {
@@ -923,6 +930,32 @@
         });
       });
     </script>
+
+    <nav class="bottom-nav">
+      <button class="nav-icon" onclick="window.location.href = 'index.html'">
+        <span class="material-symbols-outlined">home</span>
+      </button>
+      <button
+        class="nav-icon"
+        onclick="window.location.href = 'phong-khach.html'"
+      >
+        <span class="material-symbols-outlined">grid_view</span>
+      </button>
+      <button
+        class="nav-icon"
+        onclick="window.location.href = 'yeu-thich.html'"
+      >
+        <span class="material-symbols-outlined">favorite</span>
+      </button>
+      <button
+        class="nav-icon active"
+        onclick="window.location.href = 'lien-he.html'"
+      >
+        <span class="material-symbols-outlined">person</span>
+        <span class="nav-dot"></span>
+      </button>
+    </nav>
+
     <script src="js/main.js"></script>
   </body>
 </html>
