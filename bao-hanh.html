@@ -64,6 +64,203 @@
         margin: 15px 0;
       }
     </style>
+    <style>
+  /* ===== BẢO HÀNH & BẢO TRÌ ===== */
+  
+  /* Header */
+  .warranty-header {
+    text-align: center !important;
+    margin-bottom: 60px !important;
+  }
+  
+  .warranty-badge {
+    display: inline-block !important;
+    background: var(--primary-light) !important;
+    color: white !important;
+    padding: 12px 30px !important;
+    border-radius: 50px !important;
+    font-weight: 700 !important;
+    letter-spacing: 2px !important;
+    margin-bottom: 30px !important;
+    box-shadow: 0 4px 12px rgba(6,78,59,0.2) !important;
+  }
+  
+  .warranty-header h1 {
+    font-family: var(--font-serif) !important;
+    font-size: 3rem !important;
+    font-style: italic !important;
+    margin-bottom: 20px !important;
+    color: #1f2937 !important;
+  }
+  
+  .warranty-header p {
+    font-size: 18px !important;
+    opacity: 0.7 !important;
+    max-width: 600px !important;
+    margin: 0 auto !important;
+    color: #4b5563 !important;
+  }
+  
+  /* Grid */
+  .warranty-grid {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)) !important;
+    gap: 30px !important;
+    margin: 50px 0 !important;
+  }
+  
+  /* Card */
+  .warranty-item {
+    text-align: center !important;
+    padding: 40px 30px !important;
+    background: white !important;
+    border-radius: 20px !important;
+    border: 1px solid rgba(6,78,59,0.1) !important;
+    transition: all 0.3s !important;
+  }
+  
+  .warranty-item:hover {
+    transform: translateY(-10px) !important;
+    box-shadow: 0 20px 40px rgba(6,78,59,0.1) !important;
+  }
+  
+  /* Icon */
+  .warranty-icon {
+    font-size: 48px !important;
+    color: var(--primary-light) !important;
+    margin-bottom: 20px !important;
+    opacity: 1 !important;
+  }
+  
+  /* Tiêu đề */
+  .warranty-item h3 {
+    font-size: 20px !important;
+    font-weight: 700 !important;
+    margin-bottom: 15px !important;
+    color: #1f2937 !important;
+  }
+  
+  /* Số năm bảo hành - QUAN TRỌNG */
+  .warranty-year {
+    font-size: 36px !important;
+    font-weight: 800 !important;
+    color: var(--primary-light) !important;
+    margin: 15px 0 !important;
+    text-shadow: 0 2px 10px rgba(6,78,59,0.2) !important;
+  }
+  
+  /* Mô tả */
+  .warranty-item p {
+    color: #4b5563 !important;
+    font-size: 14px !important;
+    line-height: 1.6 !important;
+  }
+  
+  /* Quy trình */
+  .warranty-process {
+    background: rgba(6,78,59,0.03) !important;
+    border-radius: 24px !important;
+    padding: 40px !important;
+    margin-top: 60px !important;
+    border: 1px solid rgba(6,78,59,0.1) !important;
+  }
+  
+  .warranty-process h3 {
+    font-size: 24px !important;
+    font-weight: 700 !important;
+    margin-bottom: 30px !important;
+    color: #1f2937 !important;
+    text-align: center !important;
+  }
+  
+  .process-steps {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 20px !important;
+    text-align: center !important;
+  }
+  
+  .process-step {
+    padding: 20px !important;
+  }
+  
+  .process-step span:first-child {
+    display: inline-block !important;
+    width: 40px !important;
+    height: 40px !important;
+    background: var(--primary-light) !important;
+    color: white !important;
+    border-radius: 50% !important;
+    line-height: 40px !important;
+    margin-bottom: 16px !important;
+    font-weight: 700 !important;
+  }
+  
+  .process-step p:first-of-type {
+    font-weight: 600 !important;
+    margin-bottom: 8px !important;
+    color: #1f2937 !important;
+  }
+  
+  .process-step p:last-child {
+    font-size: 14px !important;
+    opacity: 0.6 !important;
+    color: #4b5563 !important;
+  }
+  
+  /* ===== DARK MODE ===== */
+  .dark-mode .warranty-header h1 {
+    color: #ffffff !important;
+  }
+  
+  .dark-mode .warranty-header p {
+    color: #c0c4c8 !important;
+  }
+  
+  .dark-mode .warranty-item {
+    background: var(--surface-dark) !important;
+    border-color: var(--border-dark) !important;
+  }
+  
+  .dark-mode .warranty-item h3 {
+    color: #ffffff !important;
+  }
+  
+  .dark-mode .warranty-icon {
+    color: #86efac !important;
+  }
+  
+  .dark-mode .warranty-year {
+    color: #86efac !important;
+    text-shadow: 0 0 15px rgba(134,239,172,0.3) !important;
+  }
+  
+  .dark-mode .warranty-item p {
+    color: #c0c4c8 !important;
+  }
+  
+  .dark-mode .warranty-process {
+    background: rgba(134,239,172,0.03) !important;
+    border-color: var(--border-dark) !important;
+  }
+  
+  .dark-mode .warranty-process h3 {
+    color: #ffffff !important;
+  }
+  
+  .dark-mode .process-step span:first-child {
+    background: #86efac !important;
+    color: #0a0c10 !important;
+  }
+  
+  .dark-mode .process-step p:first-of-type {
+    color: #ffffff !important;
+  }
+  
+  .dark-mode .process-step p:last-child {
+    color: #c0c4c8 !important;
+  }
+</style>
   </head>
   <body class="light-mode">
     <!-- SIDEBAR (giống các trang khác) -->
