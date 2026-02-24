@@ -695,9 +695,9 @@
                                     <span class="info-label">Tỉnh/TP:</span>
                                     <span class="info-value">${order.customer.city}</span>
                                 </div>
-                                <div class="info-row">
+                               <div class="info-row">
     <span class="info-label">Vận chuyển:</span>
-    <span class="info-value">${order.shippingMethod || "Giao hàng tiêu chuẩn"}</span>
+    <span class="info-value">${order.shippingMethod || order.shipping?.method || "Giao hàng tiêu chuẩn"}</span>
 </div>
 <div class="info-row">
     <span class="info-label">Phí ship:</span>
@@ -718,21 +718,20 @@
                     </div>
                     
                     <!-- Tổng kết -->
-                    <div class="order-summary-box">
-                        <div class="summary-row">
-                            <span>Tạm tính</span>
-                            <span>${totalFormatted}</span>
-                        </div>
-                        <div class="summary-row">
-                            <span>Phí vận chuyển</span>
-                            <span>Miễn phí</span>
-                        </div>
-                        <div class="summary-row total">
-                            <span>Tổng cộng</span>
-                            <span>${totalFormatted}</span>
-                        </div>
-                    </div>
-                    
+                   <div class="order-summary-box">
+    <div class="summary-row">
+        <span>Tạm tính</span>
+        <span>${totalFormatted}</span>
+    </div>
+    <div class="summary-row">
+        <span>Phí vận chuyển</span>
+        <span>${order.shippingFee ? new Intl.NumberFormat("vi-VN").format(order.shippingFee) + " ₫" : "Miễn phí"}</span>
+    </div>
+    <div class="summary-row total">
+        <span>Tổng cộng</span>
+        <span>${totalFormatted}</span>
+    </div>
+</div>
                     <div style="text-align: center;">
                         <a href="theo-doi-don-hang.html" class="btn-back">← Xem tất cả đơn hàng</a>
                     </div>
