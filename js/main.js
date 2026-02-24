@@ -200,7 +200,7 @@ function initWishlist() {
 
 // Hàm cập nhật số lượng yêu thích
 function updateWishlistCount() {
-  // Đếm số sản phẩm yêu thích
+  // Đếm số sản phẩm yêu thích từ localStorage
   let count = 0;
   for (let i = 0; i < localStorage.length; i++) {
     const key = localStorage.key(i);
@@ -209,6 +209,7 @@ function updateWishlistCount() {
       key.startsWith("wishlist_") &&
       localStorage.getItem(key) === "true"
     ) {
+      // KHÔNG cần kiểm tra database, chỉ cần đếm key có giá trị true
       count++;
     }
   }
@@ -216,11 +217,9 @@ function updateWishlistCount() {
   // Cập nhật số ở bottom nav
   const bottomNav = document.querySelector(".bottom-nav");
   if (bottomNav) {
-    // Tìm nút trái tim trong bottom nav
     const navIcons = bottomNav.querySelectorAll(".nav-icon");
     let heartBtn = null;
 
-    // Duyệt tìm nút có icon favorite
     navIcons.forEach((btn) => {
       const icon = btn.querySelector(".material-symbols-outlined");
       if (
@@ -247,6 +246,8 @@ function updateWishlistCount() {
       }
     }
   }
+
+  console.log("Wishlist count updated:", count); // Debug
 
   // Cập nhật số trên các card sản phẩm (nếu có)
   document.querySelectorAll(".product-card").forEach((card) => {
@@ -1134,3 +1135,4 @@ setInterval(() => {
     console.log("🛒 Cart current:", cart);
   }
 }, 3000);
+window.updateWishlistCount = updateWishlistCount;
