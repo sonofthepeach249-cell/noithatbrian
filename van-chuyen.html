@@ -54,6 +54,115 @@
         border-bottom: 1px solid rgba(0, 0, 0, 0.03);
       }
     </style>
+    <style>
+  /* ===== VẬN CHUYỂN & LẮP ĐẶT ===== */
+  
+  /* Container chính */
+  .shipping-container {
+    max-width: 1000px !important;
+    margin: 60px auto !important;
+    padding: 0 24px 80px !important;
+  }
+  
+  /* Card */
+  .shipping-card {
+    background: white !important;
+    border-radius: 24px !important;
+    padding: 40px !important;
+    margin-bottom: 30px !important;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.03) !important;
+    border: 1px solid rgba(6,78,59,0.1) !important;
+  }
+  
+  /* Tiêu đề card */
+  .shipping-title {
+    display: flex !important;
+    align-items: center !important;
+    gap: 16px !important;
+    font-size: 28px !important;
+    font-weight: 700 !important;
+    margin-bottom: 30px !important;
+    color: #1f2937 !important;
+  }
+  
+  .shipping-title .material-icons-round {
+    font-size: 40px !important;
+    color: var(--primary-light) !important;
+  }
+  
+  /* Dấu tick xanh - QUAN TRỌNG */
+  .shipping-card ul li .material-icons-round {
+    color: var(--primary-light) !important;
+    font-size: 24px !important;
+    margin-right: 12px !important;
+  }
+  
+  .shipping-card ul li {
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    margin-bottom: 16px !important;
+    color: #4b5563 !important;
+    font-size: 15px !important;
+  }
+  
+  /* Bảng giá */
+  .shipping-table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+  }
+  
+  .shipping-table td {
+    padding: 16px !important;
+    border-bottom: 1px solid rgba(0,0,0,0.03) !important;
+    color: #4b5563 !important;
+  }
+  
+  .shipping-table td:first-child {
+    font-weight: 600 !important;
+    color: #1f2937 !important;
+  }
+  
+  .shipping-table td strong {
+    color: var(--primary-light) !important;
+    font-weight: 700 !important;
+  }
+  
+  /* ===== DARK MODE ===== */
+  .dark-mode .shipping-card {
+    background: var(--surface-dark) !important;
+    border-color: var(--border-dark) !important;
+  }
+  
+  .dark-mode .shipping-title {
+    color: #ffffff !important;
+  }
+  
+  .dark-mode .shipping-title .material-icons-round {
+    color: #86efac !important;
+  }
+  
+  .dark-mode .shipping-card ul li {
+    color: #c0c4c8 !important;
+  }
+  
+  .dark-mode .shipping-card ul li .material-icons-round {
+    color: #86efac !important;
+  }
+  
+  .dark-mode .shipping-table td {
+    color: #c0c4c8 !important;
+    border-bottom-color: var(--border-dark) !important;
+  }
+  
+  .dark-mode .shipping-table td:first-child {
+    color: #ffffff !important;
+  }
+  
+  .dark-mode .shipping-table td strong {
+    color: #86efac !important;
+  }
+</style>
   </head>
   <body class="light-mode">
     <!-- SIDEBAR, HEADER, NAV -->
