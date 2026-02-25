@@ -19,9 +19,6 @@
       rel="stylesheet"
     />
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="css/style.css" />
-
     <style>
       :root {
         --checkout-bg: #f9fafb;
@@ -29,19 +26,17 @@
         --checkout-border: #e5e7eb;
         --checkout-text: #1f2937;
         --checkout-text-light: #6b7280;
-      }
-
-      .dark-mode {
-        --checkout-bg: #111827;
-        --checkout-card: #1f2937;
-        --checkout-border: #374151;
-        --checkout-text: #f9fafb;
-        --checkout-text-light: #9ca3af;
+        --success-color: #10b981;
+        --primary-color: #064e3b;
+        --primary-hover: #0a6e4f;
       }
 
       body {
         background-color: var(--checkout-bg);
         font-family: "Manrope", sans-serif;
+        color: var(--checkout-text);
+        margin: 0;
+        padding: 0;
       }
 
       .checkout-wrapper {
@@ -64,6 +59,12 @@
         font-size: 2rem;
         font-style: italic;
         color: #064e3b;
+        margin: 0;
+      }
+
+      .checkout-logo p {
+        color: var(--checkout-text-light);
+        margin: 5px 0 0;
       }
 
       .checkout-steps {
@@ -134,25 +135,6 @@
         border: 1px solid var(--checkout-border);
       }
 
-      .form-card-header {
-        display: flex;
-        align-items: center;
-        gap: 15px;
-        margin-bottom: 25px;
-      }
-
-      .form-card-icon {
-        width: 50px;
-        height: 50px;
-        border-radius: 15px;
-        background: rgba(6, 78, 59, 0.1);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #064e3b;
-        font-size: 24px;
-      }
-
       .form-row {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -174,7 +156,8 @@
         color: var(--checkout-text-light);
       }
 
-      .form-input {
+      .form-input,
+      .form-select {
         width: 100%;
         padding: 14px 18px;
         border: 2px solid var(--checkout-border);
@@ -183,12 +166,21 @@
         font-size: 15px;
         transition: all 0.3s;
         color: var(--checkout-text);
+        box-sizing: border-box;
       }
 
-      .form-input:focus {
+      .form-input:focus,
+      .form-select:focus {
         outline: none;
         border-color: #064e3b;
         box-shadow: 0 0 0 4px rgba(6, 78, 59, 0.1);
+      }
+
+      .form-select {
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 18px center;
       }
 
       .order-summary-modern {
@@ -235,19 +227,17 @@
         margin-bottom: 5px;
       }
 
+      .cart-item-variant {
+        font-size: 13px;
+        color: var(--checkout-text-light);
+        margin-bottom: 5px;
+      }
+
       .cart-item-price {
         font-weight: 700;
         color: #064e3b;
         font-size: 18px;
-      }
-
-      .qty-btn {
-        width: 30px;
-        height: 30px;
-        border-radius: 10px;
-        border: 1px solid var(--checkout-border);
-        background: transparent;
-        cursor: pointer;
+        margin-bottom: 8px;
       }
 
       .price-breakdown {
@@ -277,7 +267,7 @@
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: 15px;
-        margin: 30px 0;
+        margin: 20px 0;
       }
 
       .payment-method {
@@ -298,6 +288,14 @@
         background: rgba(6, 78, 59, 0.05);
       }
 
+      .payment-detail {
+        margin-top: 20px;
+        padding: 20px;
+        border-radius: 16px;
+        background: rgba(0, 0, 0, 0.02);
+        border: 1px solid var(--checkout-border);
+      }
+
       .place-order-btn {
         width: 100%;
         background: #064e3b;
@@ -314,11 +312,299 @@
 
       .place-order-btn:hover {
         background: #0a6e4f;
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(6, 78, 59, 0.3);
       }
 
       .empty-cart {
         text-align: center;
         padding: 60px 20px;
+        background: var(--checkout-card);
+        border-radius: 30px;
+      }
+
+      .empty-cart a {
+        display: inline-block;
+        padding: 15px 40px;
+        background: #064e3b;
+        color: white;
+        text-decoration: none;
+        border-radius: 30px;
+        font-weight: 600;
+        margin-top: 20px;
+      }
+
+      /* ===== MODAL TỐI ƯU - KHÔNG CUỘN, KHÔNG NÚT ĐÓNG ===== */
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 9999;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(5px);
+        animation: fadeIn 0.3s ease;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      .modal-content {
+        background-color: white;
+        margin: 2% auto;
+        padding: 25px 25px 20px;
+        border-radius: 30px;
+        width: 90%;
+        max-width: 520px;
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+        animation: slideUp 0.4s ease;
+        position: relative;
+      }
+
+      @keyframes slideUp {
+        from {
+          transform: translateY(30px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      /* ĐÃ XÓA .modal-close */
+
+      .modal-header {
+        text-align: center;
+        margin-bottom: 15px;
+      }
+
+      .success-icon {
+        width: 60px;
+        height: 60px;
+        background: #10b981;
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 12px;
+        box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3);
+      }
+
+      .success-icon .material-icons-round {
+        font-size: 36px;
+      }
+
+      .modal-header h2 {
+        color: #10b981;
+        font-size: 1.6rem;
+        font-weight: 700;
+        margin: 0 0 4px;
+      }
+
+      .modal-subtitle {
+        color: #6b7280;
+        font-size: 0.9rem;
+        margin: 0;
+      }
+
+      .order-info-compact {
+        background: #f9fafb;
+        border-radius: 22px;
+        padding: 16px;
+        margin: 12px 0;
+      }
+
+      .order-id-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: white;
+        padding: 10px 16px;
+        border-radius: 40px;
+        margin-bottom: 14px;
+        font-size: 0.9rem;
+        border: 1px solid #e5e7eb;
+      }
+
+      .order-id-row strong {
+        color: #064e3b;
+        font-family: monospace;
+        font-size: 1rem;
+        font-weight: 700;
+      }
+
+      .info-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        margin-bottom: 14px;
+      }
+
+      .info-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        background: white;
+        padding: 10px;
+        border-radius: 16px;
+        border: 1px solid #e5e7eb;
+      }
+
+      .info-icon {
+        color: #064e3b;
+        font-size: 1.3rem;
+        min-width: 24px;
+      }
+
+      .info-label {
+        font-size: 0.6rem;
+        text-transform: uppercase;
+        color: #6b7280;
+        letter-spacing: 0.3px;
+        margin-bottom: 2px;
+      }
+
+      .info-value {
+        font-weight: 600;
+        color: #1f2937;
+        font-size: 0.85rem;
+        word-break: break-word;
+        line-height: 1.2;
+      }
+
+      .total-row {
+        background: white;
+        padding: 12px 16px;
+        border-radius: 40px;
+        text-align: center;
+        font-weight: 600;
+        color: #1f2937;
+        border: 1px solid #e5e7eb;
+        margin-bottom: 12px;
+        font-size: 0.95rem;
+      }
+
+      .total-row span {
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: #064e3b;
+        margin-left: 6px;
+      }
+
+      .email-note {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        color: #6b7280;
+        font-size: 0.8rem;
+        background: white;
+        padding: 8px 14px;
+        border-radius: 40px;
+        border: 1px dashed #d1d5db;
+      }
+
+      /* MODAL ACTIONS - CHỈ CÒN 1 NÚT CĂN GIỮA */
+      .modal-actions {
+        display: flex;
+        justify-content: center;
+        margin-top: 16px;
+      }
+
+      .modal-btn-primary {
+        background: #064e3b;
+        color: white;
+        padding: 12px 30px;
+        border: none;
+        border-radius: 40px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s;
+        font-size: 0.95rem;
+        min-width: 200px;
+      }
+
+      .modal-btn-primary:hover {
+        background: #0a6e4f;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(6, 78, 59, 0.2);
+      }
+
+      /* Responsive cho mobile */
+      @media (max-width: 600px) {
+        .checkout-header {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .checkout-steps {
+          width: 100%;
+          justify-content: space-between;
+          padding: 12px 20px;
+        }
+
+        .step-text {
+          display: none;
+        }
+
+        .modal-content {
+          margin: 5% auto;
+          padding: 20px 18px 15px;
+          width: 92%;
+          max-width: 400px;
+        }
+
+        .info-grid {
+          grid-template-columns: 1fr;
+          gap: 8px;
+        }
+
+        .modal-header h2 {
+          font-size: 1.4rem;
+        }
+
+        .total-row {
+          font-size: 0.9rem;
+          padding: 10px 12px;
+        }
+
+        .total-row span {
+          font-size: 1.1rem;
+        }
+
+        .success-icon {
+          width: 50px;
+          height: 50px;
+        }
+
+        .success-icon .material-icons-round {
+          font-size: 30px;
+        }
+
+        .order-info-compact {
+          padding: 12px;
+          margin: 8px 0;
+        }
+
+        .info-item {
+          padding: 8px;
+        }
+
+        .modal-btn-primary {
+          padding: 10px 20px;
+          min-width: 180px;
+          font-size: 0.9rem;
+        }
       }
     </style>
   </head>
@@ -331,16 +617,16 @@
         </div>
         <div class="checkout-steps">
           <div class="step active">
-            <span class="step-number">1</span
-            ><span class="step-text">Giỏ hàng</span>
+            <span class="step-number">1</span>
+            <span class="step-text">Giỏ hàng</span>
           </div>
           <div class="step active">
-            <span class="step-number">2</span
-            ><span class="step-text">Thanh toán</span>
+            <span class="step-number">2</span>
+            <span class="step-text">Thanh toán</span>
           </div>
           <div class="step">
-            <span class="step-number">3</span
-            ><span class="step-text">Hoàn tất</span>
+            <span class="step-number">3</span>
+            <span class="step-text">Hoàn tất</span>
           </div>
         </div>
       </div>
@@ -352,6 +638,80 @@
       <div id="emptyCartMessage" style="display: none" class="empty-cart">
         <h2>Giỏ hàng trống</h2>
         <a href="index.html">Tiếp tục mua sắm</a>
+      </div>
+    </div>
+
+    <!-- MODAL THANH TOÁN THÀNH CÔNG - ĐÃ XÓA NÚT ĐÓNG VÀ DẤU X -->
+    <div id="successModal" class="modal">
+      <div class="modal-content">
+        <!-- ĐÃ XÓA modal-close -->
+
+        <div class="modal-header">
+          <div class="success-icon">
+            <span class="material-icons-round">check_circle</span>
+          </div>
+          <h2>Đặt hàng thành công!</h2>
+          <p class="modal-subtitle">Cảm ơn bạn đã tin tưởng Brian Luu</p>
+        </div>
+
+        <div class="order-info-compact">
+          <div class="order-id-row">
+            <span>Mã đơn hàng:</span>
+            <strong id="modalOrderId">DH...</strong>
+          </div>
+
+          <div class="info-grid">
+            <div class="info-item">
+              <span class="info-icon material-icons-round">person</span>
+              <div>
+                <div class="info-label">KHÁCH HÀNG</div>
+                <div class="info-value" id="modalCustomerName"></div>
+              </div>
+            </div>
+
+            <div class="info-item">
+              <span class="info-icon material-icons-round">location_on</span>
+              <div>
+                <div class="info-label">ĐỊA CHỈ</div>
+                <div class="info-value" id="modalAddress"></div>
+              </div>
+            </div>
+
+            <div class="info-item">
+              <span class="info-icon material-icons-round">payment</span>
+              <div>
+                <div class="info-label">THANH TOÁN</div>
+                <div class="info-value" id="modalPayment"></div>
+              </div>
+            </div>
+
+            <div class="info-item">
+              <span class="info-icon material-icons-round">local_shipping</span>
+              <div>
+                <div class="info-label">GIAO HÀNG</div>
+                <div class="info-value" id="modalShipping"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="total-row">
+            Tổng thanh toán: <span id="modalTotal">0 ₫</span>
+          </div>
+
+          <div class="email-note">
+            <span class="material-icons-round" style="font-size: 16px"
+              >email</span
+            >
+            Chi tiết đơn hàng đã gửi đến email của bạn
+          </div>
+        </div>
+
+        <!-- CHỈ CÒN 1 NÚT THEO DÕI ĐƠN HÀNG -->
+        <div class="modal-actions">
+          <button class="modal-btn-primary" onclick="viewOrderDetail()">
+            Theo dõi đơn hàng
+          </button>
+        </div>
       </div>
     </div>
 
@@ -377,142 +737,146 @@
           subtotal += itemTotal;
 
           itemsHtml += `
-                    <div class="cart-item-modern">
-                        <div class="cart-item-image">
-                            <img src="images/${item.image || "default.jpg"}" alt="${item.name}">
-                        </div>
-                        <div class="cart-item-info">
-                            <div class="cart-item-name">${item.name}</div>
-                            <div class="cart-item-variant">${item.variant || "Tiêu chuẩn"}</div>
-                            <div class="cart-item-price">${new Intl.NumberFormat("vi-VN").format(price)} ₫</div>
-                            <div>
-                                <button class="qty-btn" onclick="updateQty(${index}, -1)">−</button>
-                                <span style="margin: 0 10px;">${item.quantity}</span>
-                                <button class="qty-btn" onclick="updateQty(${index}, 1)">+</button>
-                            </div>
-                        </div>
+            <div class="cart-item-modern">
+                <div class="cart-item-image">
+                    <img src="images/${item.image || "default.jpg"}" alt="${item.name}" onerror="this.src='https://via.placeholder.com/80'">
+                </div>
+                <div class="cart-item-info">
+                    <div class="cart-item-name">${item.name}</div>
+                    <div class="cart-item-variant">${item.variant || "Tiêu chuẩn"}</div>
+                    <div class="cart-item-price">${new Intl.NumberFormat("vi-VN").format(price)} ₫</div>
+                    <!-- ĐÃ XÓA NÚT + - , CHỈ HIỂN THỊ SỐ LƯỢNG -->
+                    <div style="font-weight: 600; color: #064e3b; margin-top: 8px;">
+                        Số lượng: ${item.quantity}
                     </div>
-                `;
+                </div>
+            </div>
+          `;
         });
 
         checkoutContent.innerHTML = `
-                <div class="checkout-form-section">
-                    <h2 class="form-title">Thông tin giao hàng</h2>
-                    
-                    <div class="form-card">
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label class="form-label">Họ</label>
-                                <input type="text" class="form-input" id="ho">
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label">Tên</label>
-                                <input type="text" class="form-input" id="ten">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Số điện thoại</label>
-                            <input type="tel" class="form-input" id="phone">
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Email</label>
-                            <input type="email" class="form-input" id="email">
-                        </div>
-                    </div>
+          <div class="checkout-form-section">
+              <h2 class="form-title">Thông tin giao hàng</h2>
+              
+              <div class="form-card">
+                  <div class="form-row">
+                      <div class="form-group">
+                          <label class="form-label">Họ</label>
+                          <input type="text" class="form-input" id="ho" placeholder="Nhập họ">
+                      </div>
+                      <div class="form-group">
+                          <label class="form-label">Tên</label>
+                          <input type="text" class="form-input" id="ten" placeholder="Nhập tên">
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <label class="form-label">Số điện thoại</label>
+                      <input type="tel" class="form-input" id="phone" placeholder="0901 234 567">
+                  </div>
+                  <div class="form-group">
+                      <label class="form-label">Email</label>
+                      <input type="email" class="form-input" id="email" placeholder="email@example.com">
+                  </div>
+              </div>
 
-                    <div class="form-card">
-                        <div class="form-group">
-                            <label class="form-label">Địa chỉ</label>
-                            <input type="text" class="form-input" id="address">
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label class="form-label">Tỉnh/Thành</label>
-                                <select class="form-input" id="city">
-                                    <option>-- Chọn tỉnh/thành --</option>
-                                    <option>Hồ Chí Minh</option>
-                                    <option>Hà Nội</option>
-                                    <option>Đà Nẵng</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
+              <div class="form-card">
+                  <div class="form-group">
+                      <label class="form-label">Địa chỉ</label>
+                      <input type="text" class="form-input" id="address" placeholder="Số nhà, tên đường">
+                  </div>
+                  <div class="form-row">
+                      <div class="form-group">
+                          <label class="form-label">Tỉnh/Thành</label>
+                          <select class="form-select" id="city">
+                              <option value="">-- Chọn tỉnh/thành --</option>
+                              <option value="Hồ Chí Minh">Hồ Chí Minh</option>
+                              <option value="Hà Nội">Hà Nội</option>
+                              <option value="Đà Nẵng">Đà Nẵng</option>
+                              <option value="Hải Phòng">Hải Phòng</option>
+                              <option value="Cần Thơ">Cần Thơ</option>
+                          </select>
+                      </div>
+                  </div>
+              </div>
 
-                    <div class="form-card">
-                        <div style="display: flex; flex-direction: column; gap: 15px;">
-                            <label style="display: flex; align-items: center; gap: 15px; padding: 20px; border: 2px solid var(--checkout-border); border-radius: 16px; cursor: pointer;">
-                                <input type="radio" name="shipping" value="standard" checked style="width: 20px; height: 20px;">
-                                <div style="flex: 1;">
-                                    <strong>Giao hàng tiêu chuẩn</strong>
-                                    <div style="font-size: 13px;">3-5 ngày làm việc</div>
-                                </div>
-                                <span style="font-weight: 700; color: #064e3b;">Miễn phí</span>
-                            </label>
-                            <label style="display: flex; align-items: center; gap: 15px; padding: 20px; border: 2px solid var(--checkout-border); border-radius: 16px; cursor: pointer;">
-                                <input type="radio" name="shipping" value="express" style="width: 20px; height: 20px;">
-                                <div style="flex: 1;">
-                                    <strong>Giao hàng nhanh</strong>
-                                    <div style="font-size: 13px;">1-2 ngày làm việc</div>
-                                </div>
-                                <span style="font-weight: 700; color: #064e3b;">+150.000đ</span>
-                            </label>
-                        </div>
-                    </div>
-                </div>
+              <div class="form-card">
+                  <div style="display: flex; flex-direction: column; gap: 15px;">
+                      <label style="display: flex; align-items: center; gap: 15px; padding: 20px; border: 2px solid var(--checkout-border); border-radius: 16px; cursor: pointer;">
+                          <input type="radio" name="shipping" value="standard" checked style="width: 20px; height: 20px; accent-color: #064e3b;">
+                          <div style="flex: 1;">
+                              <strong>Giao hàng tiêu chuẩn</strong>
+                              <div style="font-size: 13px; color: var(--checkout-text-light);">3-5 ngày làm việc</div>
+                          </div>
+                          <span style="font-weight: 700; color: #10b981;">Miễn phí</span>
+                      </label>
+                      <label style="display: flex; align-items: center; gap: 15px; padding: 20px; border: 2px solid var(--checkout-border); border-radius: 16px; cursor: pointer;">
+                          <input type="radio" name="shipping" value="express" style="width: 20px; height: 20px; accent-color: #064e3b;">
+                          <div style="flex: 1;">
+                              <strong>Giao hàng nhanh</strong>
+                              <div style="font-size: 13px; color: var(--checkout-text-light);">1-2 ngày làm việc</div>
+                          </div>
+                          <span style="font-weight: 700; color: #064e3b;">+150.000đ</span>
+                      </label>
+                  </div>
+              </div>
+          </div>
 
-                <div class="order-summary-modern">
-                    <h3>Đơn hàng của bạn</h3>
-                    <div class="cart-items-modern">${itemsHtml}</div>
-                    
-                    <div class="price-breakdown">
-                        <div class="price-row">
-                            <span>Tạm tính</span>
-                            <span id="subtotalDisplay">${new Intl.NumberFormat("vi-VN").format(subtotal)} ₫</span>
-                        </div>
-                        <div class="price-row">
-                            <span>Phí vận chuyển</span>
-                            <span id="shippingDisplay">Miễn phí</span>
-                        </div>
-                        <div class="price-row total">
-                            <span>Tổng cộng</span>
-                            <span id="totalDisplay">${new Intl.NumberFormat("vi-VN").format(subtotal)} ₫</span>
-                        </div>
-                    </div>
+          <div class="order-summary-modern">
+              <h3>Đơn hàng của bạn</h3>
+              <div class="cart-items-modern">${itemsHtml}</div>
+              
+              <div class="price-breakdown">
+                  <div class="price-row">
+                      <span>Tạm tính</span>
+                      <span id="subtotalDisplay">${new Intl.NumberFormat("vi-VN").format(subtotal)} ₫</span>
+                  </div>
+                  <div class="price-row">
+                      <span>Phí vận chuyển</span>
+                      <span id="shippingDisplay">Miễn phí</span>
+                  </div>
+                  <div class="price-row total">
+                      <span>Tổng cộng</span>
+                      <span id="totalDisplay">${new Intl.NumberFormat("vi-VN").format(subtotal)} ₫</span>
+                  </div>
+              </div>
 
-                    <div class="form-card">
-                        <h4>Thanh toán</h4>
-                        <div class="payment-methods">
-                            <div class="payment-method active" onclick="selectPayment('credit')">
-                                <div>Thẻ tín dụng</div>
-                            </div>
-                            <div class="payment-method" onclick="selectPayment('bank')">
-                                <div>Chuyển khoản</div>
-                            </div>
-                            <div class="payment-method" onclick="selectPayment('cod')">
-                                <div>COD</div>
-                            </div>
-                        </div>
-                        <div id="paymentDetail" class="payment-detail">
-                            <div class="form-group">
-                                <label class="form-label">Số thẻ</label>
-                                <input type="text" class="form-input" placeholder="1234 5678 9012 3456">
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label class="form-label">Ngày hết hạn</label>
-                                    <input type="text" class="form-input" placeholder="MM/YY">
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label">CVV</label>
-                                    <input type="text" class="form-input" placeholder="123">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+              <div class="form-card" style="padding: 20px;">
+                  <h4 style="margin-top: 0; margin-bottom: 15px;">Phương thức thanh toán</h4>
+                  <div class="payment-methods">
+                      <div class="payment-method active" onclick="selectPayment('credit', this)">
+                          <span class="material-icons-round" style="font-size: 24px;">credit_card</span>
+                          <div class="payment-name">Thẻ tín dụng</div>
+                      </div>
+                      <div class="payment-method" onclick="selectPayment('bank', this)">
+                          <span class="material-icons-round" style="font-size: 24px;">account_balance</span>
+                          <div class="payment-name">Chuyển khoản</div>
+                      </div>
+                      <div class="payment-method" onclick="selectPayment('cod', this)">
+                          <span class="material-icons-round" style="font-size: 24px;">payments</span>
+                          <div class="payment-name">COD</div>
+                      </div>
+                  </div>
+                  <div id="paymentDetail" class="payment-detail">
+                      <div class="form-group">
+                          <label class="form-label">Số thẻ</label>
+                          <input type="text" class="form-input" placeholder="1234 5678 9012 3456">
+                      </div>
+                      <div class="form-row">
+                          <div class="form-group">
+                              <label class="form-label">Ngày hết hạn</label>
+                              <input type="text" class="form-input" placeholder="MM/YY">
+                          </div>
+                          <div class="form-group">
+                              <label class="form-label">CVV</label>
+                              <input type="text" class="form-input" placeholder="123">
+                          </div>
+                      </div>
+                  </div>
+              </div>
 
-                    <button class="place-order-btn" onclick="placeOrder()">ĐẶT HÀNG NGAY</button>
-                </div>
-            `;
+              <button class="place-order-btn" onclick="placeOrder()">ĐẶT HÀNG NGAY</button>
+          </div>
+        `;
 
         // XỬ LÝ PHÍ VẬN CHUYỂN
         const shippingRadios = document.querySelectorAll(
@@ -548,56 +912,101 @@
         updateShipping();
       });
 
-      function selectPayment(type) {
+      function selectPayment(type, element) {
         document
           .querySelectorAll(".payment-method")
           .forEach((el) => el.classList.remove("active"));
-        event.currentTarget.classList.add("active");
+        element.classList.add("active");
 
         const paymentDetail = document.getElementById("paymentDetail");
         if (type === "credit") {
           paymentDetail.innerHTML = `
-                    <div class="form-group"><label class="form-label">Số thẻ</label><input type="text" class="form-input" placeholder="1234 5678 9012 3456"></div>
-                    <div class="form-row">
-                        <div class="form-group"><label class="form-label">Ngày hết hạn</label><input type="text" class="form-input" placeholder="MM/YY"></div>
-                        <div class="form-group"><label class="form-label">CVV</label><input type="text" class="form-input" placeholder="123"></div>
-                    </div>
-                `;
+            <div class="form-group"><label class="form-label">Số thẻ</label><input type="text" class="form-input" placeholder="1234 5678 9012 3456"></div>
+            <div class="form-row">
+                <div class="form-group"><label class="form-label">Ngày hết hạn</label><input type="text" class="form-input" placeholder="MM/YY"></div>
+                <div class="form-group"><label class="form-label">CVV</label><input type="text" class="form-input" placeholder="123"></div>
+            </div>
+          `;
         } else if (type === "bank") {
-          paymentDetail.innerHTML = `<div style="padding: 20px;">🏦 Vietcombank<br>📋 1234567890<br>👤 BRIAN LUU</div>`;
+          paymentDetail.innerHTML = `
+            <div style="padding: 15px;">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                    <span class="material-icons-round" style="color: #064e3b;">account_balance</span>
+                    <div><strong>Vietcombank</strong></div>
+                </div>
+                <div style="background: #f8f9fa; padding: 12px; border-radius: 12px;">
+                    <div><span style="color: #6b7280;">STK:</span> <strong>1234567890</strong></div>
+                    <div><span style="color: #6b7280;">Chủ TK:</span> <strong>BRIAN LUU</strong></div>
+                </div>
+            </div>
+          `;
         } else {
-          paymentDetail.innerHTML = `<div style="padding: 20px;">Thanh toán khi nhận hàng</div>`;
+          paymentDetail.innerHTML = `<div style="padding: 20px; text-align: center;">Thanh toán khi nhận hàng (COD)</div>`;
         }
       }
 
-      function updateQty(index, change) {
-        let cart = JSON.parse(localStorage.getItem("brianLuuCart")) || [];
-        if (cart[index]) {
-          cart[index].quantity += change;
-          if (cart[index].quantity <= 0) cart.splice(index, 1);
-          localStorage.setItem("brianLuuCart", JSON.stringify(cart));
-          location.reload();
-        }
+      // ĐÃ XÓA HÀM updateQty
+
+      // MODAL FUNCTIONS
+      function showSuccessModal(orderData) {
+        const modal = document.getElementById("successModal");
+
+        document.getElementById("modalOrderId").textContent = orderData.id;
+        document.getElementById("modalCustomerName").textContent =
+          orderData.customer.fullName;
+        document.getElementById("modalAddress").textContent =
+          orderData.shippingAddress;
+        document.getElementById("modalPayment").textContent =
+          orderData.paymentMethod;
+
+        let shippingText = orderData.shippingMethod;
+        shippingText +=
+          orderData.shippingFee === 0
+            ? " - Miễn phí"
+            : ` - ${new Intl.NumberFormat("vi-VN").format(orderData.shippingFee)} ₫`;
+        document.getElementById("modalShipping").textContent = shippingText;
+        document.getElementById("modalTotal").textContent =
+          new Intl.NumberFormat("vi-VN").format(orderData.total) + " ₫";
+
+        modal.style.display = "block";
+        document.body.style.overflow = "hidden";
+        modal.setAttribute("data-order-id", orderData.id);
       }
+
+      // ĐÃ XÓA HÀM closeModal
+
+      function viewOrderDetail() {
+        const modal = document.getElementById("successModal");
+        const orderId = modal.getAttribute("data-order-id");
+        window.location.href = "theo-doi-don-hang.html?id=" + orderId;
+      }
+
+      // Đóng modal khi click ra ngoài (vẫn giữ để người dùng có thể đóng bằng cách click nền)
+      window.onclick = function (event) {
+        const modal = document.getElementById("successModal");
+        if (event.target == modal) {
+          modal.style.display = "none";
+          document.body.style.overflow = "auto";
+        }
+      };
 
       function placeOrder() {
-        const ho = document.getElementById("ho")?.value || "";
-        const ten = document.getElementById("ten")?.value || "";
-        const phone = document.getElementById("phone")?.value || "";
-        const email = document.getElementById("email")?.value || "";
-        const address = document.getElementById("address")?.value || "";
+        const ho = document.getElementById("ho")?.value?.trim() || "";
+        const ten = document.getElementById("ten")?.value?.trim() || "";
+        const phone = document.getElementById("phone")?.value?.trim() || "";
+        const email = document.getElementById("email")?.value?.trim() || "";
+        const address = document.getElementById("address")?.value?.trim() || "";
         const city = document.getElementById("city")?.value || "";
 
-        if (
-          !ho ||
-          !ten ||
-          !phone ||
-          !email ||
-          !address ||
-          !city ||
-          city === "-- Chọn tỉnh/thành --"
-        ) {
+        if (!ho || !ten || !phone || !email || !address || !city) {
           alert("Vui lòng nhập đầy đủ thông tin");
+          return;
+        }
+
+        // Validate email
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+          alert("Email không hợp lệ");
           return;
         }
 
@@ -614,43 +1023,19 @@
         );
         const shippingMethod =
           selectedShipping?.value === "express"
-            ? "Giao hàng nhanh"
-            : "Giao hàng tiêu chuẩn";
+            ? "Giao hàng nhanh (1-2 ngày)"
+            : "Giao hàng tiêu chuẩn (3-5 ngày)";
         const shippingFee =
           selectedShipping && selectedShipping.value === "express" ? 150000 : 0;
 
-        // ✅ LẤY PHƯƠNG THỨC THANH TOÁN - CÁCH ĐÚNG
-        let paymentMethod = "COD"; // Mặc định
-
+        // Lấy phương thức thanh toán
+        let paymentMethod = "COD";
         const activePayment = document.querySelector(".payment-method.active");
         if (activePayment) {
-          // Thử lấy text từ nhiều vị trí
-          const paymentText =
-            activePayment.querySelector(".payment-name")?.textContent ||
-            activePayment.querySelector("div")?.textContent ||
-            activePayment.textContent;
-
-          if (paymentText) {
-            // Chuẩn hóa text
-            if (paymentText.includes("Thẻ") || paymentText.includes("credit")) {
-              paymentMethod = "Thẻ tín dụng";
-            } else if (
-              paymentText.includes("Chuyển khoản") ||
-              paymentText.includes("bank")
-            ) {
-              paymentMethod = "Chuyển khoản";
-            } else if (
-              paymentText.includes("COD") ||
-              paymentText.includes("cod")
-            ) {
-              paymentMethod = "COD";
-            } else {
-              paymentMethod = paymentText.trim();
-            }
-          }
+          const paymentName =
+            activePayment.querySelector(".payment-name")?.textContent;
+          if (paymentName) paymentMethod = paymentName;
         }
-
-        console.log("Payment method selected:", paymentMethod); // Debug
 
         const order = {
           id: "DH" + Date.now(),
@@ -667,7 +1052,7 @@
           shippingMethod: shippingMethod,
           shippingFee: shippingFee,
           shippingAddress: address + ", " + city,
-          paymentMethod: paymentMethod, // ✅ Đã lấy đúng
+          paymentMethod: paymentMethod,
           items: cart,
           subtotal: subtotal,
           total: subtotal + shippingFee,
@@ -679,8 +1064,12 @@
         localStorage.setItem("brianLuuOrders", JSON.stringify(orders));
         localStorage.removeItem("brianLuuCart");
 
-        alert("✅ Đặt hàng thành công!");
-        window.location.href = "theo-doi-don-hang.html?id=" + order.id;
+        // Lưu orderId để dùng cho nút xem chi tiết
+        const modal = document.getElementById("successModal");
+        modal.setAttribute("data-order-id", order.id);
+
+        // Hiển thị modal
+        showSuccessModal(order);
       }
     </script>
   </body>
