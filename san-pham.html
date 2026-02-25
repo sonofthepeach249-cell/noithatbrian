@@ -361,7 +361,7 @@
     <script>
       // ===== DATABASE SẢN PHẨM =====
       const products = {
-        // Phòng khách
+        // ===== PHÒNG KHÁCH (8 sản phẩm) =====
         "sofa-em": {
           name: "Ghế sofa êm",
           category: "Phòng khách",
@@ -370,7 +370,7 @@
           description:
             "Sofa ôm trọn cơ thể với đệm mút hoạt tính cao cấp, khung gỗ sồi Nga chắc chắn. Bọc vải nhung nhập khẩu, chống bám bẩn và dễ vệ sinh. Tựa lưng thấp phong cách Brutalism, phù hợp không gian hiện đại.",
           material: "ĐỆM CAO CẤP",
-          thumbnails: ["cloud-sofa.jpg"],
+          thumbnails: ["cloud-sofa.jpg", "cloud-sofa-2.jpg"],
         },
         "ghe-nhung": {
           name: "Ghế nhung",
@@ -380,7 +380,7 @@
           description:
             "Ghế nhung cao cấp với chất liệu nhung sợi polyester tái chế, mềm mại và bền màu. Khung gỗ óc chó Bắc Mỹ, chân đồng thau đánh bóng. Thiết kế ôm sát lưng, tạo cảm giác thư giãn tối đa.",
           material: "NHUNG CAO CẤP",
-          thumbnails: ["velvet-armchair.jpg"],
+          thumbnails: ["velvet-armchair.jpg", "velvet-armchair-2.jpg"],
         },
         "ban-cam-thach": {
           name: "Bàn cẩm thạch",
@@ -390,7 +390,7 @@
           description:
             "Bàn mặt đá cẩm thạch Carrara nhập khẩu Ý, vân đá tự nhiên độc đáo. Chân thép sơn tĩnh điện chống gỉ, phong cách Brutalism mạnh mẽ. Kích thước 120x60cm, phù hợp làm bàn trà hoặc bàn phụ.",
           material: "ĐÁ CẨM THẠCH",
-          thumbnails: ["marble-table.jpg"],
+          thumbnails: ["marble-table.jpg", "marble-table-2.jpg"],
         },
         "den-nghe-thuat": {
           name: "Đèn nghệ thuật kiến trúc",
@@ -400,7 +400,7 @@
           description:
             "Đèn trang trí lấy cảm hứng từ kiến trúc Brutalism, kết hợp kim loại đen mờ và pha lê trong suốt. Ánh sáng vàng ấm, có thể điều chỉnh độ sáng. Tác phẩm nghệ thuật độc bản cho không gian sống.",
           material: "KIM LOẠI + PHA LÊ",
-          thumbnails: ["sculptural-lamp.jpg"],
+          thumbnails: ["sculptural-lamp.jpg", "sculptural-lamp-2.jpg"],
         },
         "sofa-3-cho": {
           name: "Sofa ba chỗ",
@@ -410,7 +410,7 @@
           description:
             "Sofa ba chỗ kích thước lớn 210cm, đệm mút cao cấp mật độ cao, không xẹp lún sau thời gian dài sử dụng. Bọc vải nhung cao cấp, khung gỗ tự nhiên. Phong cách Brutalism pha chút mềm mại.",
           material: "ĐỆM + NHUNG",
-          thumbnails: ["living-room-2.jpg"],
+          thumbnails: ["living-room-2.jpg", "living-room-2-2.jpg"],
         },
         "ghe-don": {
           name: "Ghế đơn",
@@ -420,7 +420,7 @@
           description:
             "Ghế đơn nhỏ gọn, thiết kế tối giản nhưng tinh tế. Khung gỗ óc chó, bọc vải nhung mềm mại. Phù hợp làm điểm nhấn trong phòng khách hoặc góc đọc sách thư giãn.",
           material: "VẢI NHUNG",
-          thumbnails: ["living-room-3.jpg"],
+          thumbnails: ["living-room-3.jpg", "living-room-3-2.jpg"],
         },
         "ban-tra": {
           name: "Bàn trà",
@@ -430,7 +430,7 @@
           description:
             "Bàn trà mặt kính cường lực 10mm an toàn, chân đồng thau đúc thủ công. Thiết kế hình chữ nhật 90x50cm, phù hợp với mọi không gian. Kết hợp hoàn hảo giữa hiện đại và cổ điển.",
           material: "KÍNH + ĐỒNG",
-          thumbnails: ["living-room-4.jpg"],
+          thumbnails: ["living-room-4.jpg", "living-room-4-2.jpg"],
         },
         "ke-tivi": {
           name: "Kệ tivi",
@@ -440,11 +440,257 @@
           description:
             "Kệ tivi gỗ óc chó Bắc Mỹ cao cấp, 3 ngăn chứa rộng rãi. Thiết kế hình khối Brutalism mạnh mẽ, mặt kính cường lực phía trên. Kích thước 180x40x45cm, phù hợp tivi đến 65 inch.",
           material: "GỖ ÓC CHÓ",
-          thumbnails: ["living-room-5.jpg"],
+          thumbnails: ["living-room-5.jpg", "living-room-5-2.jpg"],
         },
-        // ... (giữ nguyên database của bạn)
-      };
 
+        // ===== PHÒNG NGỦ (6 sản phẩm) =====
+        "giuong-ngu": {
+          name: "Giường ngủ",
+          category: "Phòng ngủ",
+          price: "52.900.000 ₫",
+          image: "bedroom-2.jpg",
+          description:
+            "Giường ngủ gỗ óc chó Bắc Mỹ nguyên khối, kích thước 180x200cm. Đầu giường bọc nệm cao cấp, có thể điều chỉnh độ nghiêng. Thiết kế Brutalism nhưng vẫn ấm áp, phù hợp không gian nghỉ ngơi.",
+          material: "GỖ CAO CẤP",
+          thumbnails: ["bedroom-2.jpg", "bedroom-2-2.jpg"],
+        },
+        "tu-dau-giuong": {
+          name: "Tủ đầu giường",
+          category: "Phòng ngủ",
+          price: "7.200.000 ₫",
+          image: "bedroom-3.jpg",
+          description:
+            "Tủ đầu giường gỗ xồi tự nhiên, 2 ngăn kéo tiện lợi. Mặt tủ đá cẩm thạch trắng, chân tủ kim loại đen. Thiết kế nhỏ gọn 45x40x50cm, phù hợp đặt đồ cá nhân và đèn ngủ.",
+          material: "GỖ XỒI",
+          thumbnails: ["bedroom-3.jpg", "bedroom-3-2.jpg"],
+        },
+        "tu-quan-ao": {
+          name: "Tủ quần áo",
+          category: "Phòng ngủ",
+          price: "21.350.000 ₫",
+          image: "bedroom-4.jpg",
+          description:
+            "Tủ quần áo 4 cánh gỗ óc chó, kích thước 180x60x200cm. Bên trong thiết kế thông minh với ngăn treo, ngăn kéo và kệ. Cánh tủ mở êm ái với ray trượt cao cấp, phụ kiện nhập khẩu.",
+          material: "GỖ ÓC CHÓ",
+          thumbnails: ["bedroom-4.jpg", "bedroom-4-2.jpg"],
+        },
+        "ban-trang-diem": {
+          name: "Bàn trang điểm",
+          category: "Phòng ngủ",
+          price: "18.700.000 ₫",
+          image: "bedroom-5.jpg",
+          description:
+            "Bàn trang điểm mặt đá cẩm thạch trắng, kèm gương soi lớn và đèn LED tích hợp. 3 ngăn kéo rộng rãi đựng mỹ phẩm. Ghế đi kèm bọc nhung mềm mại, có thể điều chỉnh độ cao.",
+          material: "ĐÁ CẨM THẠCH",
+          thumbnails: ["bedroom-5.jpg", "bedroom-5-2.jpg"],
+        },
+        "ghe-thu-gian": {
+          name: "Ghế thư giãn",
+          category: "Phòng ngủ",
+          price: "23.200.000 ₫",
+          image: "bedroom-6.jpg",
+          description:
+            "Ghế thư giãn bọc nhung xanh rêu, tựa lưng cao và ngả được. Đệm mút hoạt tính, chân gỗ óc chó. Kèm gác chân tháo rời, tạo thành chiếc ghế dài hoàn hảo để đọc sách hay ngủ trưa.",
+          material: "NHUNG XANH",
+          thumbnails: ["bedroom-6.jpg", "bedroom-6-2.jpg"],
+        },
+        "den-ngu": {
+          name: "Đèn ngủ",
+          category: "Phòng ngủ",
+          price: "8.900.000 ₫",
+          image: "lighting-7.jpg",
+          description:
+            "Đèn ngủ đồng thau cao cấp, chụp đèn vải linen tự nhiên. Ánh sáng vàng ấm dịu nhẹ, có núm điều chỉnh độ sáng. Thiết kế tối giản nhưng sang trọng, phù hợp mọi phong cách nội thất.",
+          material: "ĐỒNG THAU",
+          thumbnails: ["lighting-7.jpg", "lighting-7-2.jpg"],
+        },
+
+        // ===== PHÒNG ĂN (6 sản phẩm) =====
+        "ban-an-cam-thach": {
+          name: "Bàn ăn đá cẩm thạch",
+          category: "Phòng ăn",
+          price: "26.600.000 ₫",
+          image: "dining-10.jpg",
+          description:
+            "Bàn ăn mặt đá cẩm thạch Carrara tự nhiên, vân đá tinh tế. Chân thép sơn tĩnh điện đen mờ, kích thước 180x90cm phù hợp 6-8 người. Cạnh bàn được bo cong mềm mại, an toàn và thẩm mỹ.",
+          material: "ĐÁ CẨM THẠCH",
+          thumbnails: ["dining-10.jpg", "dining-10-2.jpg"],
+        },
+        "ghe-an": {
+          name: "Ghế ăn",
+          category: "Phòng ăn",
+          price: "3.100.000 ₫",
+          image: "dining-8.jpg",
+          description:
+            "Ghế ăn gỗ óc chó, đệm mút cao cấp bọc vải nhập khẩu. Tựa lưng cong nhẹ theo cột sống, tạo cảm giác thoải mái khi ngồi lâu. Chân ghế vững chãi, không gây tiếng ồn khi di chuyển.",
+          material: "GỖ ÓC CHÓ",
+          thumbnails: ["dining-8.jpg", "dining-8-2.jpg"],
+        },
+        "tu-dung-bep": {
+          name: "Tủ đựng bếp",
+          category: "Phòng ăn",
+          price: "12.500.000 ₫",
+          image: "dining-3.jpg",
+          description:
+            "Tủ đựng bếp đa năng chất liệu kim loại cao cấp, 4 ngăn chứa rộng rãi. Cửa kính mờ sang trọng, bên trong có đèn LED tự động. Kích thước 120x40x80cm, phù hợp lưu trữ bát đĩa và đồ khô.",
+          material: "KIM LOẠI",
+          thumbnails: ["dining-3.jpg", "dining-3-2.jpg"],
+        },
+        "ghe-cao": {
+          name: "Ghế cao",
+          category: "Phòng ăn",
+          price: "2.900.000 ₫",
+          image: "dining-4.jpg",
+          description:
+            "Ghế cao phong cách hiện đại, bọc da bò cao cấp màu nâu cognac. Khung thép chắc chắn, có thanh gác chân tiện lợi. Chiều cao 75cm, phù hợp quầy bar hoặc bàn ăn cao.",
+          material: "DA BÒ",
+          thumbnails: ["dining-4.jpg", "dining-4-2.jpg"],
+        },
+        "den-chum": {
+          name: "Đèn chùm",
+          category: "Phòng ăn",
+          price: "11.750.000 ₫",
+          image: "lighting-1.jpg",
+          description:
+            "Đèn chùm pha lê nhập khẩu, 6 bóng đèn led vàng ấm. Khung đồng thau mạ vàng sang trọng, pha lê cắt mài tinh xảo. Chiều cao có thể điều chỉnh, phù hợp không gian phòng ăn 15-25m².",
+          material: "PHA LÊ",
+          thumbnails: ["lighting-1.jpg", "lighting-1-2.jpg"],
+        },
+        "bep-dao": {
+          name: "Bếp đảo",
+          category: "Phòng ăn",
+          price: "23.980.000 ₫",
+          image: "dining-6.jpg",
+          description:
+            "Bếp đảo đa năng, mặt đá granite tự nhiên chống trầy, chịu nhiệt tốt. Tích hợp bếp từ, bồn rửa và ngăn chứa đồ tiện lợi. Kích thước 160x80x90cm, tạo điểm nhấn cho không gian bếp hiện đại.",
+          material: "ĐÁ GRANITE",
+          thumbnails: ["dining-6.jpg", "dining-6-2.jpg"],
+        },
+
+        // ===== ĐÈN (6 sản phẩm) =====
+        "den-ho-quang": {
+          name: "Đèn hồ quang",
+          category: "Đèn",
+          price: "9.250.000 ₫",
+          image: "lighting-2.jpg",
+          description:
+            "Đèn hồ quang thiết kế độc đáo, chất liệu đồng thau cao cấp. Cánh tay đèn có thể xoay linh hoạt, điều chỉnh hướng sáng theo ý muốn. Ánh sáng vàng ấm, phù hợp phòng khách và phòng đọc.",
+          material: "ĐỒNG THAU",
+          thumbnails: ["lighting-2.jpg", "lighting-2-2.jpg"],
+        },
+        "den-treo": {
+          name: "Đèn treo",
+          category: "Đèn",
+          price: "11.700.000 ₫",
+          image: "lighting-3.jpg",
+          description:
+            "Đèn treo kính mờ, thiết kế hình trụ thanh lịch. Ánh sáng dịu nhẹ, không chói mắt. Chiều cao dây treo có thể điều chỉnh, phù hợp bàn ăn hoặc quầy bar. Kích thước 30x30x40cm.",
+          material: "KÍNH MỜ",
+          thumbnails: ["lighting-3.jpg", "lighting-3-2.jpg"],
+        },
+        "den-cau-thang": {
+          name: "Đèn cầu thang",
+          category: "Đèn",
+          price: "13.250.000 ₫",
+          image: "lighting-4.jpg",
+          description:
+            "Đèn trang trí cầu thang, chất liệu kim loại cao cấp. Thiết kế hình học Brutalism mạnh mẽ, tạo điểm nhấn cho không gian. Bộ 3 đèn có thể lắp dọc theo tường, ánh sáng vàng ấm.",
+          material: "KIM LOẠI",
+          thumbnails: ["lighting-4.jpg", "lighting-4-2.jpg"],
+        },
+        "den-de-ban": {
+          name: "Đèn để bàn",
+          category: "Đèn",
+          price: "5.900.000 ₫",
+          image: "lighting-5.jpg",
+          description:
+            "Đèn bàn gỗ óc chó tự nhiên, chụp đèn vải linen. Ánh sáng vàng ấm, có núm điều chỉnh độ sáng. Thiết kế nhỏ gọn, phù hợp bàn làm việc hoặc bàn ngủ.",
+          material: "GỖ",
+          thumbnails: ["lighting-5.jpg", "lighting-5-2.jpg"],
+        },
+        "den-treo-tuong": {
+          name: "Đèn treo tường",
+          category: "Đèn",
+          price: "8.900.000 ₫",
+          image: "lighting-6.jpg",
+          description:
+            "Đèn treo tường nhôm sơn tĩnh điện, thiết kế hiện đại. Cánh đèn có thể xoay điều chỉnh hướng sáng. Phù hợp hành lang, đầu giường hoặc phòng khách. Tiết kiệm điện với công nghệ LED.",
+          material: "NHÔM",
+          thumbnails: ["lighting-6.jpg", "lighting-6-2.jpg"],
+        },
+        "den-chum-cao-cap": {
+          name: "Đèn chùm cao cấp",
+          category: "Đèn",
+          price: "39.000.000 ₫",
+          image: "lighting-8.jpg",
+          description:
+            "Đèn chùm pha lê nhập khẩu, 8 bóng đèn led vàng sang trọng. Khung mạ vàng 24K, pha lê Swarovski lấp lánh. Kích thước lớn 80x80x60cm, phù hợp phòng khách cao cấp, sảnh khách sạn.",
+          material: "PHA LÊ",
+          thumbnails: ["lighting-8.jpg", "lighting-8-2.jpg"],
+        },
+
+        // ===== VĂN PHÒNG (6 sản phẩm) =====
+        "ban-go": {
+          name: "Bàn gỗ",
+          category: "Văn phòng",
+          price: "17.500.000 ₫",
+          image: "office-2.jpg",
+          description:
+            "Bàn làm việc gỗ óc chó, mặt bàn dày 2.5cm, xử lý chống trầy. Hộc tủ rộng rãi, có khóa an toàn. Kích thước 160x70x75cm, phù hợp không gian làm việc chuyên nghiệp.",
+          material: "GỖ ÓC CHÓ",
+          thumbnails: ["office-2.jpg", "office-2-2.jpg"],
+        },
+        "ghe-da": {
+          name: "Ghế da",
+          category: "Văn phòng",
+          price: "12.900.000 ₫",
+          image: "office-3.jpg",
+          description:
+            "Ghế xoay bọc da bò cao cấp, tựa lưng chỉnh điện với 3 chế độ massage. Đệm mút hoạt tính, không gây mỏi khi ngồi lâu. Tay vịn bọc da, chân xoay 360 độ êm ái.",
+          material: "DA BÒ",
+          thumbnails: ["office-3.jpg", "office-3-2.jpg"],
+        },
+        "ke-dung": {
+          name: "Kệ đựng",
+          category: "Văn phòng",
+          price: "10.550.000 ₫",
+          image: "office-4.jpg",
+          description:
+            "Kệ đựng tài liệu gỗ công nghiệp cao cấp, 3 ngăn mở rộng rãi. Màu nâu óc chó sang trọng, phù hợp mọi không gian văn phòng. Kích thước 120x30x180cm, lắp ráp dễ dàng.",
+          material: "GỖ",
+          thumbnails: ["office-4.jpg", "office-4-2.jpg"],
+        },
+        "tu-tai-lieu": {
+          name: "Tủ tài liệu",
+          category: "Văn phòng",
+          price: "19.700.000 ₫",
+          image: "office-5.jpg",
+          description:
+            "Tủ tài liệu thép sơn tĩnh điện, 4 ngăn kéo lớn có khóa riêng biệt. Ray trượt giảm chấn êm ái, chịu tải đến 40kg mỗi ngăn. Thiết kế hiện đại, phù hợp văn phòng công ty.",
+          material: "THÉP",
+          thumbnails: ["office-5.jpg", "office-5-2.jpg"],
+        },
+        "ghe-dem-cao-cap": {
+          name: "Ghế đệm cao cấp",
+          category: "Văn phòng",
+          price: "31.450.000 ₫",
+          image: "office-6.jpg",
+          description:
+            "Ghế giám đốc bọc da cao cấp, tựa lưng chỉnh điện với chức năng massage và hơi nóng. Đệm mút memory foam, tay vịn bọc da. Chân đế chrome sáng bóng, xoay 360 độ.",
+          material: "DA CAO CẤP",
+          thumbnails: ["office-6.jpg", "office-6-2.jpg"],
+        },
+        "ban-dai": {
+          name: "Bàn dài",
+          category: "Văn phòng",
+          price: "28.300.000 ₫",
+          image: "office-7.jpg",
+          description:
+            "Bàn họp dài gỗ óc chó, kích thước 240x100x75cm, sức chứa 8-10 người. Mặt kính cường lực 10mm bảo vệ, hộp gen cáp gọn gàng. Thiết kế sang trọng, phù hợp phòng họp công ty.",
+          material: "GỖ ÓC CHÓ",
+          thumbnails: ["office-7.jpg", "office-7-2.jpg"],
+        },
+      };
       // ===== LẤY ID SẢN PHẨM TỪ URL =====
       function getProductId() {
         const urlParams = new URLSearchParams(window.location.search);
