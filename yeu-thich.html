@@ -215,6 +215,83 @@
         background: var(--primary-light);
         color: white;
       }
+
+      /* ===== TOAST MESSAGE NHỎ GỌN ===== */
+      .cart-toast {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        background: white;
+        border-radius: 16px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        padding: 16px;
+        min-width: 280px;
+        max-width: 320px;
+        z-index: 10000;
+        display: none;
+        animation: slideInRight 0.3s ease;
+        border-left: 4px solid #10b981;
+      }
+
+      .dark-mode .cart-toast {
+        background: #1f2937;
+        border-left-color: #10b981;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      }
+
+      @keyframes slideInRight {
+        from {
+          transform: translateX(100%);
+          opacity: 0;
+        }
+        to {
+          transform: translateX(0);
+          opacity: 1;
+        }
+      }
+
+      @keyframes fadeOut {
+        from {
+          opacity: 1;
+          transform: translateX(0);
+        }
+        to {
+          opacity: 0;
+          transform: translateX(100%);
+        }
+      }
+
+      .toast-content {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+      }
+
+      .toast-icon {
+        color: #10b981;
+        font-size: 24px;
+        min-width: 24px;
+      }
+
+      .toast-text {
+        flex: 1;
+        font-weight: 500;
+        color: #1f2937;
+      }
+
+      .dark-mode .toast-text {
+        color: #f9fafb;
+      }
+
+      @media (max-width: 480px) {
+        .cart-toast {
+          bottom: 20px;
+          right: 20px;
+          left: 20px;
+          min-width: auto;
+          max-width: none;
+        }
+      }
     </style>
   </head>
   <body class="light-mode">
@@ -431,6 +508,16 @@
       </button>
     </nav>
 
+    <!-- TOAST MESSAGE -->
+    <div id="cartToast" class="cart-toast" style="display: none">
+      <div class="toast-content">
+        <div class="toast-icon">
+          <span class="material-icons-round">check_circle</span>
+        </div>
+        <div class="toast-text" id="toastMessage">Đã thêm vào giỏ hàng!</div>
+      </div>
+    </div>
+
     <script src="js/main.js"></script>
     <script>
       // ===== DATABASE SẢN PHẨM =====
@@ -638,6 +725,22 @@
         },
       };
 
+      // ===== TOAST FUNCTIONS =====
+      function showToast(message) {
+        const toast = document.getElementById("cartToast");
+        document.getElementById("toastMessage").textContent = message;
+
+        toast.style.display = "block";
+        toast.style.animation = "slideInRight 0.3s ease";
+
+        setTimeout(function () {
+          toast.style.animation = "fadeOut 0.3s ease";
+          setTimeout(function () {
+            toast.style.display = "none";
+          }, 300);
+        }, 3000);
+      }
+
       // Load danh sách yêu thích từ localStorage
       function loadWishlist() {
         const wishlistContainer = document.getElementById("wishlistContainer");
@@ -701,7 +804,7 @@
                             <h4>${item.name}</h4>
                             <p>${item.category}</p>
                             <div class="wishlist-price">${item.price}</div>
-                            <button class="add-to-cart-small" onclick="addToCartFromWishlist('${item.id}')">
+                            <button class="add-to-cart-small" onclick="addToCartFromWishlist('${item.id}', this)">
                                 THÊM VÀO GIỎ
                             </button>
                         </div>
@@ -727,12 +830,8 @@
           updateWishlistCount();
         }
 
-        // Thông báo
-        if (typeof showToast === "function") {
-          showToast("🗑️ Đã xóa khỏi danh sách yêu thích");
-        } else {
-          alert("Đã xóa khỏi danh sách yêu thích");
-        }
+        // Thông báo bằng toast
+        showToast("🗑️ Đã xóa khỏi danh sách yêu thích");
       }
 
       // Thêm vào giỏ từ trang yêu thích
@@ -781,8 +880,8 @@
           window.updateCartCount();
         }
 
-        // Thông báo
-        alert(`✅ Đã thêm ${product.name} vào giỏ hàng!`);
+        // Thông báo bằng toast thay vì alert
+        showToast(`✅ Đã thêm ${product.name} vào giỏ hàng!`);
       }
 
       document.addEventListener("DOMContentLoaded", loadWishlist);
